@@ -1,0 +1,36 @@
+/*
+paleta de cores: 
+#000000
+#5b1f00
+#66280a
+#713112
+#7c3b1a
+#874421
+#9a5833
+#b4764f
+#cd966c
+#e6b68b
+#ffd7ab
+white
+*/
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+}
+
+body{
+    background-color: #5b1f00;
+    color: #ffd7ab
+    
+}
+
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1%;
+    width: 100%;
+    background-color: #874421;
+}
