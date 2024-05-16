@@ -20,7 +20,16 @@ white
 
 }
 
+p {
+    font-size: 1.5rem;
+  }
+  
+
 body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh; /* altura mínima */
     background-color: #5b1f00;
     color: #ffd7ab
     
@@ -33,4 +42,16 @@ header{
     padding: 1%;
     width: 100%;
     background-color: #874421;
+}
+
+.logo{
+    width: 100px;
+    height: 100px;
+    background-color:#cd966c ;
+    border-radius: 100%;
+}
+
+.logo img{
+    
+    width: 100%;
 }
