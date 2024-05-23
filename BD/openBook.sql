@@ -4,6 +4,7 @@ USE openBook;
 
 CREATE TABLE usuario(
 	idUsuario INT primary key auto_increment,
+	nickname varchar(45),
     nome VARCHAR (80),
 	email varchar(45),
     senha VARCHAR(45)
