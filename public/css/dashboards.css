@@ -329,6 +329,7 @@ canvas {
 
 .janela {
   display: flex;
+  
   /* width: 100vw; */
 }
 
