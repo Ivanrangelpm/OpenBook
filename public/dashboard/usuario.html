@@ -65,10 +65,10 @@
                         <p>Foto de Perfil</p>
                         <div id="fotoPerfil">
                         </div>
-                        <div class="campo">
-                          <span>Foto de Perfil:</span>
-                          <input id="foto_input" type="text" placeholder="URL da foto" />
-                        </div>
+                        <button onclick="abrirInput()">Alterar imagem</button>
+                    </div>
+                    <div id="divAlterarImagem">
+
                     </div>
                     <div style="width: 400px; margin-left: 50px; margin-top: 50px;">
                         <div class="campo">
@@ -159,6 +159,24 @@
     return false;
   }
 
+  function abrirInput() {
+    divAlterarImagem.innerHTML = `                      
+                    <div id="novaImagem" style="align-items: center;text-align: center;  position: absolute; margin-top: 200px; right: 300px; width: 700px; background-color: sienna; ">
+                          <h2>Insira a URL da nova imagem!</h2>
+                          <p>São aceitas urls com até 200 caracteres  e final JPG, GIF, PNG e JPEG</p>
+                          <input type="text" name="" id="inp_novaImagem">
+                          <button style="cursor: pointer;" onclick="alterarImagem()">Concluir</button>
+                          <div id="erroAlterar"></div>
+                      </div>`
+  }
+
+  function alterarImagem() {
+    var novaFoto = inp_novaImagem.value;
+    fotoPerfil.innerHTML = `<img style="width: 300px;" src="${novaFoto}" alt=""> `;
+    divAlterarImagem.innerHTML = ``
+    sessionStorage.FOTO_USUARIO = novaFoto;
+
+  }
 
 
 </script>
