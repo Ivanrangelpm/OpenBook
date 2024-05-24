@@ -63,8 +63,7 @@
                 <div style="color: white; right: 0; width: 600px; margin-left: 700px; display: flex;">    
                     <div >
                         <p>Foto de Perfil</p>
-                        <div id="fotoPerfil">
-                        </div>
+                          <img id="fotoPerfil" style="width: 300px;" src="https://static.vecteezy.com/ti/vetor-gratis/p1/9734564-default-avatar-profile-icon-of-social-media-user-vetor.jpg" alt=""> 
                         <button onclick="abrirInput()">Alterar imagem</button>
                     </div>
                     <div id="divAlterarImagem">
@@ -106,7 +105,9 @@
     var nomeVar = nome_input.value;
     var nickVar = nick_input.value;
     var emailVar = email_input.value;
-    var fotoVar = foto_input.value;
+    alert(sessionStorage.FOTO_USUARIO)
+    var fotoVar = sessionStorage.FOTO_USUARIO;
+    alert(fotoVar)
     console.log(` Declarando id: ${idVar}`)
     if (
       nomeVar == "" ||
@@ -172,7 +173,7 @@
 
   function alterarImagem() {
     var novaFoto = inp_novaImagem.value;
-    fotoPerfil.innerHTML = `<img style="width: 300px;" src="${novaFoto}" alt=""> `;
+    fotoPerfil.src = `${novaFoto}`;
     divAlterarImagem.innerHTML = ``
     sessionStorage.FOTO_USUARIO = novaFoto;
 

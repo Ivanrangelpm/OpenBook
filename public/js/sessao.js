@@ -10,7 +10,7 @@ function validarSessao() {
 
     if (email != null && nome != null) {
         b_usuario.innerHTML = nome;
-        fotoPerfil.innerHTML = `<img style="width: 300px;" src="${foto}" alt=""> `;
+        fotoPerfil.src = `${foto}`
     } else {
         window.location = "../login.html";
     }
