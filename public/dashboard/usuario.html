@@ -20,7 +20,7 @@
         rel="stylesheet">
 </head>
 <!---->
-<body onload="validarSessao(), atualizacaoPeriodica()">
+<body onload="validarSessao()">
 
     <div class="janela">
 
@@ -82,15 +82,8 @@
                             <span>E-mail:</span>
                             <input id="email_input" type="text" placeholder="meuemail@provedor.com" />
                           </div>
-                          <div class="campo">
-                            <span>Senha:</span>
-                            <input id="senha_input" type="password" placeholder="******" />
-                          </div>
-                          <div class="campo">
-                            <span>Confirmação da Senha:</span>
-                            <input id="confirmacao_senha_input" type="password" placeholder="******" />
-                          </div>
-                          <button class="botao" onclick="cadastrar()">Alterar</button>
+                          <button class="botao" onclick="alterar()">Alterar</button>
+                          <div id="mensagem_erro"></div>
                         </div>
                     </div>
                 </div>
@@ -104,37 +97,31 @@
 </body>
 
 <script>
-  function cadastrar() {
-    aguardar();
-
+  function alterar() {
+    console.log('oi?')
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
+    var idVar = sessionStorage.ID_USUARIO;
     var nomeVar = nome_input.value;
     var nickVar = nick_input.value;
     var emailVar = email_input.value;
-    var senhaVar = senha_input.value;
     var fotoVar = foto_input.value;
-    var confirmacaoSenhaVar = confirmacao_senha_input.value;
+    console.log(` Declarando id: ${idVar}`)
     if (
       nomeVar == "" ||
       nickVar == "" ||
       emailVar == "" ||
-      senhaVar == "" ||
-      confirmacaoSenhaVar == "" ||
       fotoVar == ""
     ) {
       cardErro.style.display = "block";
       mensagem_erro.innerHTML =
         "(Mensagem de erro para todos os campos em branco)";
 
-      finalizarAguardar();
       return false;
-    } else {
-      setInterval(sumirMensagem, 5000);
     }
 
     // Enviando o valor da nova input
-    fetch("/usuarios/cadastrar", {
+    fetch("/usuarios/alterar", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -142,10 +129,10 @@
       body: JSON.stringify({
         // crie um atributo que recebe o valor recuperado aqui
         // Agora vá para o arquivo routes/usuario.js
+        idServer: idVar,
         nomeServer: nomeVar,
         nickServer: nickVar,
         emailServer: emailVar,
-        senhaServer: senhaVar,
         fotoServer: fotoVar
       }),
     })
@@ -156,21 +143,16 @@
           cardErro.style.display = "block";
 
           mensagem_erro.innerHTML =
-            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+            "Alteração realizada com sucesso!";
 
-          setTimeout(() => {
-            window.location = "login.html";
-          }, "2000");
 
           limparFormulario();
-          finalizarAguardar();
         } else {
-          throw "Houve um erro ao tentar realizar o cadastro!";
+          throw "Houve um erro ao tentar realizar a alteracao!";
         }
       })
       .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
-        finalizarAguardar();
       });
 
     return false;
