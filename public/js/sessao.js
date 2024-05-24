@@ -6,11 +6,14 @@ function validarSessao() {
 
     var b_usuario = document.getElementById("b_usuario");
     var fotoPerfil = document.getElementById("fotoPerfil");
+    var imgPerfil = document.getElementById("imgPerfil");    
     
 
     if (email != null && nome != null) {
         b_usuario.innerHTML = nome;
-        fotoPerfil.src = `${foto}`
+        fotoPerfil.src = `${foto}`;
+        imgPerfil.src = `${foto}`;
+
     } else {
         window.location = "../login.html";
     }
