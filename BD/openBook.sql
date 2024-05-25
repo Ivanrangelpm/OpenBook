@@ -25,6 +25,50 @@ CREATE TABLE usuario (
     foto VARCHAR(200)
 );
 
+CREATE TABLE forum (
+	idForum int primary key auto_increment,
+    nomeForum varchar(45),
+    fotoForum varchar(200),
+    fkAdm int,
+    constraint fkUsuarioForum foreign key (fkAdm) references usuario(id)
+);
+
+
+CREATE TABLE livro (
+	idLivro int primary key auto_increment,
+	nome VARCHAR(45),
+	autor VARCHAR(45),
+	descricao VARCHAR(400),
+	genero VARCHAR(45),
+    fotoLivro VARCHAR(200),
+    fkForum int,
+    constraint fkForumLivro foreign key (fkForum) references forum(idForum)
+);
+
+
+CREATE TABLE discussao (
+	idDiscussao INT primary key auto_increment,
+    titulo varchar(45),
+	descricao varchar(200),
+    fkLivro int,
+    constraint fkLivroDiscussao foreign key (fkLivro) references livro(idLivro)
+);
+
+CREATE TABLE comentario (
+	idComentario INT primary key auto_increment,
+    texto VARCHAR(300),
+    fkDiscussao int,
+    fkUsuario int,
+    constraint fkDiscussaoComentario foreign key (fkDiscussao) references discussao(idDiscussao),
+    constraint fkUsuarioComentario foreign key (fkUsuario) references usuario(id)
+);
+
+select* from usuario;
+
+
+
+
+
 CREATE TABLE aviso (
 	id INT PRIMARY KEY AUTO_INCREMENT,
 	titulo VARCHAR(100),
@@ -55,6 +99,5 @@ create table medida (
 	FOREIGN KEY (fk_aquario) REFERENCES aquario(id)
 );
 
-select * from usuario;
 insert into empresa (razao_social, cnpj) values ('Empresa 1', '00000000000000');
 insert into aquario (descricao, fk_empresa) values ('Aquário de Estrela-do-mar', 1);
