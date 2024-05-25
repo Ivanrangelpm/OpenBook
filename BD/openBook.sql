@@ -6,9 +6,9 @@
 comandos para mysql server
 */
 
-CREATE DATABASE aquatech;
+CREATE DATABASE OpenBook;
 
-USE aquatech;
+USE OpenBook;
 
 CREATE TABLE empresa (
 	id INT PRIMARY KEY AUTO_INCREMENT,
@@ -21,7 +21,8 @@ CREATE TABLE usuario (
 	nome VARCHAR(50),
 	nick VARCHAR(50),
 	email VARCHAR(50),
-	senha VARCHAR(50)
+	senha VARCHAR(50),
+    foto VARCHAR(200)
 );
 
 CREATE TABLE aviso (
@@ -53,6 +54,7 @@ create table medida (
 	fk_aquario INT,
 	FOREIGN KEY (fk_aquario) REFERENCES aquario(id)
 );
+
 select * from usuario;
 insert into empresa (razao_social, cnpj) values ('Empresa 1', '00000000000000');
 insert into aquario (descricao, fk_empresa) values ('Aquário de Estrela-do-mar', 1);
