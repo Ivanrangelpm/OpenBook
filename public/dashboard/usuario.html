@@ -141,13 +141,10 @@
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
-          cardErro.style.display = "block";
 
           mensagem_erro.innerHTML =
             "Alteração realizada com sucesso!";
 
-
-          limparFormulario();
         } else {
           throw "Houve um erro ao tentar realizar a alteracao!";
         }
