@@ -19,7 +19,7 @@
         href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
 </head>
-<!--onload="validarSessao(), exibirAquarios(),  atualizacaoPeriodica()"-->
+<!--onload="validarSessao()", exibirAquarios(),  atualizacaoPeriodica()"-->
 <body onload="validarSessao()">
 
     <div class="janela">
@@ -34,14 +34,14 @@
                 <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
             </div>
 
-            <div class="btn-nav">
-                <h3>Usuário</h3>
+            <div class="btn-nav-white">
+                <a href="usuario.html">
+                    <h3>Usuário</h3>
+                </a>
             </div>
 
-            <div class="btn-nav-white">
-                <a href="./dashboard.html">
-                    <h3>Gráficos</h3>
-                </a>
+            <div class="btn-nav">
+                    <h3>Fórum</h3>                
             </div>
 
             <div class="btn-nav-white">
@@ -55,16 +55,18 @@
             </div>
 
         </div>
-
+            <div>
+                <button>Cadastrar Forum</button>
+            </div>
        
 
             <div class="cards" id="cardAquarios">
 
             </div>
 
-        </div>
-
     </div>
+
+    
 
 </body>
 
