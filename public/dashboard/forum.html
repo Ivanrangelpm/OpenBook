@@ -20,7 +20,7 @@
         rel="stylesheet">
 </head>
 <!--onload="validarSessao()", exibirAquarios(),  atualizacaoPeriodica()"-->
-<body>
+<body onload="validarSessao()">
 
     <div class="janela">
 
@@ -56,7 +56,11 @@
 
         </div>
             <div style="position: absolute; right: 500px; margin-top: 400px; ">
-                <button style="cursor: pointer;" >Cadastrar Forum</button>
+                <button style="cursor: pointer;" onclick="abrirCadastro()">Cadastrar Forum</button>
+            </div>
+
+            <div id="divCadastrarForum">
+
             </div>
        
 
@@ -71,6 +75,87 @@
 </body>
 
 <script>
+
+    function abrirCadastro() {
+        divCadastrarForum.innerHTML = `   
+                <div style="align-items: center;text-align: center;  position: absolute; margin-top: 200px; right: 300px; width: 700px; background-color: sienna; ">
+                    <h2>Faça o cadastro do seu novo fórum!</h2>
+                    <p>Nome do Fórum</p>
+                    <input type="text" name="" id="inp_nomeForum">
+                    <p>Imagem de Fundo do Fórum</p>
+                    <input type="text" name="" id="inp_fotoForum"> <br>
+                    <button style="cursor: pointer;" onclick="cadastrarForum()">Concluir</button>
+                    <div id="erroCadastrar"></div>
+                </div>`
+    }
+
+    function fecharCadastro(){
+        divCadastrarForum.innerHTML = ""   
+
+    }
+
+    function cadastrarForum() {
+        var nomeForum = inp_nomeForum.value;
+        var fotoForum = inp_fotoForum.value;
+        var admForum = sessionStorage.ID_USUARIO;
+
+        if(fotoForum == "") {
+            fotoForum = "https://img.freepik.com/fotos-premium/livro-aberto-com-espaco-de-copia_23-2148898309.jpg"
+        }
+
+        if(nomeForum == ""){
+            erroCadastrar.innerHTML = `O seu Fórum precisa ter um nome!`
+        }else{
+            erroCadastrar.innerHTML = ""
+            setInterval(fecharCadastro, 2000);
+        }
+
+        
+/*
+    // Enviando o valor da nova input
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        nomeServer: nomeVar,
+        nickServer: nickVar,
+        emailServer: emailVar,
+        senhaServer: senhaVar,
+        fotoServer: fotoVar
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          cardErro.style.display = "block";
+
+          mensagem_erro.innerHTML =
+            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+          setTimeout(() => {
+            window.location = "login.html";
+          }, "2000");
+
+          limparFormulario();
+          finalizarAguardar();
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
+
+    return false;
+
+    }
+
 
     function exibirAquarios() {
         JSON.parse(sessionStorage.AQUARIOS).forEach(item => {
@@ -88,6 +173,7 @@
                     </div>
                     `
         });
+        */
     }
 
 </script>
