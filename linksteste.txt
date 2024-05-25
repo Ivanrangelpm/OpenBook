@@ -7,7 +7,8 @@ SP: https://awoiaf.westeros.org/images/thumb/1/18/Mauro_Dal_Bo_Small_Paul.jpg/45
 livro aberto para forum: https://img.freepik.com/fotos-premium/livro-aberto-com-espaco-de-copia_23-2148898309.jpg
 
 
-forum harry potter: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYkgBvV9bQA8WYPGJVz_hy-tDofKEWWR_2sQ&usqp=CAU
+forum harry potter: https://m.media-amazon.com/images/I/61jgm6ooXzL._AC_UF1000,1000_QL80_.jpg
 
 
-INSERT INTO forum (nomeForum, fotoForum, fkAdm) VALUES ('Harry Potter', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYkgBvV9bQA8WYPGJVz_hy-tDofKEWWR_2sQ&usqp=CAU' , 1);
+
+Amazon wikipedia e wikiwesteros tem imagens jpg
