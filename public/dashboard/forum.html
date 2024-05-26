@@ -59,13 +59,18 @@
             </div>
 
         </div>
-        <div style="position: absolute; right: 500px; margin-top: 100px; ">
+
+
+        <div id="botoesForum" style="position: absolute; right: 500px; margin-top: 100px; ">
             <button style="cursor: pointer;" onclick="abrirCadastro()">Cadastrar Forum</button>
+            <button onclick="acessar() " style="cursor: pointer;">Acessar Meu Forum</button>
             <div style="color: white;" id="mensagemErro">
                 
             </div>
-        </div>
-        <div class="containerForum">
+        </div> 
+
+
+       <div id="divContainerForum" class="containerForum">
             <div id="feedForum1" class="containerCard">
 
             </div>
@@ -73,9 +78,15 @@
             <div id="feedForum2" class="containerCard">
 
 
-            </div>
-        </div>
+            </div> 
+            
 
+        </div>  
+
+        <div id="divContainerDiscussoes" class="containerDiscussoes">
+
+        </div>
+        
         <div id="divCadastrarForum">
         </div>
 
@@ -87,6 +98,49 @@
 </body>
 
 <script>
+
+    function fecharTopico(){
+        divContainerForum.style.display = "block";
+        botoesForum.style.display = "flex";
+        divContainerDiscussoes.style.display = "none";
+    }
+
+    function acessar(){
+        // sessionStorage.ID_FORUM_ACESSADO = idForum;
+        // console.log(`cliquei em acessar o Forum de ID ${idForum}`)
+        divContainerForum.style.display = "none";
+        botoesForum.style.display = "none";
+        divContainerDiscussoes.style.display = "flex";
+        divContainerDiscussoes.innerHTML = `
+        <div class="discussoes">
+                <div class="headerTopico">
+                    <h1 >Bem-Vindo ao Forum Harry Potter!</h1>
+                    <div>
+
+                    </div>
+                    <button class="btnTopico">Adicionar Tópico</button>
+                    <button class="btnTopico" onclick="fecharTopico()"> Fechar Fórum</button>
+                </div>
+                
+                <div class="topico" onclick="topico()">
+                    <h2 class="h2Topico">Por que o Draco é tão chato?</h2>
+                    <img style="width: 50px; height: 50px; border-radius: 100%; margin-top: 10px; margin-right: 10px;"
+                    id="imgPerfil"
+                    src="https://static.vecteezy.com/ti/vetor-gratis/p1/9734564-default-avatar-profile-icon-of-social-media-user-vetor.jpg"
+                    alt="">
+                </div>
+                <div class="topico"></div>
+                <div class="topico"></div>
+                <div class="topico"></div>
+                <div class="topico"></div>
+                <div class="topico"></div>
+                <div class="topico"></div>
+            </div>
+        `
+
+
+
+    }
 
     function abrirCadastro() {
         divCadastrarForum.innerHTML = `   
@@ -119,7 +173,7 @@
             erroCadastrar.innerHTML = `O seu Fórum precisa ter um nome!`
         } else {
             erroCadastrar.innerHTML = "";
-            setTimeout(fecharCadastro, 2000);
+            setTimeout(fecharCadastro, 1000);
         }
 
 

@@ -1,0 +1,20 @@
+            <div class="discussoes">
+                <div class="headerTopico">
+                    <h1 >Bem-Vindo ao Forum Harry Potter!</h1>
+                    <button class="btnTopico">Adicionar Tópico</button>
+                </div>
+                
+                <div class="topico" onclick="topico()">
+                    <h2 class="h2Topico">Por que o Draco é tão chato?</h2>
+                    <img style="width: 50px; height: 50px; border-radius: 100%; margin-top: 10px; margin-right: 10px;"
+                    id="imgPerfil"
+                    src="https://static.vecteezy.com/ti/vetor-gratis/p1/9734564-default-avatar-profile-icon-of-social-media-user-vetor.jpg"
+                    alt="">
+                </div>
+                <div class="topico"></div>
+                <div class="topico"></div>
+                <div class="topico"></div>
+                <div class="topico"></div>
+                <div class="topico"></div>
+                <div class="topico"></div>
+            </div>
