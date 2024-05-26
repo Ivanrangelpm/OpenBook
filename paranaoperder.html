@@ -93,70 +93,10 @@
     </div>
 
 
+
 </body>
 
 <script>
-
-    function abrirCadastroTopico() {
-        divCadastrarTopico.innerHTML = `
-        <div style="align-items: center;text-align: center;  position: absolute; margin-top: 200px; right: 300px; width: 700px; background-color: sienna; ">
-                    <h2>Faça o cadastro do novo tópico desse Fórum!</h2>
-                    <p>Nome do Tópico</p>
-                    <input type="text" name="" id="inp_nomeTopico"> <br>
-                    <button style="cursor: pointer;" onclick="cadastrarTopico()">Concluir</button>
-                    <div id="erroCadastrarTopico"></div>
-        </div>
-        `
-    }
-
-    function cadastrarTopico(idForum) {
-        var nomeTopico = inp_nomeTopico.value;
-        var fkForum = sessionStorage.ID_FORUM_ACESSADO;
-
-        console.log(`fk Forum = ${fkForum}`)
-        if (nomeTopico == "") {
-            erroCadastrarTopico.innerHTML = `O seu Tópico precisa ter um nome!`
-        } else {
-            erroCadastrarTopico.innerHTML = "";
-            setTimeout(fecharCadastroTopico, 1000);
-        }
-
-        fetch("/forum/cadastrarTopico", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/usuario.js
-
-                nomeTopicoServer: nomeTopico,
-                fkForumServer: fkForum
-            }),
-        })
-            .then(function (resposta) {
-                console.log("resposta: ", resposta);
-
-                if (resposta.ok) {
-
-                    erroCadastrarTopico.innerHTML =
-                        "Fórum criado com sucesso!";
-                    //atualizarForum();
-                    erroCadastrarTopico.innerHTML = ``;
-                } else {
-                    throw "Houve um erro ao tentar realizar o cadastro do Topico!";
-                }
-            })
-            .catch(function (resposta) {
-                console.log(`#ERRO: ${resposta}`);
-            });
-
-        return false;
-    }
-
-    function fecharCadastroTopico(){
-        divCadastrarTopico.innerHTML = ''
-    }
 
     function fecharForum(){
         divContainerForum.style.display = "block";
@@ -164,10 +104,9 @@
         divContainerDiscussoes.style.display = "none";
     }
 
-    function acessar(idForum){  
-         sessionStorage.ID_FORUM_ACESSADO = idForum;
-         console.log(`cliquei em acessar o Forum de ID ${idForum}`)
-
+    function acessar(){ // COLOCAR PARAMENTRO idForum DEPOIS!!!!
+        // sessionStorage.ID_FORUM_ACESSADO = idForum;
+        // console.log(`cliquei em acessar o Forum de ID ${idForum}`)
         divContainerForum.style.display = "none";
         botoesForum.style.display = "none";
         divContainerDiscussoes.style.display = "flex";
@@ -178,12 +117,8 @@
                     <div>
 
                     </div>
-                    <button class="btnTopico" onclick="abrirCadastroTopico()">Adicionar Tópico</button>
+                    <button class="btnTopico">Adicionar Tópico</button>
                     <button class="btnTopico" onclick="fecharForum()"> Fechar Fórum</button>
-                </div>
-                
-                <div id="divCadastrarTopico">
-            
                 </div>
                 
                 <div class="topico" onclick="topico()">

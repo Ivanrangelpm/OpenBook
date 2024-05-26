@@ -12,4 +12,8 @@ router.get("/listar", function (req, res) {
     forumController.listar(req, res);
 });
 
+router.post("/cadastrarTopico", function (req, res) {
+    forumController.cadastrarTopico(req, res);
+})
+
 module.exports = router;

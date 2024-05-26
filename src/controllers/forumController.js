@@ -49,9 +49,39 @@ function listar(req, res) {
     });
 }
 
+function cadastrarTopico(req, res) {
+    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+    var nomeTopico = req.body.nomeTopicoServer;
+    var fkForum = req.body.fkForumServer;
 
+    // Faça as validações dos valores
+    if (nomeTopico == undefined) {
+        res.status(400).send("Seu nome de tópico está undefined!");
+    } else if (fkForum == undefined) {
+        res.status(400).send("Sua fkForum está undefined!");
+    } else {
+
+        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+        forumModel.cadastrarTopico(nomeTopico, fkForum)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\n ja estou em forumController !Houve um erro ao realizar o cadastro do forum! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
 
 module.exports = {
     cadastrar,
-    listar
+    listar,
+    cadastrarTopico
 }
