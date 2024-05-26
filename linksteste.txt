@@ -15,3 +15,12 @@ forum RANGERS: https://upload.wikimedia.org/wikipedia/pt/3/35/Ponte_em_Chamas.pn
 
 
 Amazon wikipedia e wikiwesteros tem imagens jpg
+
+
+
+
+Livros default: 
+
+    Desenho: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlyalKCwGYq8xjt1_fx_di5iDCOsq2aT_iUHwZ9JHuYG0q-HDZMWbaZKzpXQtzMtO0Tbw&usqp=CAU
+
+    Foto: https://img.freepik.com/vetores-premium/livro-fechado-marrom_135176-141.jpg

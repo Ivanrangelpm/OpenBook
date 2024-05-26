@@ -33,25 +33,12 @@ CREATE TABLE forum (
     constraint fkUsuarioForum foreign key (fkAdm) references usuario(id)
 );
 
-
-CREATE TABLE livro (
-	idLivro int primary key auto_increment,
-	nome VARCHAR(45),
-	autor VARCHAR(45),
-	descricao VARCHAR(400),
-	genero VARCHAR(45),
-    fotoLivro VARCHAR(200),
-    fkForum int,
-    constraint fkForumLivro foreign key (fkForum) references forum(idForum)
-);
-
-
 CREATE TABLE discussao (
 	idDiscussao INT primary key auto_increment,
     titulo varchar(45),
 	descricao varchar(200),
-    fkLivro int,
-    constraint fkLivroDiscussao foreign key (fkLivro) references livro(idLivro)
+    fkForum int,
+    constraint fkForumDiscussao foreign key (fkForum) references forum(idForum)
 );
 
 CREATE TABLE comentario (
@@ -63,7 +50,19 @@ CREATE TABLE comentario (
     constraint fkUsuarioComentario foreign key (fkUsuario) references usuario(id)
 );
 
+
+CREATE TABLE livro (
+	idLivro int primary key auto_increment,
+	nome VARCHAR(45),
+	autor VARCHAR(45),
+	descricao VARCHAR(400),
+	genero VARCHAR(45),
+    fotoLivro VARCHAR(200)
+);
+
+
 select* from usuario;
+select * from forum;
 
 
 

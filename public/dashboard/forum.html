@@ -19,7 +19,8 @@
         href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
 </head>
-<!--onload="validarSessao()", exibirAquarios(),  atualizacaoPeriodica()"-->
+<!--onload="validarSessao(), atualizarForum()"-->
+
 <body onload="validarSessao(), atualizarForum()">
 
     <div class="janela">
@@ -30,7 +31,10 @@
 
             <div class="hello">
                 <img id="fotoPerfil" alt="" style="display: none;">
-                <img style="width: 50px; height: 50px; border-radius: 100%; margin-top: 10px; margin-right: 10px;" id="imgPerfil" src="https://static.vecteezy.com/ti/vetor-gratis/p1/9734564-default-avatar-profile-icon-of-social-media-user-vetor.jpg" alt="">
+                <img style="width: 50px; height: 50px; border-radius: 100%; margin-top: 10px; margin-right: 10px;"
+                    id="imgPerfil"
+                    src="https://static.vecteezy.com/ti/vetor-gratis/p1/9734564-default-avatar-profile-icon-of-social-media-user-vetor.jpg"
+                    alt="">
                 <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
             </div>
 
@@ -41,7 +45,7 @@
             </div>
 
             <div class="btn-nav">
-                    <h3>Fórum</h3>                
+                <h3>Fórum</h3>
             </div>
 
             <div class="btn-nav-white">
@@ -55,71 +59,30 @@
             </div>
 
         </div>
-            <div style="position: absolute; right: 500px; margin-top: 100px; ">
-                <button style="cursor: pointer;" onclick="abrirCadastro()">Cadastrar Forum</button>
+        <div style="position: absolute; right: 500px; margin-top: 100px; ">
+            <button style="cursor: pointer;" onclick="abrirCadastro()">Cadastrar Forum</button>
+            <div style="color: white;" id="mensagemErro">
+                
             </div>
-            <div style=" color: white; position: absolute; right: 80px; margin-top: 150px; border: 2px solid red; width: 1100px; height: 600px;" >
-                <div style="position: absolute;  margin-top: 5px; border: 2px solid green; width: 1090px; margin-left: 3px; height: 290px;" >
-                    <div style="background-image: url('https://m.media-amazon.com/images/I/61jgm6ooXzL._AC_UF1000,1000_QL80_.jpg'); background-size: cover; position: absolute;align-items: center; text-align: center; margin-top: 5px; border: 2px solid red; width: 19%; height: 95%;">
-                        <h3>Harry Potter</h3>
-                        <button>DESCRIÇÂO</button><br><br>
-                        <button style="margin-top: 60px;">ACESSAR FÓRUM</button>
-                    </div>
+        </div>
+        <div class="containerForum">
+            <div id="feedForum1" class="containerCard">
 
-                    <div style="position: absolute;align-items: center; text-align: center; margin-left: 220px; margin-top: 5px; border: 2px solid red; width: 19%; height: 95%;">
-                    
-                    </div>
-
-                    <div style="position: absolute;align-items: center; text-align: center; margin-left: 440px; margin-top: 5px; border: 2px solid red; width: 19%; height: 95%;">
-                    
-                    </div>
-
-                    <div style="position: absolute;align-items: center; text-align: center; margin-left: 660px; margin-top: 5px; border: 2px solid red; width: 19%; height: 95%;">
-                    
-                    </div>
-
-                    <div style="position: absolute;align-items: center; text-align: center; margin-left: 880px; margin-top: 5px; border: 2px solid red; width: 19%; height: 95%;">
-                    
-                    </div>
-
-                </div>
-
-                <div style="position: absolute;  margin-top: 305px; border: 2px solid blue; width: 1090px; margin-left: 3px; height: 290px;" >
-                    <div style="position: absolute; align-items: center; text-align: center; margin-top: 5px; border: 2px solid red; width: 19%; height: 95%;">
-                        
-                    </div>
-
-                    <div style="position: absolute; align-items: center; text-align: center; margin-left: 220px; margin-top: 5px; border: 2px solid red; width: 19%; height: 95%;">
-                        
-                    </div>
-
-                    <div style="position: absolute; align-items: center; text-align: center; margin-left: 440px; margin-top: 5px; border: 2px solid red; width: 19%; height: 95%;">
-                        
-                    </div>
-
-                    <div style="position: absolute; align-items: center; text-align: center; margin-left: 660px; margin-top: 5px; border: 2px solid red; width: 19%; height: 95%;">
-                        
-                    </div>
-
-                    <div style="position: absolute; align-items: center; text-align: center; margin-left: 880px; margin-top: 5px; border: 2px solid red; width: 19%; height: 95%;">
-                        
-                    </div>
-
-              </div>
             </div>
 
-            <div id="divCadastrarForum">
+            <div id="feedForum2" class="containerCard">
+
 
             </div>
-       
+        </div>
 
-            <div class="cards" id="cardAquarios">
+        <div id="divCadastrarForum">
+        </div>
 
-            </div>
 
     </div>
 
-    
+
 
 </body>
 
@@ -138,8 +101,8 @@
                 </div>`
     }
 
-    function fecharCadastro(){
-        divCadastrarForum.innerHTML = ""   
+    function fecharCadastro() {
+        divCadastrarForum.innerHTML = ""
 
     }
 
@@ -148,51 +111,51 @@
         var fotoForum = inp_fotoForum.value;
         var admForum = sessionStorage.ID_USUARIO;
 
-        if(fotoForum == "") {
-            fotoForum = "https://img.freepik.com/fotos-premium/livro-aberto-com-espaco-de-copia_23-2148898309.jpg"
+        if (fotoForum == "") {
+            fotoForum = "https://img.freepik.com/vetores-premium/livro-fechado-marrom_135176-141.jpg"
         }
 
-        if(nomeForum == ""){
+        if (nomeForum == "") {
             erroCadastrar.innerHTML = `O seu Fórum precisa ter um nome!`
-        }else{
+        } else {
             erroCadastrar.innerHTML = "";
             setTimeout(fecharCadastro, 2000);
         }
 
-        
 
-    // Enviando o valor da nova input
-    fetch("/forum/cadastrar", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
 
-        nomeForumServer: nomeForum,
-        fotoForumServer: fotoForum,
-        admForumServer: admForum
-      }),
-    })
-      .then(function (resposta) {
-        console.log("resposta: ", resposta);
+        // Enviando o valor da nova input
+        fetch("/forum/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
 
-        if (resposta.ok) {
+                nomeForumServer: nomeForum,
+                fotoForumServer: fotoForum,
+                admForumServer: admForum
+            }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
 
-          erroCadastrar.innerHTML =
-            "Fórum criado com sucesso!";
-            atualizarForum();
-        } else {
-          throw "Houve um erro ao tentar realizar o cadastro do Forum!";
-        }
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-      });
+                if (resposta.ok) {
 
-    return false;
+                    erroCadastrar.innerHTML =
+                        "Fórum criado com sucesso!";
+                    atualizarForum();
+                } else {
+                    throw "Houve um erro ao tentar realizar o cadastro do Forum!";
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+
+        return false;
 
     }
 
@@ -200,8 +163,8 @@
         fetch("/forum/listar").then(function (resposta) {
             if (resposta.ok) {
                 if (resposta.status == 204) {
-                    var feed = document.getElementById("feed_container");
-                    var mensagem = document.createElement("span");
+                    var feed = document.getElementById("mensagemErro");
+                    var mensagem = document.createElement("h1");
                     mensagem.innerHTML = "Nenhum resultado encontrado."
                     feed.appendChild(mensagem);
                     throw "Nenhum resultado encontrado!!";
@@ -209,64 +172,53 @@
 
                 resposta.json().then(function (resposta) {
                     console.log("Dados recebidos: ", JSON.stringify(resposta));
-/*
-                    var feed = document.getElementById("feed_container");
-                    feed.innerHTML = "";
+
+
+
+                    var feed1 = document.getElementById("feedForum1");
+                    var feed2 = document.getElementById("feedForum2");
+                    feed1.innerHTML = "";
+                    feed2.innerHTML = "";
                     for (let i = 0; i < resposta.length; i++) {
-                        var publicacao = resposta[i];
+                        var forum = resposta[i];
 
                         // criando e manipulando elementos do HTML via JavaScript
-                        var divPublicacao = document.createElement("div");
-                        var spanID = document.createElement("span");
-                        var spanTitulo = document.createElement("span");
-                        var spanNome = document.createElement("span");
-                        var divDescricao = document.createElement("div");
-                        var divButtons = document.createElement("div");
-                        var btnEditar = document.createElement("button");
-                        var btnDeletar = document.createElement("button");
+                        var divCard = document.createElement("div");
+                        var nomeForum = document.createElement("h1");
+                        var btnDesc = document.createElement("button");
+                        var btnAcessar = document.createElement("button");
 
+                        nomeForum.innerHTML = forum.nomeForum ;
+                        btnDesc.innerHTML = "DESCRIÇÂO";
+                        btnAcessar.innerHTML = "ACESSAR FÓRUM";
 
-                        spanID.innerHTML = "ID: <b>" + publicacao.idAviso + "</b>";
-                        spanTitulo.innerHTML = "Título: <b>" + publicacao.titulo + "</b>";
-                        spanNome.innerHTML = "Autor: <b>" + publicacao.nome + "</b>";
-                        divDescricao.innerHTML = "Descrição: <b>" + publicacao.descricao + "</b>";
-                        btnEditar.innerHTML = "Editar";
-                        btnDeletar.innerHTML = "Deletar";
+                        divCard.className = "cardForum";
 
-                        divPublicacao.className = "publicacao";
-                        spanTitulo.id = "inputNumero" + publicacao.idAviso;
-                        spanNome.className = "publicacao-nome";
-                        spanTitulo.className = "publicacao-titulo";
-                        divDescricao.className = "publicacao-descricao";
+                        btnDesc.className = "buttonDesc"
+                        btnDesc.id = "btnDesc" + forum.idForum;
+                        btnDesc.setAttribute("onclick", `desc(${forum.idForum})`);
 
-                        divButtons.className = "div-buttons"
+                        btnAcessar.id = "btnAcessar" + forum.idForum;
+                        btnAcessar.setAttribute("onclick", `acessar(${forum.idForum})`);
 
-                        btnEditar.className = "publicacao-btn-editar"
-                        btnEditar.id = "btnEditar" + publicacao.idAviso;
-                        btnEditar.setAttribute("onclick", `editar(${publicacao.idAviso})`);
-
-                        btnDeletar.className = "publicacao-btn-editar"
-                        btnDeletar.id = "btnDeletar" + publicacao.idAviso;
-                        btnDeletar.setAttribute("onclick", `deletar(${publicacao.idAviso})`);
-
-                        divPublicacao.appendChild(spanID);
-                        divPublicacao.appendChild(spanNome);
-                        divPublicacao.appendChild(spanTitulo);
-                        divPublicacao.appendChild(divDescricao);
-                        divPublicacao.appendChild(divButtons);
-                        divButtons.appendChild(btnEditar);
-                        divButtons.appendChild(btnDeletar);
-                        feed.appendChild(divPublicacao);
+                        divCard.appendChild(nomeForum);
+                        divCard.appendChild(btnAcessar);
+                        divCard.appendChild(btnDesc);
+                        if(i < 5){
+                            feed1.appendChild(divCard);
+                        }else{
+                            feed2.appendChild(divCard);
+                        }
+                        divCard.style.backgroundImage = `url('${forum.fotoForum}')`;
+                        
                     }
 
-                    finalizarAguardar(); */
                 });
             } else {
                 throw ('Houve um erro na API!');
             }
         }).catch(function (resposta) {
             console.error(resposta);
-            finalizarAguardar();
         });
     }
 
@@ -317,7 +269,7 @@
                     </div>
                     `
         });
-        
+
     }
 
 </script>

@@ -33,8 +33,6 @@ CREATE TABLE forum (
     constraint fkUsuarioForum foreign key (fkAdm) references usuario(id)
 );
 
-
-
 CREATE TABLE discussao (
 	idDiscussao INT primary key auto_increment,
     titulo varchar(45),
