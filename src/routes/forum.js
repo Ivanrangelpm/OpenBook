@@ -12,6 +12,10 @@ router.get("/listar", function (req, res) {
     forumController.listar(req, res);
 });
 
+router.get("/listarTopico", function (req, res) {
+    forumController.listarTopico(req, res);
+});
+
 router.post("/cadastrarTopico", function (req, res) {
     forumController.cadastrarTopico(req, res);
 })
