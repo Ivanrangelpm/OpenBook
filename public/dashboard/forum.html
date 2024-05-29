@@ -127,6 +127,7 @@ function acessar(idForum){
 
                     var divContDisc = document.getElementById("divContainerDiscussoes");
                     divContDisc.innerHTML = "";
+                    var nenhumTopico = false
                     var contAuxiliar = 0
                     for (let i = 0; i < resposta.length; i++) {
                         var topico = resposta[i];
@@ -164,6 +165,9 @@ function acessar(idForum){
                         }
                         // criando e manipulando elementos do HTML via JavaScript
 
+
+                        if(idForum == topico.fkForum){
+
                         var divTopico = document.createElement("div");
                         var h2Topico = document.createElement("h2");
                         var imgTopico = document.createElement("img");
@@ -180,10 +184,18 @@ function acessar(idForum){
 
                         divTopico.appendChild(h2Topico);
                         divTopico.appendChild(imgTopico);
-
                         divContainerTopico.appendChild(divTopico);
-                        divContDisc.appendChild(divContainerTopico);
+
+                        nenhumTopico = true
+                        }
+
+
+
                         
+                        divContDisc.appendChild(divContainerTopico);
+                        if(nenhumTopico == false){
+                            nomeTitulo.innerHTML = 'Seja o primeiro a criar um tópico nesse fórum!'
+                        }
                     }
 
                 });
