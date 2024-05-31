@@ -1,22 +1,74 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Architronic-IA</title>
+    <script src="../js/sessao.js"></script>
+    <script src="../js/alerta.js"></script>
+    <link rel="stylesheet" href="css/dashboards.css">
+    <link rel="stylesheet" href="css/estilo.css">
 </head>
-<body>
-    <div id="container">
-        <h1>Architronic-IA</h1>
-        <textarea id="pergunta" type="text" placeholder="Digite a pergunta..."></textarea>
-        <br><br>
-        <button onclick="gerarResposta()">Gerar Resposta</button>
-        <h3>Resposta da IA:</h3>
-        <div id="resposta"></div>
+<!--onload="validarSessao()"-->
+<body onload="validarSessao()">
+    <div class="janela">
+        <div class="header-left dash-header">
+
+            <h1>AquaTech</h1>
+
+            <div class="hello">
+                <img id="fotoPerfil" alt="" style="display: none;">
+                <img class="imgPerf" 
+                    id="imgPerfil"
+                    src="https://static.vecteezy.com/ti/vetor-gratis/p1/9734564-default-avatar-profile-icon-of-social-media-user-vetor.jpg"
+                    alt="">
+                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+            </div>
+
+            <div class="btn-nav-white">
+                <a href="dashboard/usuario.html">
+                    <h3>Perfil</h3>
+                </a>
+            </div>
+
+            <div class="btn-nav-white">
+                <a href="dashboard/forum.html">
+                    <h3>Fórum</h3>
+                </a>
+            </div>
+
+            <div class="btn-nav">
+                <a href="bobia.html">
+                    <h3>recomendAI</h3>
+                </a>
+            </div>
+
+            <div class="btn-logout" onclick="limparSessao()">
+                <h3>Sair</h3>
+            </div>
+
+    
+
     </div>
 
+        <div id="containerRecomendAI">
+            
+                <h1 class="tituloRecomendai">RecomendAI! Seu novo jeito de descobrir livros</h1>
+                <div id="resposta"></div>
+
+                <div id="impBox" class="inputBox">
+                    <div class="inputDiv">
+                        <input id="pergunta" type="text" class="inp_comentario" placeholder="Digite sua pergunta">
+                        <button onclick="gerarResposta()" class="btnIcon" id="btnIcon">
+                            <img src="assets/imgs/enviar.png" class="imgEnviar">
+                        </button>
+                    </div>
+                </div>
+           
+
     <script>
-        
+
         async function gerarResposta() {
             const pergunta = document.getElementById('pergunta').value;
 
@@ -29,12 +81,14 @@
             });
 
             const data = await response.json();
+            console.log(data)
 
             resposta.style.display = 'block';
             document.getElementById('resposta').innerText = data.resultado;
         }
 
     </script>
-    
+
 </body>
+
 </html>

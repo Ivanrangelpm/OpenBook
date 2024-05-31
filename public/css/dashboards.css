@@ -10,6 +10,26 @@ body {
   font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+
+.tituloRecomendai{
+  align-self: center;
+}
+
+#containerRecomendAI{
+    display: flex;
+    color: white;
+    position: absolute;
+    right: 30px;
+    margin-top: 50px;
+    border: 2px solid red;
+    width: 1150px;
+    height: 700px;
+    flex-direction: column;
+  
+}
+
+
+
 .containerForum{ 
   color: white;
   position: absolute;
