@@ -35,21 +35,22 @@ CREATE TABLE forum (
 
 CREATE TABLE discussao (
 	idDiscussao INT primary key auto_increment,
-    titulo varchar(45),
-	descricao varchar(200),
+    titulo varchar(70),
     fkForum int,
-    constraint fkForumDiscussao foreign key (fkForum) references forum(idForum)
+    fkCriador int,
+    constraint fkForumDiscussao foreign key (fkForum) references forum(idForum),
+    constraint fkUsuarioDiscussao foreign key (fkCriador) references usuario(id)
 );
 
 CREATE TABLE comentario (
 	idComentario INT primary key auto_increment,
     texto VARCHAR(300),
-    fkDiscussao int,
+    fkTopico int,
     fkUsuario int,
-    constraint fkDiscussaoComentario foreign key (fkDiscussao) references discussao(idDiscussao),
+    dtComent datetime default current_timestamp,
+    constraint fkTopicoComentario foreign key (fkTopico) references discussao(idDiscussao),
     constraint fkUsuarioComentario foreign key (fkUsuario) references usuario(id)
 );
-
 
 CREATE TABLE livro (
 	idLivro int primary key auto_increment,
@@ -63,6 +64,10 @@ CREATE TABLE livro (
 
 select* from usuario;
 select * from forum;
+select * from discussao;
+
+-- A DISCUSSAO PRECISA TER UMA FKUSUARIO PARA PEGAR A FOTO DELE E USAR NO TOPICO
+
 
 
 

@@ -16,8 +16,17 @@ router.get("/listarTopico", function (req, res) {
     forumController.listarTopico(req, res);
 });
 
+router.get("/listarComentarios", function (req, res) {
+    forumController.listarComentarios(req, res);
+});
+
 router.post("/cadastrarTopico", function (req, res) {
     forumController.cadastrarTopico(req, res);
 })
+
+router.post("/cadastrarComentario", function (req, res) {
+    forumController.cadastrarComentario(req, res);
+})
+
 
 module.exports = router;

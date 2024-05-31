@@ -42,16 +42,15 @@ CREATE TABLE discussao (
     constraint fkUsuarioDiscussao foreign key (fkCriador) references usuario(id)
 );
 
-
 CREATE TABLE comentario (
 	idComentario INT primary key auto_increment,
     texto VARCHAR(300),
-    fkDiscussao int,
+    fkTopico int,
     fkUsuario int,
-    constraint fkDiscussaoComentario foreign key (fkDiscussao) references discussao(idDiscussao),
+    dtComent datetime default current_timestamp,
+    constraint fkTopicoComentario foreign key (fkTopico) references discussao(idDiscussao),
     constraint fkUsuarioComentario foreign key (fkUsuario) references usuario(id)
 );
-
 
 CREATE TABLE livro (
 	idLivro int primary key auto_increment,

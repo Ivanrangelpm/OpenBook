@@ -76,10 +76,8 @@
 
             <div id="feedForum2" class="containerCard">
 
-
             </div> 
             
-
         </div>  
 
         <div id="divContainerDiscussoes" class="containerDiscussoes">
@@ -87,6 +85,9 @@
         </div>
         
         <div id="divCadastrarForum">
+        </div>
+        <div id="divContainerComentarios">
+            
         </div>
 
 
@@ -96,16 +97,249 @@
 </body>
 
 <script>
-function topico() {
 
+function cadastrarMensagem(){
+        var comentario = inp_comentario.value;
+        var fkTopico = sessionStorage.ID_TOPICO_ACESSADO;
+        var fkUsuario = sessionStorage.ID_USUARIO;
+
+        console.log(`fk Topico = ${fkTopico}`)
+        if (comentario == "") {
+            mensagemErroComentario.innerHTML = `<b>Sua mensagem está vazia!</b>`
+        } else {
+            mensagemErroComentario.innerHTML = ''
+        }
+
+        fetch("/forum/cadastrarComentario", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+
+                comentarioServer: comentario,
+                fkTopicoServer: fkTopico,
+                fkUsuarioServer: fkUsuario
+            }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+                    topico(fkTopico)
+                    //atualizarForum();
+                    mensagemErroComentario.innerHTML = ``;
+                } else {
+                    throw "Houve um erro ao tentar realizar o cadastro do Topico!";
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+
+        return false;
+}
+
+function fecharTopico(){
+    var forum = sessionStorage.ID_FORUM_ACESSADO;
+
+    acessar(forum)
+}
+
+function topico(idTopico) {  
+    var fkTopico = idTopico;
+    sessionStorage.ID_TOPICO_ACESSADO = idTopico;
+
+    var usuarioAtual = sessionStorage.ID_USUARIO;
+      /*
+        tirar comentario de listar(idTopico)
+        Usar min width e max width p definir o tamanho do input 
+        talvez colocar um scroll bar caso aja muitos comentarios
+        Colocar alterar informações de usuario e foto tambem
+        Colocar nick do usuario que comentou 
+    */
+    
+    console.log(`cliquei em acessar o Topico de ID ${idTopico}`)
+    divContainerDiscussoes.style.display = "none";
+    divContainerComentarios.style.display = "flex";
+    divContainerForum.style.display = "none";
+
+    fetch("/forum/listarComentarios").then(function (resposta) {
+            
+            
+            if (resposta.ok) {
+                if (resposta.status == 204) {
+                    var divMensagemErro = document.getElementById("divContainerComentarios");
+                    var mensagem = document.createElement("h3");
+                    mensagem.innerHTML = "Nenhum resultado encontrado."
+                    divMensagemErro.appendChild(mensagem);
+                    throw "Nenhum resultado encontrado!!";
+                }
+
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+
+
+                    var divComentarios = document.getElementById("divContainerComentarios");
+                    divComentarios.innerHTML = "";
+                    var nenhumComentario = false
+                    var contAuxiliar = 0
+                    for (let i = 0; i < resposta.length; i++) {
+                        var comentario = resposta[i];
+                        if(contAuxiliar == 0){
+                            var divChatComentario = document.createElement("div");
+                            var fecharComentario = document.createElement("button");
+
+                            fecharComentario.innerHTML = 'Voltar para os topicos';
+
+                            divChatComentario.id = 'chatComentario';
+                            fecharComentario.setAttribute("onclick", 'fecharTopico()');
+
+                            divChatComentario.appendChild(fecharComentario)
+
+                            contAuxiliar ++;
+                        }
+                        // criando e manipulando elementos do HTML via JavaScript
+
+
+                        if(fkTopico == comentario.fkTopico){
+
+                        var divContainerComent = document.createElement("div");
+                        var imgUsuario = document.createElement("img");
+                        var comentTexto = document.createElement("p");
+                        var comentHora = document.createElement("span");
+
+                        comentTexto.innerHTML = `${comentario.texto}`
+                        comentHora.innerHTML = `${comentario.dtComent}`
+
+                        divContainerComent.className = 'containerComentarios'
+                        
+                        if(comentario.idUsuario == usuarioAtual){
+                            comentHora.className = 'time-left'
+                            imgUsuario.className = 'right'
+                        }else{
+                            comentHora.className = 'time-right'
+                        }
+
+                        imgUsuario.setAttribute('src', comentario.foto);
+
+                        divContainerComent.appendChild(imgUsuario);
+                        divContainerComent.appendChild(comentTexto);
+                        divContainerComent.appendChild(comentHora);
+                        divChatComentario.appendChild(divContainerComent);
+
+   
+
+                        
+
+                        nenhumComentario = true
+                        }
+
+                        
+
+                        
+                        if(nenhumComentario == false){
+                           // mensagemErroComentario.innerHTML = 'Faça o primerio comentario dese fórum!'
+                        }
+
+                    }
+                    var divMsgErro = document.createElement("div");
+                            var divInpBox = document.createElement("div");
+                            var divInput = document.createElement("div");
+                            var inp = document.createElement("input");
+                            var botaoInp = document.createElement("button");
+                            var imgBotao = document.createElement("img");
+
+                            divMsgErro.id = 'mensagemErroComentario';
+                            divInpBox.className = 'inputBox';
+                            divInpBox.id = 'impBox';
+                            divInput.className = 'inputDiv';
+                            inp.id = 'inp_comentario';
+                            inp.className = 'inp_comentario';
+                            inp.setAttribute('type', 'text');
+                            inp.placeholder = 'Digite seu comentario';
+                            botaoInp.className = 'btnIcon';
+                            botaoInp.id = 'btnIcon';
+                            botaoInp.setAttribute('onclick', 'cadastrarMensagem()');
+                            imgBotao.className = 'imgEnviar';
+                            imgBotao.setAttribute('src', '../assets/imgs/enviar.png')
+
+                            divChatComentario.appendChild(divMsgErro);
+                            botaoInp.appendChild(imgBotao);
+                            divInput.appendChild(inp);
+                            divInput.appendChild(botaoInp);
+                            divInpBox.appendChild(divInput);
+                            divChatComentario.appendChild(divInpBox);
+                            divComentarios.appendChild(divChatComentario);
+
+                });
+            } else {
+                throw ('Houve um erro na API! (acessarComentarios)');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+        });
+
+
+    /*
+    divContainerComentarios.innerHTML = `
+    <div id="chatComentario">
+                <button onclick="fecharTopico()">Voltar para os topicos</button>
+                <div class="containerComentarios">
+                    <img src="https://static.vecteezy.com/ti/vetor-gratis/p1/9734564-default-avatar-profile-icon-of-social-media-user-vetor.jpg" alt="Avatar">
+                    <p>Hello. How are you today?</p>
+                    <span class="time-right">11:00</span>
+                </div>
+                
+                <div class="containerComentarios escuro">
+                    <img src="https://static.vecteezy.com/ti/vetor-gratis/p1/9734564-default-avatar-profile-icon-of-social-media-user-vetor.jpg" alt="Avatar" class="right">
+                    <p>Hey! I'm fine. Thanks for asking!</p>
+                    <span class="time-left">11:01</span>
+                </div>
+                
+                <div class="containerComentarios">
+                    <img src="https://static.vecteezy.com/ti/vetor-gratis/p1/9734564-default-avatar-profile-icon-of-social-media-user-vetor.jpg" alt="Avatar" >
+                    <p>Sweet! So, what do you wanna do today?</p>
+                    <span class="time-right">11:02</span>
+                </div>
+                
+                <div class="containerComentarios escuro">
+                    <img src="https://static.vecteezy.com/ti/vetor-gratis/p1/9734564-default-avatar-profile-icon-of-social-media-user-vetor.jpg" alt="Avatar" class="right">
+                    <p>Nah, I dunno. Play soccer.. or learn more coding perhaps?</p>
+                    <span class="time-left">11:05</span>
+                </div>
+
+
+
+
+            </div>
+
+            <div id="mensagemErroComentario"></div>
+            <div id="impBox" class="inputBox">
+                <div class="inputDiv">
+                    <input id="inp_comentario" type="text" class="inp_comentario" placeholder="Digite seu comentario">
+                    <button onclick="cadastrarMensagem()" class="btnIcon" id="btnIcon">
+                        <img src="/public/assets/imgs/enviar.png" class="imgEnviar">
+                    </button>
+                </div>
+            </div>
+    `
+
+    */
 }
 
 function acessar(idForum){  
+
+
          sessionStorage.ID_FORUM_ACESSADO = idForum;
          console.log(`cliquei em acessar o Forum de ID ${idForum}`)
         var fkForum = idForum;
         divContainerForum.style.display = "none";
         botoesForum.style.display = "none";
+        divContainerComentarios.style.display = "none";
         divContainerDiscussoes.style.display = "flex";
 
         fetch("/forum/listarTopico").then(function (resposta) {
@@ -291,7 +525,7 @@ function acessar(idForum){
 
                     erroCadastrarTopico.innerHTML =
                         "Topico criado com sucesso!";
-                        acessar(idForum)
+                        acessar(fkForum)
                     //atualizarForum();
                     erroCadastrarTopico.innerHTML = ``;
                 } else {

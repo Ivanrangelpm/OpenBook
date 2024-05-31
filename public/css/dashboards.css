@@ -3,6 +3,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 .containerForum{ 
   color: white;
   position: absolute;
@@ -98,62 +105,190 @@
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+#divContainerComentarios{
+  display: none;
+  color: white;
+  position: absolute;
+  right: 30px;
+  margin-top: 50px;
+  border: 2px solid red;
+  width: 1150px;
+  height: 700px;
+  flex-direction: column;
 }
+
+#mensagemErroComentario{
+  position: relative;
+  font-size: 25px;
+  color: red;
+  align-self: center;
+}
+
+.inputBox {
+  position: absolute;
+  bottom: 5px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-top: auto;
+  height: 60px;
+  margin-bottom: 15px;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputDiv {
+  width: 1000px;
+  height: 55px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.inp_comentario {
+  color: white;
+  margin-top: 10px;
+  width: 100%;
+  height: 69%;
+  border-radius: 10px;
+  background-color: #212121;
+  border: none;
+}
+
+.inp_comentario:focus { /* Quando o input com classe "input_number" estiver em foco */
+  outline: none
+}
+
+.btnIcon {
+  margin-left: 10px;
+  width: 60px;
+  height: 55px;
+  background-color: white;
+  border: none;
+  margin-right: 10px;
+  cursor: pointer;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imgEnviar {
+  width: 50px;
+  height: 50px;
+}
+
+
+#chatComentario{
+  border: 2px solid blue;
+  width: 100%;
+}
+
+/* Chat containers */
+.containerComentarios {
+  border: 2px solid #dedede;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+  height: 50px;
+  color: black;
+  
+}
+
+/* Darker chat container */
+.escuro {
+  border-color: #ccc;
+  background-color: #ddd;
+}
+
+/* Clear floats */
+
+
+/* Style images */
+.containerComentarios img {
+  float: left;
+  max-width: 60px;
+  width: 100%;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+/* Style the right image */
+.containerComentarios img.right {
+  float: right;
+  margin-left: 20px;
+  margin-right:0;
+}
+
+
+
+/* Style time text */
+.time-right {
+
+  color: red;
+  position: relative;
+  top: -20px;
+  margin-top: 0;
+  float: right;
+}
+
+/* Style time text */
+.time-left {
+  position: relative;
+  top: -10px;
+  float: left;
+  color: #999;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .label-captura {
   display: flex;
