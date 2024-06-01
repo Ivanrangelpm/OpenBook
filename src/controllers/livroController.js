@@ -1,5 +1,19 @@
 var livroModel = require("../models/livroModel");
 
+function listarLivros(req, res) {
+    livroModel.listarLivros().then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar os livros: ", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 
 function cadastrarLivro(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
@@ -48,5 +62,6 @@ function cadastrarLivro(req, res) {
 }
 
 module.exports = {
-    cadastrarLivro
+    cadastrarLivro,
+    listarLivros
 }

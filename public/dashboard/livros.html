@@ -21,7 +21,7 @@
         rel="stylesheet">
 </head>
 <!--onload="validarSessao()"-->
-<body>
+<body onload="validarSessao(), atualizarLivros()">
 
     <div class="janela">
 
@@ -30,8 +30,12 @@
             <h1>AquaTech</h1>
 
             <div class="hello">
-                <img style="width: 50px; height: 50px; border-radius: 100%; margin-top: 10px; margin-right: 10px;" id="imgPerfil" src="https://static.vecteezy.com/ti/vetor-gratis/p1/9734564-default-avatar-profile-icon-of-social-media-user-vetor.jpg" alt="">
-                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+              <img id="fotoPerfil" alt="" style="display: none;">
+              <img class="imgPerf" 
+                  id="imgPerfil"
+                  src="https://static.vecteezy.com/ti/vetor-gratis/p1/9734564-default-avatar-profile-icon-of-social-media-user-vetor.jpg"
+                  alt=""> 
+              <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
             </div>
 
             <div class="btn-nav-white">
@@ -97,6 +101,7 @@
               <button onclick="cadastrarLivros()">Cadastrar Livro</button>
               <div id="erroLivroCadastrar"></div>
             </div>
+            <div id="mensagemErro"></div>
 
             <div class="divContainerLivros" id="divContainerLivros">
               <div id="feedLivro1" class="containerCardLivros">
@@ -104,7 +109,6 @@
               </div>
   
               <div id="feedLivro2" class="containerCardLivros">
-  
               </div> 
             </div>
 
@@ -116,6 +120,72 @@
 </body>
 
 <script>
+
+
+function atualizarLivros() {
+        fetch("/livro/listarLivros").then(function (resposta) {
+            if (resposta.ok) {
+                if (resposta.status == 204) {
+                    var feed = document.getElementById("mensagemErro");
+                    var mensagem = document.createElement("h1");
+                    mensagem.innerHTML = "Nenhum resultado encontrado."
+                    feed.appendChild(mensagem);
+                    throw "Nenhum resultado encontrado!!";
+                }
+
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+
+
+                    var feed1 = document.getElementById("feedLivro1");
+                    var feed2 = document.getElementById("feedLivro2");
+                    feed1.innerHTML = "";
+                    feed2.innerHTML = "";
+                    /*
+                    for (let i = 0; i < resposta.length; i++) {
+                        var livro = resposta[i];
+
+                        // criando e manipulando elementos do HTML via JavaScript
+                        var divCard = document.createElement("div");
+                        var nomeLivro = document.createElement("h1");
+                        var btnAcessar = document.createElement("button");
+
+                        nomeLivro.innerHTML = livro.nome ;
+                        btnDesc.innerHTML = "DESCRIÇÂO";
+                        btnAcessar.innerHTML = "ACESSAR FÓRUM";
+
+                        divCard.className = "cardForum";
+
+                        btnDesc.className = "buttonDesc"
+                        btnDesc.id = "btnDesc" + forum.idForum;
+                        btnDesc.setAttribute("onclick", `desc(${forum.idForum})`);
+
+                        btnAcessar.id = "btnAcessar" + forum.idForum;
+                        btnAcessar.setAttribute("onclick", `acessar(${forum.idForum})`);
+
+                        divCard.appendChild(nomeForum);
+                        divCard.appendChild(btnAcessar);
+                        divCard.appendChild(btnDesc);
+                        if(i < 5){
+                            feed1.appendChild(divCard);
+                        }else{
+                            feed2.appendChild(divCard);
+                        }
+                        divCard.style.backgroundImage = `url('${forum.fotoForum}')`;
+                        
+                    } */
+
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+        });
+    }
+
+
 
     function cadastrarLivros(){
         var livroLido = inp_livroLido.value;

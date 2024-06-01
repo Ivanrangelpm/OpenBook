@@ -6,7 +6,7 @@ var caminho_env = ambiente_processo === 'producao' ? '.env' : '.env.dev';
 // A sintaxe do operador ternário é: condição ? valor_se_verdadeiro : valor_se_falso
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 require("dotenv").config({ path: caminho_env });
-const chatIA = new GoogleGenerativeAI("minhaChave");
+const chatIA = new GoogleGenerativeAI("AIzaSyAXJ3IN0TbvNs_4D4ZV6nl4bVLbp56kqL0");
 
 
 var express = require("express");

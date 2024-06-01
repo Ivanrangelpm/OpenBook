@@ -8,6 +8,8 @@ router.post("/cadastrarLivro", function (req, res) {
     livroController.cadastrarLivro(req, res);
 })
 
-
+router.get("/listarLivros", function (req, res) {
+    livroController.listarLivros(req, res);
+});
 
 module.exports = router;
