@@ -9,7 +9,6 @@ require("dotenv").config({ path: caminho_env });
 const chatIA = new GoogleGenerativeAI("minhaChave");
 
 
-
 var express = require("express");
 var cors = require("cors");
 var path = require("path");
