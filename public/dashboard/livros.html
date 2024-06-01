@@ -11,6 +11,7 @@
 
     <link rel="stylesheet" href="./../css/dashboards.css">
     <link rel="stylesheet" href="./../css/estilo.css" />
+    <link rel="stylesheet" href="./../css/livros.css">
 
     <script src="../js/sessao.js"></script>
     <script src="../js/alerta.js"></script>
@@ -19,8 +20,8 @@
         href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
 </head>
-<!---->
-<body onload="validarSessao()">
+<!--onload="validarSessao()"-->
+<body>
 
     <div class="janela">
 
@@ -33,8 +34,11 @@
                 <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
             </div>
 
-            <div class="btn-nav">
+            <div class="btn-nav-white">
+              <a href="usuario.html">
                 <h3>Perfil</h3>
+              </a>
+                
             </div>
 
             <div class="btn-nav-white">
@@ -49,28 +53,145 @@
                 </a>
             </div>
 
+            <div class="btn-nav">
+              <a href="./livros.html">
+                  <h3>Livros</h3>
+              </a>
+          </div>
+
             <div class="btn-logout" onclick="limparSessao()">
                 <h3>Sair</h3>
             </div>
 
         </div>
 
+        
+        <div class="containerLivros">
+          Filtre o periodo: 
+            <select name="" id="sel_tempo">
+              <option  selected disabled value="0">Selecione um periodo de tempo</option>
+              <option value="mes">Ultimo mês</option>
+              <option value="semestre">Ultimo semestre</option>
+              <option value="ano">Ultimo ano</option>
+            </select>
+            Filtre por genero
+            <select name="" id="sel_genero">
+              <option  selected disabled value="0">Selecione um genero</option>
+              <option value="ficCientifica">Ficção Científica</option>
+              <option value="terror">terror</option>              
+              <option value="biografia">Biografia</option>
+              <option value="aventura">Aventura</option>
+              <option value="drama">drama</option>
+              <option value="romance">Romance</option>
+            </select>
+            <button onclick="abrirCadastrarLivros()"> Cadastrar novo livro lido</button>
 
+            <div id="divCadastrarLivros" class="cadastrarLivros">
+              <h3>Cadastre seu novo livro lido</h3>
+              Nome do Livro: <br> <input type="text" name="" id="inp_livroLido"> <br>
+              Autor: <br><input type="text" name="" id="inp_autor"> <br>
+              Genero: <br> <input type="text" name="" id="inp_genero"> <br>
+              Nota: <br> <input type="text" name="" id="inp_nota"> <br>
+              Data de leitura: <br> <input type="date" name="" id="inp_dtLeitura"> <br>
+              Imagem: <br> <input type="text" name="" id="inp_imagem">
+              <button onclick="cadastrarLivros()">Cadastrar Livro</button>
+              <div id="erroLivroCadastrar"></div>
+            </div>
 
+            <div class="divContainerLivros" id="divContainerLivros">
+              <div id="feedLivro1" class="containerCardLivros">
 
-    
+              </div>
+  
+              <div id="feedLivro2" class="containerCardLivros">
+  
+              </div> 
+            </div>
 
-
+        </div>
 
     </div>
-
-    
-
-    
+ 
 
 </body>
 
 <script>
+
+    function cadastrarLivros(){
+        var livroLido = inp_livroLido.value;
+        var autor = inp_autor.value;
+        var genero = inp_genero.value;
+        var nota = Number(inp_nota.value)
+        var dtLeitura = inp_dtLeitura.value;
+        var fotoLivro = inp_imagem.value;
+        var fkUsuario = sessionStorage.ID_USUARIO;
+
+
+        if (fotoLivro == "") {
+            fotoLivro = "https://img.freepik.com/vetores-premium/livro-fechado-marrom_135176-141.jpg"
+        }
+
+        if (livroLido == "" || autor == "" || genero == "" || nota == "" || dtLeitura == "") {
+          erroLivroCadastrar.innerHTML = `Preencha todas as informações!`
+        } else {
+          erroLivroCadastrar.innerHTML = "";
+            setTimeout(fecharCadastroLivro, 500);
+        
+
+
+
+        // Enviando o valor da nova input
+        fetch("/livro/cadastrarLivro", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+
+                nomeLivroServer: livroLido,
+                autorServer: autor,
+                generoServer: genero,
+                notaServer: nota,
+                dtLeituraServer: dtLeitura,
+                fotoLivroServer: fotoLivro,
+                fkUsuarioServer: fkUsuario
+                
+            }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+
+                    erroLivroCadastrar.innerHTML =
+                        "";
+                    //atualizarForum();
+                } else {
+                    throw "Houve um erro ao tentar realizar o cadastro do Forum!";
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+
+        return false;
+        }
+      function fecharCadastroLivro() {
+        divCadastrarLivros.style.display = 'none';
+      }
+
+    }
+
+     function abrirCadastrarLivros() {
+      divCadastrarLivros.style.display = 'block';
+
+     }
+
+
+     
+
  /*
 Fazer uma lista de desejos para o usuario ler no futuro
 
@@ -93,82 +214,7 @@ Fazer uma lista de desejos para o usuario ler no futuro
  
  a função listar livros pode encrementar 3 listas com genero autores e nomes   
  */
-  function alterar() {
-    //Recupere o valor da nova input pelo nome do id
-    // Agora vá para o método fetch logo abaixo
-    var idVar = sessionStorage.ID_USUARIO;
-    var nomeVar = nome_input.value;
-    var nickVar = nick_input.value;
-    var emailVar = email_input.value;
-    var fotoVar = sessionStorage.FOTO_USUARIO;
-    console.log(` Declarando id: ${idVar}`)
-    if (
-      nomeVar == "" ||
-      nickVar == "" ||
-      emailVar == "" ||
-      fotoVar == ""
-    ) {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "(Mensagem de erro para todos os campos em branco)";
 
-      return false;
-    }
-
-    // Enviando o valor da nova input
-    fetch("/usuarios/alterar", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
-        idServer: idVar,
-        nomeServer: nomeVar,
-        nickServer: nickVar,
-        emailServer: emailVar,
-        fotoServer: fotoVar
-      }),
-    })
-      .then(function (resposta) {
-        console.log("resposta: ", resposta);
-
-        if (resposta.ok) {
-
-          mensagem_erro.innerHTML =
-            "Alteração realizada com sucesso!";
-
-        } else {
-          throw "Houve um erro ao tentar realizar a alteracao!";
-        }
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-      });
-
-    return false;
-  }
-
-  function abrirInput() {
-    divAlterarImagem.innerHTML = `                      
-                    <div id="novaImagem" style="align-items: center;text-align: center;  position: absolute; margin-top: 200px; right: 300px; width: 700px; background-color: sienna; ">
-                          <h2>Insira a URL da nova imagem!</h2>
-                          <p>São aceitas urls com até 200 caracteres  e final JPG, GIF, PNG e JPEG</p>
-                          <input type="text" name="" id="inp_novaImagem">
-                          <button style="cursor: pointer;" onclick="alterarImagem()">Concluir</button>
-                          <div id="erroAlterar"></div>
-                      </div>`
-  }
-
-  function alterarImagem() {
-    var novaFoto = inp_novaImagem.value;
-    fotoPerfil.src = `${novaFoto}`;
-    imgPerfil.src = `${novaFoto}`;    
-    divAlterarImagem.innerHTML = ``
-    sessionStorage.FOTO_USUARIO = novaFoto;
-
-  }
 
 
 </script>

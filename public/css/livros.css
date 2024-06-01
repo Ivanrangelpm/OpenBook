@@ -1,0 +1,29 @@
+.containerLivros{
+    color: white;
+    position: absolute;
+    right: 30px;
+    margin-top: 50px;
+    border: 2px solid red;
+    width: 1150px;
+    height: 700px;
+  }
+
+  .cadastrarLivros{
+    display: none;
+    position: absolute;
+    background-color: brown;
+    width: 500px;
+    align-items: center;
+    text-align: center;
+  }
+
+
+  .containerCardLivros{
+    margin-top: 5px; 
+    border: 2px solid green; 
+    width: 1090px; 
+    margin-left: 3px; 
+    height: 290px;
+    display: flex;
+    flex-direction: row;
+  }
