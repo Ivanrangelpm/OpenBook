@@ -142,7 +142,7 @@ function atualizarLivros() {
                     var feed2 = document.getElementById("feedLivro2");
                     feed1.innerHTML = "";
                     feed2.innerHTML = "";
-                    /*
+                    
                     for (let i = 0; i < resposta.length; i++) {
                         var livro = resposta[i];
 
@@ -152,29 +152,24 @@ function atualizarLivros() {
                         var btnAcessar = document.createElement("button");
 
                         nomeLivro.innerHTML = livro.nome ;
-                        btnDesc.innerHTML = "DESCRIÇÂO";
                         btnAcessar.innerHTML = "ACESSAR FÓRUM";
 
                         divCard.className = "cardForum";
 
-                        btnDesc.className = "buttonDesc"
-                        btnDesc.id = "btnDesc" + forum.idForum;
-                        btnDesc.setAttribute("onclick", `desc(${forum.idForum})`);
 
-                        btnAcessar.id = "btnAcessar" + forum.idForum;
-                        btnAcessar.setAttribute("onclick", `acessar(${forum.idForum})`);
+                        btnAcessar.id = "btnAcessar" + livro.idLivro;
+                        btnAcessar.setAttribute("onclick", `acessar(${livro.idLivro})`);
 
-                        divCard.appendChild(nomeForum);
+                        divCard.appendChild(nomeLivro);
                         divCard.appendChild(btnAcessar);
-                        divCard.appendChild(btnDesc);
                         if(i < 5){
                             feed1.appendChild(divCard);
                         }else{
                             feed2.appendChild(divCard);
                         }
-                        divCard.style.backgroundImage = `url('${forum.fotoForum}')`;
+                        divCard.style.backgroundImage = `url('${livro.fotoLivro}')`;
                         
-                    } */
+                    } 
 
                 });
             } else {
