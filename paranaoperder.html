@@ -2,11 +2,11 @@
 <html lang="pt-br">
 
 <head>
-    <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/imgs/logo.png" type="image/x-icon">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AquaTech | Tempo Real</title>
+    <title>OpenBook | Fórum</title>
 
 
     <link rel="stylesheet" href="./../css/dashboards.css">
@@ -21,49 +21,52 @@
 </head>
 <!--onload="validarSessao(), atualizarForum()"-->
 
-<body>
+<body onload="validarSessao(), atualizarForum()">
+
+    <div class="header">
+        <a href="index.html">
+          <img src="../assets/imgs/logoExtendedCopy.png" alt="logo" class="logo">
+        </a>
+          <ul class="navbar">
+            <li>
+              <a href="livros.html">Livros</a>
+            </li>
+            <li>
+              <a href="../bobia.html">recomendAI</a>
+            </li>
+            <li class="paginaAtual">
+              <a class="paginaAtual" href="forum.html">Forum</a>
+            </li>
+            <li>|</li>
+            <li >
+              <a href="usuario.html">
+                <div class="hello">
+                  <img id="fotoPerfil" alt="" style="display: none;">
+                  <img class="imgPerf" 
+                      id="imgPerfil"
+                      src="https://static.vecteezy.com/ti/vetor-gratis/p1/9734564-default-avatar-profile-icon-of-social-media-user-vetor.jpg"
+                      alt="">
+                  <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a>
+                <div class="botaoSair" onclick="limparSessao()">
+                  <h3 style="color: #aa7744;" class="h3BotaoSair">Sair</h3>
+              </div>
+              </a>
+            </li>
+          </ul>
+      </div>
 
     <div class="janela">
 
-        <div class="header-left dash-header">
-
-            <h1>AquaTech</h1>
-
-            <div class="hello">
-                <img id="fotoPerfil" alt="" style="display: none;">
-                <img class="imgPerf" 
-                    id="imgPerfil"
-                    src="https://static.vecteezy.com/ti/vetor-gratis/p1/9734564-default-avatar-profile-icon-of-social-media-user-vetor.jpg"
-                    alt="">
-                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
-            </div>
-
-            <div class="btn-nav-white">
-                <a href="usuario.html">
-                    <h3>Usuário</h3>
-                </a>
-            </div>
-
-            <div class="btn-nav">
-                <h3>Fórum</h3>
-            </div>
-
-            <div class="btn-nav-white">
-                <a href="./mural.html">
-                    <h3>Mural de Avisos</h3>
-                </a>
-            </div>
-
-            <div class="btn-logout" onclick="limparSessao()">
-                <h3>Sair</h3>
-            </div>
-
-        </div>
+        
 
 
         <div id="botoesForum" style="position: absolute; right: 500px; margin-top: 100px; ">
             <button style="cursor: pointer;" onclick="abrirCadastro()">Cadastrar Forum</button>
-            <button onclick="topico()">Cadastrar topico</button>
             <div style="color: white;" id="mensagemErro">
                 
             </div>
@@ -77,10 +80,8 @@
 
             <div id="feedForum2" class="containerCard">
 
-
-            </div> 
+            </div>  
             
-
         </div>  
 
         <div id="divContainerDiscussoes" class="containerDiscussoes">
@@ -95,6 +96,34 @@
 
 
     </div>
+    <footer>
+        <div class="developers">
+          <h3>OpenBook foi desenvolvida por </h3>
+          <ul>
+            <li>Ivan Rangel Pestana Marcolin <br> ivan.marcolin@sptech.school</li>
+          </ul>
+        </div>
+        <div>
+          
+        </div>
+        <div class="meioFooter">
+          <img src="../assets/imgs/bookGif.webp" class="logo" />
+          <p>OpenBook © 2024. Todos os direitos reservados.</p>    
+        </div>
+        <div class="contact">
+          <h3>Contato:</h3>
+          <ul>
+            <li>openBook@gmail.com</li>
+            <li>+55 11 99123-9899</li>
+          </ul>
+          <br>
+          <h3>Endereço</h3>
+          <ul>
+            <li>Rua Haddook Lobo 565</li>
+          </ul>
+        </div>
+        
+      </footer>
 
 
 </body>
@@ -103,7 +132,7 @@
 
 function cadastrarMensagem(){
         var comentario = inp_comentario.value;
-        var fkTopico = 1;
+        var fkTopico = sessionStorage.ID_TOPICO_ACESSADO;
         var fkUsuario = sessionStorage.ID_USUARIO;
 
         console.log(`fk Topico = ${fkTopico}`)
@@ -131,7 +160,7 @@ function cadastrarMensagem(){
                 console.log("resposta: ", resposta);
 
                 if (resposta.ok) {
-                    //topico()
+                    topico(fkTopico)
                     //atualizarForum();
                     mensagemErroComentario.innerHTML = ``;
                 } else {
@@ -145,24 +174,152 @@ function cadastrarMensagem(){
         return false;
 }
 
+function fecharTopico(){
+    var forum = sessionStorage.ID_FORUM_ACESSADO;
+
+    acessar(forum)
+}
+
 function topico(idTopico) {  
+    var fkTopico = idTopico;
+    sessionStorage.ID_TOPICO_ACESSADO = idTopico;
+
+    var usuarioAtual = sessionStorage.ID_USUARIO;
       /*
-        colocar idTopico topico(idTopico)
-        Tirar cadastrar comentario do botoes forum
-        adicionar funções onload
-        excluir session storage de cadastrar mensagem  
-        var fkTopico = sessionStorage.ID_TOPICO_ACESSADO;
         tirar comentario de listar(idTopico)
         Usar min width e max width p definir o tamanho do input 
+        talvez colocar um scroll bar caso aja muitos comentarios
+        Colocar alterar informações de usuario e foto tambem
+        Colocar nick do usuario que comentou 
     */
-    // sessionStorage.ID_TOPICO_ACESSADO = idTopico;
-    // console.log(`cliquei em acessar o Topico de ID ${idTopico}`)
+    
+    console.log(`cliquei em acessar o Topico de ID ${idTopico}`)
     divContainerDiscussoes.style.display = "none";
     divContainerComentarios.style.display = "flex";
     divContainerForum.style.display = "none";
 
+    fetch("/forum/listarComentarios").then(function (resposta) {
+            
+            
+            if (resposta.ok) {
+                if (resposta.status == 204) {
+                    var divMensagemErro = document.getElementById("divContainerComentarios");
+                    var mensagem = document.createElement("h3");
+                    mensagem.innerHTML = "Nenhum resultado encontrado."
+                    divMensagemErro.appendChild(mensagem);
+                    throw "Nenhum resultado encontrado!!";
+                }
+
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+
+
+                    var divComentarios = document.getElementById("divContainerComentarios");
+                    divComentarios.innerHTML = "";
+                    var nenhumComentario = false
+                    var contAuxiliar = 0
+                    for (let i = 0; i < resposta.length; i++) {
+                        var comentario = resposta[i];
+                        if(contAuxiliar == 0){
+                            var divChatComentario = document.createElement("div");
+                            var fecharComentario = document.createElement("button");
+
+                            fecharComentario.innerHTML = 'Voltar para os topicos';
+
+                            divChatComentario.id = 'chatComentario';
+                            fecharComentario.setAttribute("onclick", 'fecharTopico()');
+
+                            divChatComentario.appendChild(fecharComentario)
+
+                            contAuxiliar ++;
+                        }
+                        // criando e manipulando elementos do HTML via JavaScript
+
+
+                        if(fkTopico == comentario.fkTopico){
+
+                        var divContainerComent = document.createElement("div");
+                        var imgUsuario = document.createElement("img");
+                        var comentTexto = document.createElement("p");
+                        var comentHora = document.createElement("span");
+
+                        comentTexto.innerHTML = `${comentario.texto}`
+                        comentHora.innerHTML = `${comentario.dtComent}`
+
+                        divContainerComent.className = 'containerComentarios'
+                        
+                        if(comentario.idUsuario == usuarioAtual){
+                            comentHora.className = 'time-left'
+                            imgUsuario.className = 'right'
+                        }else{
+                            comentHora.className = 'time-right'
+                        }
+
+                        imgUsuario.setAttribute('src', comentario.foto);
+
+                        divContainerComent.appendChild(imgUsuario);
+                        divContainerComent.appendChild(comentTexto);
+                        divContainerComent.appendChild(comentHora);
+                        divChatComentario.appendChild(divContainerComent);
+
+   
+
+                        
+
+                        nenhumComentario = true
+                        }
+
+                        
+
+                        
+                        if(nenhumComentario == false){
+                           // mensagemErroComentario.innerHTML = 'Faça o primerio comentario dese fórum!'
+                        }
+
+                    }
+                    var divMsgErro = document.createElement("div");
+                            var divInpBox = document.createElement("div");
+                            var divInput = document.createElement("div");
+                            var inp = document.createElement("input");
+                            var botaoInp = document.createElement("button");
+                            var imgBotao = document.createElement("img");
+
+                            divMsgErro.id = 'mensagemErroComentario';
+                            divInpBox.className = 'inputBox';
+                            divInpBox.id = 'impBox';
+                            divInput.className = 'inputDiv';
+                            inp.id = 'inp_comentario';
+                            inp.className = 'inp_comentario';
+                            inp.setAttribute('type', 'text');
+                            inp.placeholder = 'Digite seu comentario';
+                            botaoInp.className = 'btnIcon';
+                            botaoInp.id = 'btnIcon';
+                            botaoInp.setAttribute('onclick', 'cadastrarMensagem()');
+                            imgBotao.className = 'imgEnviar';
+                            imgBotao.setAttribute('src', '../assets/imgs/enviar.png')
+
+                            divChatComentario.appendChild(divMsgErro);
+                            botaoInp.appendChild(imgBotao);
+                            divInput.appendChild(inp);
+                            divInput.appendChild(botaoInp);
+                            divInpBox.appendChild(divInput);
+                            divChatComentario.appendChild(divInpBox);
+                            divComentarios.appendChild(divChatComentario);
+
+                });
+            } else {
+                throw ('Houve um erro na API! (acessarComentarios)');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+        });
+
+
+    /*
     divContainerComentarios.innerHTML = `
     <div id="chatComentario">
+                <button onclick="fecharTopico()">Voltar para os topicos</button>
                 <div class="containerComentarios">
                     <img src="https://static.vecteezy.com/ti/vetor-gratis/p1/9734564-default-avatar-profile-icon-of-social-media-user-vetor.jpg" alt="Avatar">
                     <p>Hello. How are you today?</p>
@@ -202,6 +359,8 @@ function topico(idTopico) {
                 </div>
             </div>
     `
+
+    */
 }
 
 function acessar(idForum){  
@@ -212,6 +371,7 @@ function acessar(idForum){
         var fkForum = idForum;
         divContainerForum.style.display = "none";
         botoesForum.style.display = "none";
+        divContainerComentarios.style.display = "none";
         divContainerDiscussoes.style.display = "flex";
 
         fetch("/forum/listarTopico").then(function (resposta) {

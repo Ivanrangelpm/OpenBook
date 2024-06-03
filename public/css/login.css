@@ -49,3 +49,7 @@ main .form button:hover {
     height: 50px;
     width: 50px;
   }
+
+  #div_erros_login{
+    color: #381611;
+  }

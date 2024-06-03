@@ -6,11 +6,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AquaTech | Tempo Real</title>
+    <title>OpenBook | Fórum</title>
 
 
     <link rel="stylesheet" href="./../css/dashboards.css">
     <link rel="stylesheet" href="./../css/estilo.css" />
+    <link rel="stylesheet" href="./../css/forum.css">
 
     <script src="../js/sessao.js"></script>
     <script src="../js/alerta.js"></script>
@@ -19,7 +20,7 @@
         href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
 </head>
-<!--onload="validarSessao(), atualizarForum()"-->
+<!---->
 
 <body onload="validarSessao(), atualizarForum()">
 
@@ -60,17 +61,19 @@
           </ul>
       </div>
 
-    <div class="janela">
+    <div class="janelaForum">
 
         
 
 
-        <div id="botoesForum" style="position: absolute; right: 500px; margin-top: 100px; ">
-            <button style="cursor: pointer;" onclick="abrirCadastro()">Cadastrar Forum</button>
+        <div id="botoesForum" class="divBotaoForum">
+            <button class="botaoForum" onclick="abrirCadastro()">Cadastrar Forum</button>
             <div style="color: white;" id="mensagemErro">
                 
             </div>
         </div> 
+        <div id="divCadastrarForum">
+        </div>
 
 
        <div id="divContainerForum" class="containerForum">
@@ -78,9 +81,18 @@
 
             </div>
 
-            <div id="feedForum2" class="containerCard">
+            <div id="feedForum2" class="containerCard" style="display: none;">
 
-            </div>  
+            </div> 
+            <div id="feedForum3" class="containerCard" style="display: none;">
+
+            </div> 
+
+            <div id="feedForum4" class="containerCard" style="display: none;">
+
+            </div> 
+
+
             
         </div>  
 
@@ -88,8 +100,6 @@
 
         </div>
         
-        <div id="divCadastrarForum">
-        </div>
         <div id="divContainerComentarios">
             
         </div>
@@ -673,42 +683,50 @@ function acessar(idForum){
                     console.log("Dados recebidos: ", JSON.stringify(resposta));
 
 
-
+                    // Adicionar divContainer e deixar feedForm como um incremento que 
+                    // Ao contAuxiliar chegar no numero XX é criado um novo feedForum e o contador é zerado
                     var feed1 = document.getElementById("feedForum1");
                     var feed2 = document.getElementById("feedForum2");
+                    var feed3 = document.getElementById("feedForum3");
+                    var feed4 = document.getElementById("feedForum4");
+                    var contAuxiliar = 1
                     feed1.innerHTML = "";
                     feed2.innerHTML = "";
+                    feed3.innerHTML = "";
+                    feed4.innerHTML = "";
+
                     for (let i = 0; i < resposta.length; i++) {
                         var forum = resposta[i];
 
                         // criando e manipulando elementos do HTML via JavaScript
                         var divCard = document.createElement("div");
                         var nomeForum = document.createElement("h1");
-                        var btnDesc = document.createElement("button");
-                        var btnAcessar = document.createElement("button");
+                        var imgForum = document.createElement("img");
+
+
 
                         nomeForum.innerHTML = forum.nomeForum ;
-                        btnDesc.innerHTML = "DESCRIÇÂO";
-                        btnAcessar.innerHTML = "ACESSAR FÓRUM";
 
                         divCard.className = "cardForum";
 
-                        btnDesc.className = "buttonDesc"
-                        btnDesc.id = "btnDesc" + forum.idForum;
-                        btnDesc.setAttribute("onclick", `desc(${forum.idForum})`);
+                        divCard.setAttribute("onclick", `acessar(${forum.idForum})`);
+                        imgForum.setAttribute('src', forum.fotoForum);
 
-                        btnAcessar.id = "btnAcessar" + forum.idForum;
-                        btnAcessar.setAttribute("onclick", `acessar(${forum.idForum})`);
 
                         divCard.appendChild(nomeForum);
-                        divCard.appendChild(btnAcessar);
-                        divCard.appendChild(btnDesc);
+                        divCard.appendChild(imgForum);
                         if(i < 5){
                             feed1.appendChild(divCard);
-                        }else{
+                        }else if (i < 10){
+                            feed2.style.display = "flex"
                             feed2.appendChild(divCard);
+                        }else if (i < 15){
+                            feed3.style.display = "flex"
+                            feed3.appendChild(divCard);
+                        }else{
+                            feed4.style.display = "flex"
+                            feed4.appendChild(divCard);
                         }
-                        divCard.style.backgroundImage = `url('${forum.fotoForum}')`;
                         
                     }
 
