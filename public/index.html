@@ -9,7 +9,7 @@
     <title>OpenBook | Página Inicial</title>
 
     <script src="./js/sessao.js"></script>
-
+    <link rel="stylesheet" href="./css/home.css">
     <link rel="stylesheet" href="./css/estilo.css">
     <link rel="icon" href="./assets/icon/favicon2.ico">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -17,11 +17,12 @@
 
 <body>
     <div class="header">
-      <div class="container">
-        <h1 class="titulo">AquaTech</h1>
+      <a href="index.html">
+        <img src="assets/imgs/logoExtendedCopy.png" alt="logo" class="logo">
+      </a>
         <ul class="navbar">
-          <li class="agora">
-            <a href="#">Inicial</a>
+          <li class="paginaAtual">
+            <a class="paginaAtual" href="#">Inicial</a>
           </li>
           <li>
             <a href="simulador.html">Simulador</a>
@@ -34,10 +35,82 @@
             <a href="cadastro.html">Cadastro</a>
           </li>
         </ul>
-      </div>
     </div>
-  
-    <div class="banner">
+    <div class="imgContainer">
+      <span class="imgSpan">
+        <p style="color: #a6481b; font-size: 90px;">Open Book</p>
+        <br>
+        Criando a <span class="spanEnfase">nossa</span> própria <span class="spanEnfase">historia</span>
+      </span>
+    </div>
+
+    <main>
+      <div class="section introducao">
+        <h1>Conheça mais sobre meu projeto!</h1>
+        <div class="introduction">
+          <p>Quando se fala sobre leitura no Brasil, existe um tabu enorme sobre livros, pois na nossa cultura a leitura está estritamente relacionada com estudos e pesquisas, não com momentos de lazer e descanso. <br><br>
+             De acordo com o Instituto Pró-Livro, nos últimos 4 anos perdemos 4.5 milhões de leitorese os principais motivos foram: . Com isso apenas X% da população tem o hábito de ler, com uma média de X.X livros lidos no ultimo mês. </p>
+          <img src="assets/imgs/graficoTemp.png" alt="imagemIncubadora" />
+        </div>
+      </div>
+      <div class="section">
+        <h1>Minha Proposta</h1>
+        <div class="introduction">
+          <img src="assets/imgs/bookGif.webp" alt="imagemIncubadora" style="border: none;"/>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo eaque molestiae pariatur blanditiis dignissimos? At sint quas optio iusto dolores minus? Nesciunt velit eveniet minus quas accusamus a vel voluptatem eum, ex animi. Optio quia sint reprehenderit nemo, mollitia quae. Placeat quasi officia deserunt quos voluptas reiciendis temporibus magnam sit?</p>
+        </div>
+      </div>
+      <div class="section">
+        <h1>Funcionalidades</h1>
+        <div class="advantages">
+          <div class="card">
+            <h2>Fórum</h2>
+            <img src="assets/imgs/forum.svg" alt="precisão" /> 
+            <span>Nosso sistema de monitoramento fornece uma visualização extremamente precisa dos dados de variação da temperatura, em graus celsius, dentro das incubadoras mantidas pelo seu hospital.</span>
+          </div>
+          <div class="card">
+            <h2>RecomendAI</h2>
+            <img src="assets/imgs/ia.svg" alt="segurança" />
+            <span>Com a implementação da solução Safe Sleep, é possível garantir que as incubadoras se mantenham sempre como um ambiente estável e completamente seguro para os recém-nascidos.</span>
+          </div>
+          <div class="card">
+            <h2>Lista de desejos</h2>
+            <img src="assets/imgs/livro.svg" alt="eficiência" />
+            <span>O projeto é uma ferramenta de grande eficácia no auxilio do monitoramento da saúde dos bebês, alertando o usuário caso haja uma variação de temperatura que possa comprometer o desenvolvimento neonatal.</span>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <div class="developers">
+        <h3>OpenBook foi desenvolvida por </h3>
+        <ul>
+          <li>Ivan Rangel Pestana Marcolin <br> ivan.marcolin@sptech.school</li>
+        </ul>
+      </div>
+      <div>
+        
+      </div>
+      <div class="meioFooter">
+        <img src="./assets/imgs/bookGif.webp" class="logo" />
+        <p>OpenBook © 2024. Todos os direitos reservados.</p>    
+      </div>
+      <div class="contact">
+        <h3>Contato:</h3>
+        <ul>
+          <li>openBook@gmail.com</li>
+          <li>+55 11 99123-9899</li>
+        </ul>
+        <br>
+        <h3>Endereço</h3>
+        <ul>
+          <li>Rua Haddook Lobo 565</li>
+        </ul>
+      </div>
+      
+    </footer>
+    
+    <!-- <div class="banner">
       <div class="container">
         <p>Preservando <span>hoje</span> para existirem <span>amanhã</span>.</p>
       </div>
@@ -76,7 +149,7 @@
         <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023</h4>
         <span class="version">v1.0.0</span>
       </div>
-    </div>
+    </div> -->
   </body>
 
 </html>

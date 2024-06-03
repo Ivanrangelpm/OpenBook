@@ -1,0 +1,51 @@
+/*
+cores:
+  #101030 black, font
+  #381611
+  #a6481b
+  #cc8c37
+  #aa7744
+  #e6aa77
+  #eecd9d
+  #f0cf95
+  */
+
+main .form h1{
+    color: #381611;
+}
+
+main .form {
+    display: flex;
+    justify-content: center;
+    background-color:#eecd9d ;
+}
+
+main .form button {
+    background-color: #a6481b;
+    width: 200px;
+    margin-top: 20px;
+}
+
+main .form button:hover {
+    background-color: #381611;
+}
+
+.form a {
+    color: #2d4053;
+    font-weight: bold;
+}
+
+#div_mensagem {
+    color: rgb(201, 38, 38);
+    text-align: center;
+}
+
+.loading-div {
+    width: 50px;
+    display: none;
+  }
+  
+  .loading-div img {
+    height: 50px;
+    width: 50px;
+  }

@@ -11,6 +11,7 @@
   <script src="./js/sessao.js"></script>
 
   <link rel="stylesheet" href="./css/estilo.css" />
+  <link rel="stylesheet" href="css/login.css">
   <link rel="icon" href="./assets/icon/favicon2.ico" />
   <link rel="preconnect" href="https://fonts.gstatic.com" />
 </head>
@@ -18,8 +19,9 @@
 <body>
   <!--header inicio-->
   <div class="header">
-    <div class="container">
-      <h1 class="titulo">AquaTech</h1>
+    <a href="index.html">
+      <img src="assets/imgs/logoExtendedCopy.png" alt="logo" class="logo">
+    </a>
       <ul class="navbar">
         <li>
           <a href="index.html">Inicial</a>
@@ -31,67 +33,85 @@
         <li>
           <a href="login.html">Login</a>
         </li>
-        <li class="agora">
-          <a href="#">Cadastro</a>
+        <li class="paginaAtual">
+          <a class="paginaAtual" href="cadastro.html">Cadastro</a>
         </li>
       </ul>
-    </div>
   </div>
   <!--header fim-->
 
-  <div class="login">
+  <main>
     <div class="alerta_erro">
       <div class="card_erro" id="cardErro">
         <span id="mensagem_erro"></span>
       </div>
     </div>
-    <div class="container">
-      <div class="card card-cadastro">
-        <h2>Bem-vindo!</h2>
-        <div class="formulario">
-          <!--
-                         Para inserir mais um campo, copie uma das inputs abaixo.
-                         Assim que inserir vá para o script abaixo.
-                     -->
-
-          <div class="campo">
-            <span>Nome:</span>
-            <input id="nome_input" type="text" placeholder="Seu nome" />
-          </div>
-          <div class="campo">
-            <span>NickName:</span>
-            <input id="nick_input" type="text" placeholder="Seu nickname" />
-          </div>
-          <div class="campo">
-            <span>E-mail:</span>
-            <input id="email_input" type="text" placeholder="meuemail@provedor.com" />
-          </div>
-          <div class="campo">
-            <span>Senha:</span>
-            <input id="senha_input" type="password" placeholder="******" />
-          </div>
-          <div class="campo">
-            <span>Confirmação da Senha:</span>
-            <input id="confirmacao_senha_input" type="password" placeholder="******" />
-          </div>
-          <button class="botao" onclick="cadastrar()">Cadastrar</button>
-        </div>
-        <div id="div_aguardar" class="loading-div">
-          <img src="./assets/circle-loading.gif" id="loading-gif" />
-        </div>
-
-        <div id="div_erros_login"></div>
+    <div class="form">
+      <h1>Cadastro</h1>
+      <div class="inputs">
+        <label>
+          <span class="span">Nome</span>
+          <input id="nome_input" type="text" placeholder="Seu nome" />
+        </label>
+        <label>
+          <span class="span">NickName</span>
+          <input id="nick_input" type="text" placeholder="Seu nickname" />
+        </label>
+        <label>
+          <span class="span">Email</span>
+          <input id="email_input" type="text" placeholder="meuemail@provedor.com" />
+        </label>
+        <label>
+          <span class="span">Senha</span>
+          <input id="senha_input" type="password" placeholder="******" />
+        </label>
+        <label>
+          <span class="span">Confirmação da Senha</span>
+          <input id="confirmacao_senha_input" type="password" placeholder="******" />
+        </label>
       </div>
+      <button class="botao" onclick="cadastrar()">Cadastrar</button>
+      <div id="div_aguardar" class="loading-div">
+        <img src="./assets/circle-loading.gif" id="loading-gif" />
+      </div>
+
+      <div id="div_erros_login"></div>
+
     </div>
-  </div>
+
+  </main>
+
+
 
   <!--footer inicio-->
-  <div class="footer">
-    <div class="container">
-      <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023</h4>
-      <span class="version">v1.0.0</span>
+  <footer>
+    <div class="developers">
+      <h3>OpenBook foi desenvolvida por </h3>
+      <ul>
+        <li>Ivan Rangel Pestana Marcolin <br> ivan.marcolin@sptech.school</li>
+      </ul>
     </div>
-  </div>
+    <div>
+      
+    </div>
+    <div class="meioFooter">
+      <img src="./assets/imgs/bookGif.webp" class="logo" />
+      <p>OpenBook © 2024. Todos os direitos reservados.</p>    
+    </div>
+    <div class="contact">
+      <h3>Contato:</h3>
+      <ul>
+        <li>openBook@gmail.com</li>
+        <li>+55 11 99123-9899</li>
+      </ul>
+      <br>
+      <h3>Endereço</h3>
+      <ul>
+        <li>Rua Haddook Lobo 565</li>
+      </ul>
+    </div>
+    
+  </footer>
   <!--footer fim-->
 </body>
 
