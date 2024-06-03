@@ -102,7 +102,8 @@ body {
 .header .navbar .paginaAtual {
   font-weight: bold;
   text-decoration: underline;
-  color: #aa7744
+  color: #aa7744;
+  cursor: pointer;
 }
 
 main {

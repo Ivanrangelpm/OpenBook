@@ -13,54 +13,49 @@
     <link rel="shortcut icon" href="./assets/imgs/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="css/dashboards.css">
     <link rel="stylesheet" href="css/estilo.css">
+    <link rel="stylesheet" href="css/bobia.css">
 </head>
 <!--onload="validarSessao()"-->
 <body onload="validarSessao()">
-    <div class="janela">
-        <div class="header-left dash-header">
 
-            <h1>AquaTech</h1>
+    <div class="header">
+        <a href="index.html">
+          <img src="./assets/imgs/logoExtendedCopy.png" alt="logo" class="logo">
+        </a>
+          <ul class="navbar">
+            <li>
+              <a href="dashboard/livros.html">Livros</a>
+            </li>
+            <li class="paginaAtual">
+              <a class="paginaAtual href="bobia.html">recomendAI</a>
+            </li>
+            <li>
+              <a href="dashboard/forum.html">Forum</a>
+            </li>
+            <li>|</li>
+            <li >
+              <a href="dashboard/usuario.html">
+                <div class="hello">
+                  <img id="fotoPerfil" alt="" style="display: none;">
+                  <img class="imgPerf" 
+                      id="imgPerfil"
+                      src="https://static.vecteezy.com/ti/vetor-gratis/p1/9734564-default-avatar-profile-icon-of-social-media-user-vetor.jpg"
+                      alt="">
+                  <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a>
+                <div class="botaoSair" onclick="limparSessao()">
+                  <h3 style="color: #aa7744;" class="h3BotaoSair">Sair</h3>
+              </div>
+              </a>
+            </li>
+          </ul>
+      </div>
 
-            <div class="hello">
-                <img id="fotoPerfil" alt="" style="display: none;">
-                <img class="imgPerf" 
-                    id="imgPerfil"
-                    src="https://static.vecteezy.com/ti/vetor-gratis/p1/9734564-default-avatar-profile-icon-of-social-media-user-vetor.jpg"
-                    alt="">
-                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
-            </div>
 
-            <div class="btn-nav-white">
-                <a href="dashboard/usuario.html">
-                    <h3>Perfil</h3>
-                </a>
-            </div>
-
-            <div class="btn-nav-white">
-                <a href="dashboard/forum.html">
-                    <h3>Fórum</h3>
-                </a>
-            </div>
-
-            <div class="btn-nav">
-                <a href="bobia.html">
-                    <h3>recomendAI</h3>
-                </a>
-            </div>
-
-            <div class="btn-nav-white">
-                <a href="./dashboard/livros.html">
-                    <h3>Livros</h3>
-                </a>
-            </div>
-
-            <div class="btn-logout" onclick="limparSessao()">
-                <h3>Sair</h3>
-            </div>
-
-    
-
-    </div>
 
         <div id="containerRecomendAI">
             
@@ -75,8 +70,40 @@
                         </button>
                     </div>
                 </div>
-           
 
+                
+          </div> 
+
+
+
+    <footer>
+        <div class="developers">
+          <h3>OpenBook foi desenvolvida por </h3>
+          <ul>
+            <li>Ivan Rangel Pestana Marcolin <br> ivan.marcolin@sptech.school</li>
+          </ul>
+        </div>
+        <div>
+          
+        </div>
+        <div class="meioFooter">
+          <img src="./assets/imgs/bookGif.webp" class="logo" />
+          <p>OpenBook © 2024. Todos os direitos reservados.</p>    
+        </div>
+        <div class="contact">
+          <h3>Contato:</h3>
+          <ul>
+            <li>openBook@gmail.com</li>
+            <li>+55 11 99123-9899</li>
+          </ul>
+          <br>
+          <h3>Endereço</h3>
+          <ul>
+            <li>Rua Haddook Lobo 565</li>
+          </ul>
+        </div>
+        
+      </footer>
     <script>
 
 

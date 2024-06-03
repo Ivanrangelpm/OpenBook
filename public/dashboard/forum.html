@@ -23,48 +23,46 @@
 
 <body onload="validarSessao(), atualizarForum()">
 
+    <div class="header">
+        <a href="index.html">
+          <img src="../assets/imgs/logoExtendedCopy.png" alt="logo" class="logo">
+        </a>
+          <ul class="navbar">
+            <li>
+              <a href="livros.html">Livros</a>
+            </li>
+            <li>
+              <a href="../bobia.html">recomendAI</a>
+            </li>
+            <li class="paginaAtual">
+              <a class="paginaAtual" href="forum.html">Forum</a>
+            </li>
+            <li>|</li>
+            <li >
+              <a href="usuario.html">
+                <div class="hello">
+                  <img id="fotoPerfil" alt="" style="display: none;">
+                  <img class="imgPerf" 
+                      id="imgPerfil"
+                      src="https://static.vecteezy.com/ti/vetor-gratis/p1/9734564-default-avatar-profile-icon-of-social-media-user-vetor.jpg"
+                      alt="">
+                  <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a>
+                <div class="botaoSair" onclick="limparSessao()">
+                  <h3 style="color: #aa7744;" class="h3BotaoSair">Sair</h3>
+              </div>
+              </a>
+            </li>
+          </ul>
+      </div>
+
     <div class="janela">
 
-        <div class="header-left dash-header">
-
-            <h1>AquaTech</h1>
-
-            <div class="hello">
-                <img id="fotoPerfil" alt="" style="display: none;">
-                <img class="imgPerf" 
-                    id="imgPerfil"
-                    src="https://static.vecteezy.com/ti/vetor-gratis/p1/9734564-default-avatar-profile-icon-of-social-media-user-vetor.jpg"
-                    alt="">
-                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
-            </div>
-
-            <div class="btn-nav-white">
-                <a href="usuario.html">
-                    <h3>Perfil</h3>
-                </a>
-            </div>
-
-            <div class="btn-nav">
-                <h3>Fórum</h3>
-            </div>
-
-            <div class="btn-nav-white">
-                <a href="../bobia.html">
-                    <h3>recomendAI</h3>
-                </a>
-            </div>
-
-            <div class="btn-nav-white">
-                <a href="livros.html">
-                    <h3>Livros</h3>
-                </a>
-            </div>
-
-            <div class="btn-logout" onclick="limparSessao()">
-                <h3>Sair</h3>
-            </div>
-
-        </div>
+        
 
 
         <div id="botoesForum" style="position: absolute; right: 500px; margin-top: 100px; ">
