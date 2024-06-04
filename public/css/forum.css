@@ -288,7 +288,6 @@ cores:
   width: 100%;
 }
 
-/* Chat containers */
 .containerComentarios {
   display: flex;
   background-color: #f0cf95;
@@ -303,16 +302,11 @@ cores:
   
 }
 
-/* Darker chat container */
 .escuro {
   background-color: #c38d57;
   align-self: flex-end;
 }
 
-/* Clear floats */
-
-
-/* Style images */
 .containerComentarios img {
   float: left;
   max-width: 60px;
@@ -321,16 +315,12 @@ cores:
   border-radius: 50%;
 }
 
-/* Style the right image */
 .containerComentarios img.right {
   float: right;
   margin-left: 20px;
   margin-right:0;
 }
 
-
-
-/* Style time text */
 .time-right {
 
   color: black;
@@ -338,52 +328,9 @@ cores:
   float: right;
 }
 
-/* Style time text */
 .time-left {
   margin-top: 60px;
   float: left;
   color: black;
 }
 
-/*
-      .cardForum{
-         background-image: url('https://img.freepik.com/vetores-premium/livro-fechado-marrom_135176-141.jpg'); 
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-      
-        
-        align-items: center; 
-        text-align: center; 
-        margin-left: 12px; 
-        margin-top: 14px; 
-        border-radius: 10px;
-        border: 22px solid #aa7744; 
-        width: 220px;
-        height: 280px;
-        cursor: pointer;
-        overflow: hidden;
-      }
-    
-      .cardForum h1{
-        color: red;
-        display: none;
-        margin-top: 55px;
-      }
-    
-    
-      .cardForum:hover{
-          opacity: 70%;
-          transition: transform 0.2s, background-color 0.2s, border 0.3s;
-          border: 10px solid #e6aa77;
-          border-radius: 7px; 
-          transform: scale(110%, 110%);
-          }
-    
-          .cardForum:hover h1{
-            opacity: 1;
-            transition: display 0.9s;
-            display: block;
-          }
-        
-*/
