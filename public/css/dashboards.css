@@ -71,19 +71,6 @@ body {
   margin-right: 10px;
 }
 
-
-#divContainerComentarios{
-  display: none;
-  color: white;
-  position: absolute;
-  right: 30px;
-  margin-top: 50px;
-  border: 2px solid red;
-  width: 1150px;
-  height: 700px;
-  flex-direction: column;
-}
-
 #mensagemErroComentario{
   position: relative;
   font-size: 25px;
@@ -99,16 +86,23 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
+  text-align: center;
 }
 
 .inp_comentario {
-  color: white;
-  margin-top: 10px;
+  color: #381611;
+  font-size: 15px;
   width: 100%;
-  height: 69%;
+  height: 80%;
   border-radius: 10px;
-  background-color: #212121;
+  background-color: #e6aa77;
   border: none;
+  text-align: center;
+
+}
+
+.inp_comentario::placeholder{
+  color: #381611;
 }
 
 .inp_comentario:focus { /* Quando o input com classe "input_number" estiver em foco */
@@ -135,67 +129,6 @@ body {
 }
 
 
-#chatComentario{
-  border: 2px solid blue;
-  width: 100%;
-}
-
-/* Chat containers */
-.containerComentarios {
-  border: 2px solid #dedede;
-  background-color: #f1f1f1;
-  border-radius: 5px;
-  padding: 10px;
-  margin: 10px 0;
-  height: 50px;
-  color: black;
-  
-}
-
-/* Darker chat container */
-.escuro {
-  border-color: #ccc;
-  background-color: #ddd;
-}
-
-/* Clear floats */
-
-
-/* Style images */
-.containerComentarios img {
-  float: left;
-  max-width: 60px;
-  width: 100%;
-  margin-right: 20px;
-  border-radius: 50%;
-}
-
-/* Style the right image */
-.containerComentarios img.right {
-  float: right;
-  margin-left: 20px;
-  margin-right:0;
-}
-
-
-
-/* Style time text */
-.time-right {
-
-  color: red;
-  position: relative;
-  top: -20px;
-  margin-top: 0;
-  float: right;
-}
-
-/* Style time text */
-.time-left {
-  position: relative;
-  top: -10px;
-  float: left;
-  color: #999;
-}
 
 
 

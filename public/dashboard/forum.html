@@ -239,9 +239,10 @@ function topico(idTopico) {
                             fecharComentario.innerHTML = 'Voltar para os topicos';
 
                             divChatComentario.id = 'chatComentario';
+                            fecharComentario.className = 'botaoVoltarComentario'
                             fecharComentario.setAttribute("onclick", 'fecharTopico()');
 
-                            divChatComentario.appendChild(fecharComentario)
+                            divComentarios.appendChild(fecharComentario)
 
                             contAuxiliar ++;
                         }
@@ -315,8 +316,8 @@ function topico(idTopico) {
                             divInput.appendChild(inp);
                             divInput.appendChild(botaoInp);
                             divInpBox.appendChild(divInput);
-                            divChatComentario.appendChild(divInpBox);
                             divComentarios.appendChild(divChatComentario);
+                            divComentarios.appendChild(divInpBox);
 
                 });
             } else {
@@ -588,7 +589,7 @@ function acessar(idForum){
 
     function fecharForum(){
         divContainerForum.style.display = "block";
-        botoesForum.style.display = "flex";
+        botoesForum.style.display = "block";
         divContainerDiscussoes.style.display = "none";
     }
 

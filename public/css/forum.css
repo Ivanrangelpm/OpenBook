@@ -144,15 +144,13 @@ cores:
 }
 
 .containerDiscussoes{
+  display: none;
   padding: 15px;
   color: white;
   margin-top: 50px;
   background-color: #381611;
   margin-bottom: 30px;
   border-radius: 13px;
-
-
-
 }
 
 .headerTopico{
@@ -225,6 +223,107 @@ cores:
 .topico img{
   margin-right: 20px;
 }
+
+
+#divContainerComentarios{
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  display: none;
+  padding: 15px;
+  color: white;
+  margin-top: 50px;
+  background-color: #381611;
+  margin-bottom: 30px;
+  border-radius: 13px;
+  min-height: 400px;
+}
+
+.botaoVoltarComentario{
+  transition: transform 0.2s, background-color 0.2s;
+  cursor: pointer;
+  border-radius: 8px;
+  border: 2px solid #381611;
+  padding: 0.5rem;
+  font-family: monospace;
+  font-weight: bold;
+  font-size: 25px;
+  background-color: #f0cf95;
+  width: 230px;
+}
+
+.botaoVoltarComentario:hover{
+  transform: scale(110%, 110%);
+  background-color: #e6aa77;
+}
+
+
+
+
+#chatComentario{
+  border: 2px solid blue;
+  width: 100%;
+}
+
+/* Chat containers */
+.containerComentarios {
+  border: 2px solid #dedede;
+  background-color: #f0cf95;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+  height: 80px;
+  color: black;
+  align-items: center;
+  
+}
+
+/* Darker chat container */
+.escuro {
+  border-color: #ccc;
+  background-color: #ddd;
+}
+
+/* Clear floats */
+
+
+/* Style images */
+.containerComentarios img {
+  float: left;
+  max-width: 60px;
+  width: 100%;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+/* Style the right image */
+.containerComentarios img.right {
+  float: right;
+  margin-left: 20px;
+  margin-right:0;
+}
+
+
+
+/* Style time text */
+.time-right {
+
+  color: red;
+  position: relative;
+  top: -20px;
+  margin-top: 0;
+  float: right;
+}
+
+/* Style time text */
+.time-left {
+  position: relative;
+  top: -10px;
+  float: left;
+  color: #999;
+}
+
 /*
       .cardForum{
          background-image: url('https://img.freepik.com/vetores-premium/livro-fechado-marrom_135176-141.jpg'); 
