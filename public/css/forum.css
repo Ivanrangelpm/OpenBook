@@ -262,27 +262,30 @@ cores:
 
 
 #chatComentario{
-  border: 2px solid blue;
+  display: flex;
+  flex-direction: column;
   width: 100%;
 }
 
 /* Chat containers */
 .containerComentarios {
-  border: 2px solid #dedede;
+  display: flex;
   background-color: #f0cf95;
   border-radius: 5px;
   padding: 10px;
   margin: 10px 0;
   height: 80px;
   color: black;
+  width: 76%;
   align-items: center;
+  justify-content: space-between;
   
 }
 
 /* Darker chat container */
 .escuro {
-  border-color: #ccc;
-  background-color: #ddd;
+  background-color: #c38d57;
+  align-self: flex-end;
 }
 
 /* Clear floats */
@@ -309,19 +312,16 @@ cores:
 /* Style time text */
 .time-right {
 
-  color: red;
-  position: relative;
-  top: -20px;
-  margin-top: 0;
+  color: black;
+  margin-top: 60px;
   float: right;
 }
 
 /* Style time text */
 .time-left {
-  position: relative;
-  top: -10px;
+  margin-top: 60px;
   float: left;
-  color: #999;
+  color: black;
 }
 
 /*

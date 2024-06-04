@@ -257,15 +257,56 @@ function topico(idTopico) {
                         var comentHora = document.createElement("span");
 
                         comentTexto.innerHTML = `${comentario.texto}`
-                        comentHora.innerHTML = `${comentario.dtComent}`
+                            
 
-                        divContainerComent.className = 'containerComentarios'
+                            var date = new Date(comentario.dtComent)
+
+                            var day = date.getDay();
+
+
+                            if(day == 0){
+                                var dia = 'Domingo' 
+                            }else if(day == 1){
+                                var dia = 'Segunda'
+                            }else if(day == 2){
+                                var dia = 'Terça'
+                            }else if(day == 3){
+                                var dia = 'Quarta'
+                            }else if(day == 4){
+                                var dia = 'Quinta'
+                            }else if(day == 5){
+                                var dia = 'Sexta'
+                            }else if(day == 6){
+                                var dia = 'Sábado'
+                            }
+
+
+                                var hora = date.getUTCHours(); 
+                                hora -= 3; 
+
+
+                                if (hora < 0) {
+                                    hora += 24;
+                                }
+                                var minuto = date.getUTCMinutes(); 
+
+                                var horaFormatada = hora.toString().padStart(2, '0');
+                                var minutoFormatado = minuto.toString().padStart(2, '0');
+
+                            var mensagem = `${dia} ${horaFormatada}:${minutoFormatado}`
+
+                            
+                        comentHora.innerHTML = `${mensagem}`
+                        
                         
                         if(comentario.idUsuario == usuarioAtual){
                             comentHora.className = 'time-left'
                             imgUsuario.className = 'right'
+                            divContainerComent.className = 'containerComentarios escuro'
+
                         }else{
                             comentHora.className = 'time-right'
+                            divContainerComent.className = 'containerComentarios'
                         }
 
                         imgUsuario.setAttribute('src', comentario.foto);
