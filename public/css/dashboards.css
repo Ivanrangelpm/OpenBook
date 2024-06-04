@@ -51,16 +51,7 @@ body {
 }
 
 
-.containerDiscussoes{
-  display: none;
-  color: white;
-  position: absolute;
-  right: 30px;
-  margin-top: 50px;
-  border: 2px solid red;
-  width: 1150px;
-  height: 700px;
-}
+
 
 .discussoes{
   width: 100%;
@@ -69,32 +60,7 @@ body {
   
 }
 
-.topico{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  border: 2px solid blue;
-  height: 70px;
-  margin-top: 15px;
-  margin-right: 25px;
-  margin-left: 25px;
-  width: 1100px;
-  cursor: pointer;
-}
 
-.headerTopico{
-  display: flex;
-  justify-content: space-around;
-}
-
-.btnTopico{
-  height: 30px;
-  margin-top: 29px;
-}
-
-.h2Topico{
-  margin-left: 30px;
-}
 
 
 .imgPerf{

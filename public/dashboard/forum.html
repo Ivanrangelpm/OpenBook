@@ -73,6 +73,7 @@
             </div>
         </div> 
         <div id="divCadastrarForum">
+
         </div>
 
 
@@ -408,9 +409,9 @@ function acessar(idForum){
                     for (let i = 0; i < resposta.length; i++) {
                         var topico = resposta[i];
                         if(contAuxiliar == 0){
+                            var divContainerHeader = document.createElement("div");
                             var divContainerTopico = document.createElement("div");
-                            var divHeader = document.createElement("div");
-                            var divCadastrarTopic = document.createElement("div")                   
+                            var divHeader = document.createElement("div");                 
                             var nomeTitulo = document.createElement("h1");
                             var btnCadastrar = document.createElement("button");
                             var btnSair = document.createElement("button");
@@ -419,23 +420,23 @@ function acessar(idForum){
                             btnCadastrar.innerHTML = 'Adicionar tópico';
                             btnSair.innerHTML = 'Fechar Fórum';
 
-
+                            divContainerHeader.className = 'divHeaderTopico'
                             divContainerTopico.className = 'discussoes';
                             divHeader.className = 'headerTopico';
                             btnCadastrar.className = 'btnTopico'; 
                             btnSair.className = 'btnTopico';
 
-                            divCadastrarTopic.id = 'divCadastrarTopico'
 
                             btnCadastrar.setAttribute("onclick", 'abrirCadastroTopico()');
                             btnSair.setAttribute('onclick', 'fecharForum()');
 
-                            divHeader.appendChild(nomeTitulo);
-                            divHeader.appendChild(btnCadastrar);
-                            divHeader.appendChild(btnSair);
                             
+                            divHeader.appendChild(nomeTitulo);
+                            divContainerHeader.appendChild(btnCadastrar);
+                            divContainerHeader.appendChild(btnSair);
+                            divHeader.appendChild(divContainerHeader);
+
                             divContainerTopico.appendChild(divHeader);
-                            divContainerTopico.appendChild(divCadastrarTopic);
                            
                             contAuxiliar ++;
                         }
@@ -522,8 +523,8 @@ function acessar(idForum){
 
 
     function abrirCadastroTopico() {
-        divCadastrarTopico.innerHTML = `
-        <div style="align-items: center;text-align: center;  position: absolute; margin-top: 200px; right: 300px; width: 700px; background-color: sienna; ">
+        divCadastrarForum.innerHTML = `
+        <div class="boxCadastrarForum">
                     <h2>Faça o cadastro do novo tópico desse Fórum!</h2>
                     <p>Nome do Tópico</p>
                     <input type="text" name="" id="inp_nomeTopico"> <br>
@@ -582,7 +583,7 @@ function acessar(idForum){
     }
 
     function fecharCadastroTopico(){
-        divCadastrarTopico.innerHTML = ''
+        divCadastrarForum.innerHTML = ''
     }
 
     function fecharForum(){
@@ -594,20 +595,23 @@ function acessar(idForum){
 
 
     function abrirCadastro() {
-        divCadastrarForum.innerHTML = `   
-                <div style="align-items: center;text-align: center;  position: absolute; margin-top: 200px; right: 300px; width: 700px; background-color: sienna; ">
-                    <h2>Faça o cadastro do seu novo fórum!</h2>
-                    <p>Nome do Fórum</p>
-                    <input type="text" name="" id="inp_nomeForum">
-                    <p>Imagem de Fundo do Fórum</p>
-                    <input type="text" name="" id="inp_fotoForum"> <br>
-                    <button style="cursor: pointer;" onclick="cadastrarForum()">Concluir</button>
-                    <div id="erroCadastrar"></div>
-                </div>`
+        divCadastrarForum.innerHTML = ` 
+        <div class="boxCadastrarForum">
+                <h1>Faça o cadastro do seu novo fórum!</h1>
+                <p>Nome do Fórum</p>
+                <input type="text" name="" id="inp_nomeForum" >
+                <p>Imagem de Fundo do Fórum</p>
+                <input type="text" name="" id="inp_fotoForum"> <br>
+                <button onclick="cadastrarForum()">Concluir</button>
+                <div id="erroCadastrar"></div>
+        </div>  
+`
+        botoesForum.style.display = 'none'
     }
 
     function fecharCadastro() {
         divCadastrarForum.innerHTML = ""
+        botoesForum.style.display = 'block'
 
     }
 
@@ -616,12 +620,9 @@ function acessar(idForum){
         var fotoForum = inp_fotoForum.value;
         var admForum = sessionStorage.ID_USUARIO;
 
-        if (fotoForum == "") {
-            fotoForum = "https://img.freepik.com/vetores-premium/livro-fechado-marrom_135176-141.jpg"
-        }
 
-        if (nomeForum == "") {
-            erroCadastrar.innerHTML = `O seu Fórum precisa ter um nome!`
+        if (nomeForum == "" || fotoForum == "") {
+            erroCadastrar.innerHTML = `O seu Fórum precisa ter um nome e uma foto!`
         } else {
             erroCadastrar.innerHTML = "";
             setTimeout(fecharCadastro, 500);

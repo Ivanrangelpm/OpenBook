@@ -25,7 +25,8 @@ function listar() {
             u.foto
             FROM forum f
                 INNER JOIN usuario u
-                    ON f.fkAdm = u.id;
+                    ON f.fkAdm = u.id
+                    ORDER BY f.idForum DESC;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
