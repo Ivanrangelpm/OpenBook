@@ -62,20 +62,19 @@
     
 
     <div class="janela">
-
-
-        
-        <div class="containerLivros">
-          Filtre o periodo: 
+      <div id="botoesLivro" class="divBotaoLivro">
+        <button class="botaoLivro" onclick="abrirCadastrarLivros()"> Cadastrar livro</button>
+        <div class="divFiltro">
+          <button class="botaoLivro botaoFiltro" onclick="abrirFiltros()"> <img src="../assets/imgs/filter.svg" alt="">Filtros</button>
+          <div id="divFiltros" class="divFiltros">
             <select name="" id="sel_tempo">
-              <option  selected disabled value="0">Selecione um periodo de tempo</option>
+              <option  selected disabled value="0">Filtre por periodo</option>
               <option value="mes">Ultimo mês</option>
               <option value="semestre">Ultimo semestre</option>
               <option value="ano">Ultimo ano</option>
             </select>
-            Filtre por genero
             <select name="" id="sel_genero">
-              <option  selected disabled value="0">Selecione um genero</option>
+              <option  selected disabled value="0">Filtre por gênero</option>
               <option value="ficCientifica">Ficção Científica</option>
               <option value="terror">terror</option>              
               <option value="biografia">Biografia</option>
@@ -83,20 +82,28 @@
               <option value="drama">drama</option>
               <option value="romance">Romance</option>
             </select>
-            <button onclick="abrirCadastrarLivros()"> Cadastrar novo livro lido</button>
+          </div>    
+        </div>
 
-            <div id="divCadastrarLivros" class="cadastrarLivros">
-              <h3>Cadastre seu novo livro lido</h3>
-              Nome do Livro: <br> <input type="text" name="" id="inp_livroLido"> <br>
-              Autor: <br><input type="text" name="" id="inp_autor"> <br>
-              Genero: <br> <input type="text" name="" id="inp_genero"> <br>
-              Nota: <br> <input type="text" name="" id="inp_nota"> <br>
-              Data de leitura: <br> <input type="date" name="" id="inp_dtLeitura"> <br>
-              Imagem: <br> <input type="text" name="" id="inp_imagem">
-              <button onclick="cadastrarLivros()">Cadastrar Livro</button>
-              <div id="erroLivroCadastrar"></div>
-            </div>
-            <div id="mensagemErro"></div>
+      </div>
+    </div> 
+    <div id="divCadastrarLivros" class="cadastrarLivros">
+      <h3>Cadastre seu novo livro lido</h3>
+      Nome do Livro: <br> <input type="text" name="" id="inp_livroLido"> <br>
+      Autor: <br><input type="text" name="" id="inp_autor"> <br>
+      Genero: <br> <input type="text" name="" id="inp_genero"> <br>
+      Nota: <br> <input type="text" name="" id="inp_nota"> <br>
+      Data de leitura: <br> <input type="date" name="" id="inp_dtLeitura"> <br>
+      Imagem: <br> <input type="text" name="" id="inp_imagem">
+      <button onclick="cadastrarLivros()">Cadastrar Livro</button>
+      <div id="erroLivroCadastrar"></div>
+    </div>  
+
+    <div style="color: white;" id="mensagemErro">
+
+        
+        <div class="containerLivros">
+
 
             <div class="divContainerLivros" id="divContainerLivros">
               <div id="feedLivro1" class="containerCardLivros">
@@ -104,6 +111,10 @@
               </div>
   
               <div id="feedLivro2" class="containerCardLivros">
+              </div> 
+              <div id="feedLivro3" class="containerCardLivros">
+              </div> 
+              <div id="feedLivro4" class="containerCardLivros">
               </div> 
             </div>
 
@@ -144,6 +155,8 @@
 </body>
 
 <script>
+
+
 
 
 function atualizarLivros() {
@@ -276,6 +289,10 @@ function atualizarLivros() {
      function abrirCadastrarLivros() {
       divCadastrarLivros.style.display = 'block';
 
+     }
+
+     function abrirFiltros() {
+      divFiltros.style.display = 'flex'
      }
 
 
