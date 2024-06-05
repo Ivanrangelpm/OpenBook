@@ -2,140 +2,300 @@
 <html lang="pt-br">
 
 <head>
-    <link rel="shortcut icon" href="../assets/imgs/logo.png" type="image/x-icon">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AquaTech | Tempo Real</title>
+  <link rel="shortcut icon" href="../assets/imgs/logo.png" type="image/x-icon">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenBook | Perfil</title>
 
 
-    <link rel="stylesheet" href="./../css/dashboards.css">
-    <link rel="stylesheet" href="./../css/estilo.css" />
+  <link rel="stylesheet" href="./../css/dashboards.css">
+  <link rel="stylesheet" href="./../css/estilo.css" />
+  <link rel="stylesheet" href="../css/usuario.css">
 
-    <script src="../js/sessao.js"></script>
-    <script src="../js/alerta.js"></script>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+  <script src="../js/sessao.js"></script>
+  <script src="../js/alerta.js"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
 </head>
-<!--onload="validarSessao()"-->
-<body onload="validarSessao()">
+<!--onload="validarSessao(), atualizarGraficos()"-->
+
+<body onload="atualizarGraficos()">
 
   <div class="header">
     <a href="index.html">
       <img src="../assets/imgs/logoExtendedCopy.png" alt="logo" class="logo">
     </a>
-      <ul class="navbar">
-        <li>
-          <a href="livros.html">Livros</a>
-        </li>
-        <li>
-          <a href="../bobia.html">recomendAI</a>
-        </li>
-        <li>
-          <a href="forum.html">Forum</a>
-        </li>
-        <li>|</li>
-        <li >
-          <a class="paginaAtual" href="usuario.html">
-            <div class="hello">
-              <img class="imgPerf" 
-                  id="imgPerfil"
-                  src="https://static.vecteezy.com/ti/vetor-gratis/p1/9734564-default-avatar-profile-icon-of-social-media-user-vetor.jpg"
-                  alt="">
-              <h3 class="paginaAtual">Olá, <span class="paginaAtual" id="b_usuario">usuário</span>!</h3>
-            </div>
-          </a>
-        </li>
-        <li>|</li>
-        <li>
-          <a>
-            <div class="botaoSair" onclick="limparSessao()">
-              <h3 style="color: #aa7744;" class="h3BotaoSair">Sair</h3>
+    <ul class="navbar">
+      <li>
+        <a href="livros.html">Livros</a>
+      </li>
+      <li>
+        <a href="../bobia.html">recomendAI</a>
+      </li>
+      <li>
+        <a href="forum.html">Forum</a>
+      </li>
+      <li>|</li>
+      <li>
+        <a class="paginaAtual" href="usuario.html">
+          <div class="hello">
+            <img class="imgPerf" id="imgPerfil"
+              src="https://static.vecteezy.com/ti/vetor-gratis/p1/9734564-default-avatar-profile-icon-of-social-media-user-vetor.jpg"
+              alt="">
+            <h3 class="paginaAtual">Olá, <span class="paginaAtual" id="b_usuario">usuário</span>!</h3>
           </div>
-          </a>
-        </li>
-      </ul>
+        </a>
+      </li>
+      <li>|</li>
+      <li>
+        <a>
+          <div class="botaoSair" onclick="limparSessao()">
+            <h3 style="color: #aa7744;" class="h3BotaoSair">Sair</h3>
+          </div>
+        </a>
+      </li>
+    </ul>
   </div>
 
 
 
 
 
-    <div class="janela">
+  <div class="janelaUsuario">
+    <div class="perfilUsuario">
+      <div class="containerFotoPerfil">
+        <h2>Foto de Perfil</h2>
+        <img id="fotoPerfil"  
+          src="https://static.vecteezy.com/ti/vetor-gratis/p1/9734564-default-avatar-profile-icon-of-social-media-user-vetor.jpg"
+          alt="">
+        <button onclick="abrirInput()">Alterar imagem</button>
+      </div>
+      <div class="alterarPerfil">
+            <div>
+              <span>Nome:</span>
+              <input id="nome_input" type="text" placeholder="Seu nome" />
+            </div>
+            <div>
+              <span>NickName:</span>
+              <input id="nick_input" type="text" placeholder="Seu nickname" />
+            </div>
+            <div>
+              <span>E-mail:</span>
+              <input id="email_input" type="text" placeholder="meuemail@gmail.com" />
+            </div>
+              <button onclick="alterar()">Alterar</button>
+              <div id="mensagem_erro"></div>
+        </div>
+    </div>
 
-        
-
-
-
-    
-
-
-                <div style="color: white; right: 0; width: 600px; margin-left: 700px; display: flex;">    
-                    <div >
-                        <p>Foto de Perfil</p>
-                          <img id="fotoPerfil" style="width: 300px;" src="https://static.vecteezy.com/ti/vetor-gratis/p1/9734564-default-avatar-profile-icon-of-social-media-user-vetor.jpg" alt=""> 
-                        <button onclick="abrirInput()">Alterar imagem</button>
-                    </div>
-                    <div id="divAlterarImagem">
-
-                    </div>
-                    <div style="width: 400px; margin-left: 50px; margin-top: 50px;">
-                        <div class="campo">
-                            <span>Nome:</span>
-                            <input id="nome_input" type="text" placeholder="Seu nome" />
-                          </div>
-                          <div class="campo">
-                            <span>NickName:</span>
-                            <input id="nick_input" type="text" placeholder="Seu nickname" />
-                          </div>
-                          <div class="campo">
-                            <span>E-mail:</span>
-                            <input id="email_input" type="text" placeholder="meuemail@provedor.com" />
-                          </div>
-                          <button class="botao" onclick="alterar()">Alterar</button>
-                          <div id="mensagem_erro"></div>
-                        </div>
-                    </div>
-                </div>
+    <div id="divAlterarImagem">
 
     </div>
-    <footer>
-      <div class="developers">
-        <h3>OpenBook foi desenvolvida por </h3>
-        <ul>
-          <li>Ivan Rangel Pestana Marcolin <br> ivan.marcolin@sptech.school</li>
-        </ul>
-      </div>
-      <div>
-        
-      </div>
-      <div class="meioFooter">
-        <img src="../assets/imgs/bookGif.webp" class="logo" />
-        <p>OpenBook © 2024. Todos os direitos reservados.</p>    
-      </div>
-      <div class="contact">
-        <h3>Contato:</h3>
-        <ul>
-          <li>openBook@gmail.com</li>
-          <li>+55 11 99123-9899</li>
-        </ul>
-        <br>
-        <h3>Endereço</h3>
-        <ul>
-          <li>Rua Haddook Lobo 565</li>
-        </ul>
-      </div>
-      
-    </footer>
-    
 
-    
+    <div class="graficoUsuario">
+      <canvas id="generosPref"></canvas>
+    </div>
+
+  </div>
+  <div class="graficoBarraUsuario">
+    <div id="sectionCanvas1">
+      <section>
+        <!-- <span>Temperatura das Incubadoras</span> -->
+        <canvas id="barrasLivrosLidos"></canvas>
+      </section>
+    </div>
+  </div>
+  <footer>
+    <div class="developers">
+      <h3>OpenBook foi desenvolvida por </h3>
+      <ul>
+        <li>Ivan Rangel Pestana Marcolin <br> ivan.marcolin@sptech.school</li>
+      </ul>
+    </div>
+    <div>
+
+    </div>
+    <div class="meioFooter">
+      <img src="../assets/imgs/bookGif.webp" class="logo" />
+      <p>OpenBook © 2024. Todos os direitos reservados.</p>
+    </div>
+    <div class="contact">
+      <h3>Contato:</h3>
+      <ul>
+        <li>openBook@gmail.com</li>
+        <li>+55 11 99123-9899</li>
+      </ul>
+      <br>
+      <h3>Endereço</h3>
+      <ul>
+        <li>Rua Haddook Lobo 565</li>
+      </ul>
+    </div>
+
+  </footer>
+
+
+
 
 </body>
 
 <script>
+
+  var livrosJaneiro = 8;
+  var livrosFevereiro = 2;
+  var livrosMarço = 1;
+  var livrosAbril = 3;
+  var livrosMaio = 6;
+  var livrosJunho = 0;
+  var livrosJulho = 7;
+  var livrosAgosto = 2;
+  var livrosSetembro = 5;
+  var livrosOutubro = 7;
+  var livrosNovembro = 8;
+  var livrosDezembro = 9;
+
+
+
+
+
+
+
+
+  function atualizarGraficos() {
+  var divBarras = document.getElementById('barrasLivrosLidos').getContext('2d');
+  divBarras.canvas.parentNode.style.width = '1200px';
+  divBarras.canvas.parentNode.style.height = '500px';
+  divBarras.canvas.width = 2;
+  divBarras.canvas.height = 1;
+
+  var optionsLegend = {
+    display: true,
+    labels: {
+      color: '#f0cf95',
+      font: {
+        size: 15,
+      },
+      padding: 40
+    },
+    position: 'bottom'
+  }
+
+
+  var optionsLegend2 = {
+    display: true,
+    labels: {
+      color: '#381611',
+      font: {
+        size: 15,
+      },
+      padding: 40
+    },
+    position: 'bottom'
+  }
+
+  var divGenerosPref = document.getElementById('generosPref').getContext('2d');
+  divGenerosPref.canvas.width = 1;
+  divGenerosPref.canvas.height = 1;
+
+  var graficogenerosPref = new Chart(
+    divGenerosPref,
+    {
+      type: 'doughnut',
+      data: {
+        labels: ['Terror', 'Romance', 'Ficção'],
+        datasets: [{
+          data: [3, 4, 1],
+          backgroundColor: [
+            '#000000',
+            '#e6aa77',
+            '#aa7744'
+          ],
+          label: 'Livros lidos'
+        }]
+      },
+      options: {
+        plugins: {
+          title: {
+            color: '#f0cf95',
+            display: true,
+            text: 'Livros lidos',
+            font: {
+              size: 31
+            },
+            padding: 30
+          },
+          legend: optionsLegend
+        }
+      }
+    }
+  )
+
+
+  var graficoBarraLivrosLidos = new Chart(
+    divBarras,
+    {
+      type: 'bar',
+      data: {
+        labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho','Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro' ],
+        datasets: [{
+          data: [livrosJaneiro, livrosFevereiro, livrosMarço, livrosAbril, livrosMaio, livrosJunho, livrosJulho, livrosAgosto, livrosSetembro, livrosOutubro, livrosNovembro, livrosDezembro],
+          backgroundColor: '#aa7744',
+          label: 'Livros Lidos por mês',
+        }]
+      },
+      options: {
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Meses',
+              color: '#381611',
+              font: {
+                size: 16,
+                weight: 'bold'
+              }
+            }
+          },
+          y: {
+            min: 0,
+            max: 10,
+            title: {
+              display: true,
+              text: 'Livros Lidos',
+              color: '#381611',
+              font: {
+                size: 16,
+                weight: 'bold'
+              }
+            },
+            ticks: {
+              stepSize: 1
+            }
+          }
+        },
+        plugins: {
+          title: {
+            display: true,
+            text: 'Livros lidos por mês',
+            color: '#381611',
+            font: {
+              size: 31
+            },
+            padding: 30
+          },
+          legend: optionsLegend2
+        }
+      }
+    }
+  )
+
+  }
+
 
   function alterar() {
     //Recupere o valor da nova input pelo nome do id
@@ -208,7 +368,7 @@
   function alterarImagem() {
     var novaFoto = inp_novaImagem.value;
     fotoPerfil.src = `${novaFoto}`;
-    imgPerfil.src = `${novaFoto}`;    
+    imgPerfil.src = `${novaFoto}`;
     divAlterarImagem.innerHTML = ``
     sessionStorage.FOTO_USUARIO = novaFoto;
 

@@ -126,11 +126,11 @@
 
         </div>
 
-        <div id="feedLivro2" class="containerCardLivros">
+        <div id="feedLivro2" class="containerCardLivros" style="display: none;">
         </div>
-        <div id="feedLivro3" class="containerCardLivros">
+        <div id="feedLivro3" class="containerCardLivros" style="display: none;">
         </div>
-        <div id="feedLivro4" class="containerCardLivros">
+        <div id="feedLivro4" class="containerCardLivros" style="display: none;">
         </div>
       </div>
 
@@ -221,6 +221,7 @@
 
             divCard.appendChild(nomeLivro);
             divCard.appendChild(imgLivro);
+            console.log(i)
             if (i < 5) {
               feed1.appendChild(divCard);
             } else if (i < 10) {
