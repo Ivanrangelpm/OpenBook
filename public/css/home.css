@@ -62,12 +62,12 @@ main main h1 {
   }
   
   
-  main .introduction img {
-    border-radius: 10px;
-    border: 1px #101030 solid;
+  main .graficoInicio {
     width: 40%;
     margin-bottom: 35px;
   }
+
+
 
   main .introducao{
     background-image: url('../assets/imgs/fundoLivro2\ \(2\).jpeg');

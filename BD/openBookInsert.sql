@@ -23,15 +23,22 @@ INSERT INTO discussao (titulo, fkForum, fkCriador) VALUES
 	('Qual dos gemeos era pior?', 1, 4),
 	('Nunca ficaria do lado da Daenerys', 5, 2);
 
+--  ficCientifica terror biografia aventura drama romance desenvolvimento
 INSERT INTO livro (nome, autor, genero, nota, dtLeitura, fotoLivro, fkUsuario) VALUES 
-('Game of Thrones', 'George Martin', 'aventura', 4.5, '2024-03-14', 'https://m.media-amazon.com/images/I/51SRGgaei2L._SY445_SX342_.jpg', 1),
-('Game of Thrones', 'George Martin', 'aventura', 4.5, '2024-03-14', 'https://m.media-amazon.com/images/I/51SRGgaei2L._SY445_SX342_.jpg', 1),
-('Game of Thrones', 'George Martin', 'aventura', 4.5, '2024-03-14', 'https://m.media-amazon.com/images/I/51SRGgaei2L._SY445_SX342_.jpg', 1),
-('Game of Thrones', 'George Martin', 'aventura', 4.5, '2024-03-14', 'https://m.media-amazon.com/images/I/51SRGgaei2L._SY445_SX342_.jpg', 1),
-('Game of Thrones', 'George Martin', 'aventura', 4.5, '2024-03-14', 'https://m.media-amazon.com/images/I/51SRGgaei2L._SY445_SX342_.jpg', 1),
-('Game of Thrones', 'George Martin', 'aventura', 4.5, '2024-03-14', 'https://m.media-amazon.com/images/I/51SRGgaei2L._SY445_SX342_.jpg', 1),
-('Game of Thrones', 'George Martin', 'aventura', 4.5, '2024-03-14', 'https://m.media-amazon.com/images/I/51SRGgaei2L._SY445_SX342_.jpg', 1);
+('O Homem Mais Rico da Babilonia', 'George Clason', 'desenvolvimento', 3, '2023-07-14', 'https://m.media-amazon.com/images/I/81ehX6Quw2L._SY425_.jpg', 1),
+('Steve Jobs', 'Walter Isaacson', 'biografia', 4.8, '2023-08-20', 'https://m.media-amazon.com/images/I/41OnkWAt1SL._SY445_SX342_.jpg', 1),
+('Elon Musk', 'Walter Isaacson', 'biografia', 4.0, '2023-09-14', 'https://m.media-amazon.com/images/I/418hYhj8vZL._SY445_SX342_.jpg', 1),
+('Harry Potter e a Pedra Filosofal', 'JK Rowling', 'aventura', 5, '2023-10-21', 'https://m.media-amazon.com/images/I/81ibfYk4qmL._SY425_.jpg', 1),
+('Harry Potter e a Câmara Secreta', 'JK Rowling', 'aventura', 4.5, '2023-10-25', 'https://m.media-amazon.com/images/I/51SnGLrrJcL._SY445_SX342_.jpg', 1),
+('Harry Potter e o Cálice de Fogo', 'JK Rowling', 'aventura', 4.7, '2023-11-14', 'https://m.media-amazon.com/images/I/81nTLN-kz7L._SY425_.jpg', 1),
+('Game of Thrones 1', 'George Martin', 'aventura', 4.8, '2024-01-02', 'https://m.media-amazon.com/images/I/41UKpOWrZVL._SY445_SX342_.jpg', 1),
+('Game of Thrones 2', 'George Martin', 'aventura', 4.7, '2024-02-02', 'https://m.media-amazon.com/images/I/51OxMUhiXwL._SY445_SX342_.jpg', 1),
+('Game of Thrones 3', 'George Martin', 'aventura', 4.5, '2024-06-02', 'https://m.media-amazon.com/images/I/51lbSoFZYwL._SY445_SX342_.jpg', 1),
+('Game of Thrones 4', 'George Martin', 'aventura', 3.5, '2024-06-05', 'https://m.media-amazon.com/images/I/41j4e8si8cL._SY445_SX342_.jpg', 1),
+('Game of Thrones 5', 'George Martin', 'aventura', 2, '2024-06-07', 'https://m.media-amazon.com/images/I/51SRGgaei2L._SY445_SX342_.jpg', 1);
     
+
+
 
 SELECT * FROM usuario;
 SELECT * FROM forum;

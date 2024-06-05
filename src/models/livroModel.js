@@ -12,7 +12,8 @@ function listarLivros() {
         l.dtLeitura,
         l.fotoLivro,
         l.fkUsuario
-            FROM livro l;
+            FROM livro l
+            ORDER BY l.dtLeitura DESC;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
