@@ -20,7 +20,7 @@
     href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
     rel="stylesheet">
 </head>
-<!--onload="validarSessao(), atualizarLivros()"-->
+<!---->
 
 <body onload="validarSessao(), atualizarLivros()">
 
@@ -61,33 +61,15 @@
   </div>
 
 
-  <div class="janela">
-    <div id="botoesLivro" class="divBotaoLivro">
+  
+<div class="janela">
+  <div id="botoesLivro" class="divBotaoLivro">
       <button class="botaoLivro" onclick="abrirCadastrarLivros()"> Cadastrar livro</button>
-      <div class="divFiltro">
-        <button class="botaoLivro botaoFiltro" onclick="abrirFiltros()"> <img src="../assets/imgs/filter.svg"
-            alt="">Filtros</button>
-        <div id="divFiltros" class="divFiltros">
-          <select name="" id="sel_tempo">
-            <option selected disabled value="0">Filtre por periodo</option>
-            <option value="mes">Ultimo mês</option>
-            <option value="semestre">Ultimo semestre</option>
-            <option value="ano">Ultimo ano</option>
-          </select>
-          <select name="" id="sel_genero">
-            <option selected disabled value="0">Filtre por gênero</option>
-            <option value="ficCientifica">Ficção Científica</option>
-            <option value="terror">terror</option>
-            <option value="biografia">Biografia</option>
-            <option value="aventura">Aventura</option>
-            <option value="drama">drama</option>
-            <option value="romance">Romance</option>
-            <option value="desenvolvimento">Desenvolvimento Pessoal</option>
-          </select>
-        </div>
-      </div>
-    </div>
-  </div>
+      <button class="botaoLivro botaoFiltro" onclick="abrirFiltros()"> <img src="../assets/imgs/filter.svg" alt="">Filtros</button>
+  </div> 
+
+</div>
+
   <div id="divCadastrarLivros" class="cadastrarLivros">
     <h2>Cadastre seu novo livro lido</h2>
     <div class="containerCadastro">
@@ -134,6 +116,12 @@
         </div>
         <div id="feedLivro4" class="containerCardLivros" style="display: none;">
         </div>
+        <div id="feedLivro5" class="containerCardLivros" style="display: none;">
+        </div>
+        <div id="feedLivro6" class="containerCardLivros" style="display: none;">
+        </div>
+        <div id="feedLivro7" class="containerCardLivros" style="display: none;">
+        </div>
       </div>
 
     </div>
@@ -166,12 +154,102 @@
 
   </footer>
 
-
 </body>
 
 <script>
 
+  function filtrarGenero(){
 
+    var filtroGenero = sel_genero.value;
+
+    if(filtrarGenero == '0'){
+      erroSelect.innerHTML = '<h3>Escolha um genero válido</h3>';
+    }else{
+      erroSelect.innerHTML = '';
+      
+      fecharFiltro();
+
+      fetch("/livro/listarLivros").then(function (resposta) {
+      if (resposta.ok) {
+        if (resposta.status == 204) {
+          var feed = document.getElementById("mensagemErro");
+          var mensagem = document.createElement("h1");
+          mensagem.innerHTML = "Nenhum resultado encontrado."
+          feed.appendChild(mensagem);
+          throw "Nenhum resultado encontrado!!";
+        }
+
+        resposta.json().then(function (resposta) {
+          console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+
+
+          var feed1 = document.getElementById("feedLivro1");
+          var feed2 = document.getElementById("feedLivro2");
+          var feed3 = document.getElementById("feedLivro3");
+          var feed4 = document.getElementById("feedLivro4");
+
+
+          feed1.innerHTML = "";
+          feed2.innerHTML = "";
+          feed3.innerHTML = "";
+          feed4.innerHTML = "";
+
+          feed2.style.display = "none";
+          feed3.style.display = "none";
+          feed4.style.display = "none";
+          
+          var contAuxiliar = 0
+
+          for (let i = 0; i < resposta.length; i++) {
+            var livro = resposta[i];
+
+            if(filtroGenero == livro.genero){
+// criando e manipulando elementos do HTML via JavaScript
+            var divCard = document.createElement("div");
+            var nomeLivro = document.createElement("h1");
+            var imgLivro = document.createElement("img");
+
+
+            nomeLivro.innerHTML = livro.nome;
+
+            divCard.className = "cardForum";
+
+
+            divCard.setAttribute("onclick", `acessar(${livro.idLivro})`);
+            imgLivro.setAttribute("src", livro.fotoLivro)
+
+            divCard.appendChild(nomeLivro);
+            divCard.appendChild(imgLivro);
+            if (contAuxiliar < 5) {
+              feed1.appendChild(divCard);
+            } else if (contAuxiliar < 10) {
+              feed2.style.display = "flex";
+              feed2.appendChild(divCard);
+            } else if (contAuxiliar < 15) {
+              feed3.style.display = "flex"
+              feed3.appendChild(divCard);
+            } else {
+              feed4.style.display = "flex"
+              feed4.appendChild(divCard);
+            }
+            contAuxiliar ++;
+          }
+        }
+
+        });
+      } else {
+        throw ('Houve um erro na API!');
+      }
+    }).catch(function (resposta) {
+      console.error(resposta);
+    });
+    }
+
+    
+
+
+  }
 
 
   function atualizarLivros() {
@@ -320,10 +398,52 @@
   }
 
   function abrirFiltros() {
-    divFiltros.style.display = 'flex'
+    botoesLivro.innerHTML = `
+    <button class="botaoLivro" onclick="abrirFiltrarPorPeriodo()">Filtrar por Periodo</button>
+    <button class="botaoLivro" onclick="abrirFiltrarPorGenero()">Filtrar por Gênero</button>
+    `
   }
 
+  function fecharFiltro() {
+    botoesLivro.innerHTML = `
+    <button class="botaoLivro" onclick="abrirCadastrarLivros()"> Cadastrar livro</button>
+    <button class="botaoLivro botaoFiltro" onclick="abrirFiltros()"> <img src="../assets/imgs/filter.svg" alt="">Filtros</button>
+    `
+  }
 
+  function abrirFiltrarPorPeriodo(){
+    botoesLivro.innerHTML = `
+    <div class="selectLivro">
+      <select name="" id="sel_tempo">
+        <option selected disabled value="0">Filtre por periodo</option>
+        <option value="mes">Ultimo mês</option>
+        <option value="semestre">Ultimo semestre</option>
+        <option value="ano">Ultimo ano</option>
+      </select>
+      <button class="botaoLivro" onclick="filtrarTempo()">Filtrar</button>
+      <div id="erroSelect"></div>
+    </div>
+    `
+  }
+
+  function abrirFiltrarPorGenero() {
+    botoesLivro.innerHTML = `
+    <div class="selectLivro">
+      <select name="" id="sel_genero">
+            <option selected disabled value="0">Filtre por gênero</option>
+            <option value="ficCientifica">Ficção Científica</option>
+            <option value="terror">terror</option>
+            <option value="biografia">Biografia</option>
+            <option value="aventura">Aventura</option>
+            <option value="drama">drama</option>
+            <option value="romance">Romance</option>
+            <option value="desenvolvimento">Desenvolvimento Pessoal</option>
+       </select>
+      <button class="botaoLivro" onclick="filtrarGenero()">Filtrar</button>
+      <div id="erroSelect"></div>
+    </div>
+    `
+  }
 
 
   /*

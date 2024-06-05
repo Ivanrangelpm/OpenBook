@@ -11,6 +11,37 @@ cores:
   */
 
 
+  .selectLivro{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+
+  .selectLivro select{
+    cursor: pointer;
+    border: 2px solid #381611;
+    font-family: monospace;
+    font-size: 18px;
+    background-color: #f0cf95;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 40px;
+    width: 206px;
+    border-radius: 10px;
+  }
+
+  .selectLivro select option{
+    cursor: pointer;
+    font-family: monospace;
+  }
+
+
+
   .divBotaoLivro {
     display: flex; /* flex*/
     flex-direction: row;
@@ -84,20 +115,6 @@ cores:
     border-radius: 10px;
   }
 
-  .ladoDireitoCadastro select{
-    margin-top: 50px;
-  }
-
-  .divFiltros select option, .ladoDireitoCadastro select option{
-    cursor: pointer;
-    font-family: monospace;
-  }
-
-  
-  .divFiltros select option.custom-hover , .ladoDireitoCadastro select option.custom-hover{
-  background-color: #e6aa77;  
-  }
-
 
 
  
@@ -155,7 +172,7 @@ cores:
     border-bottom: 3px solid #381611;
   }
   
-  .cadastrarLivros button {
+  .cadastrarLivros button, .divFiltros button{
     margin-top: 15px;
     transition: background-color 0.2s, color 0.2s;
     cursor: pointer;
@@ -171,7 +188,7 @@ cores:
     margin-bottom: 15px;
   }
   
-  .cadastrarLivros button:hover{
+  .cadastrarLivros button:hover, .divFiltros button:hover{
     color: #381611;
     background-color: #e6aa77;
   }
