@@ -15,8 +15,8 @@
     <link rel="stylesheet" href="css/estilo.css">
     <link rel="stylesheet" href="css/bobia.css">
 </head>
-<!--onload="validarSessao()"-->
-<body onload="validarSessao()">
+<!--onload="validarSessao(), perfilDoUsuario()"-->
+<body onload="validarSessao(), perfilDoUsuario()">
 
     <div class="header">
         <a href="index.html">
@@ -104,29 +104,145 @@
     <script>
 
 
+
+
+var numFicCientifica = 0;
+var numTerror = 0;
+var numBiografia = 0;
+var numAventura = 0;
+var numDrama = 0;
+var numRomance = 0;
+var numDesenvolvimento = 0;
+var maisLido = '';
+var segMaisLido = '';
+var livrosLidos = []
+
+
+
         /*
         Alterar essa função para concatenar uma unica variavel texto que tenha: genero do usuario e os livros que ele já leu 
         EXEMPLO: Me recomende um livro sabendo que eu costumo ler suspense, romance e terror com base nas proximas palavras: (input do usuario),
         mas não me recomende livro (lista dos nomes dos livros que o usuario já leu) XXX, YYY e ZZZ pois eu já li esses livros
         */
+async function gerarResposta() {
 
-        async function gerarResposta() {
-            const pergunta = document.getElementById('pergunta').value;
+var texto = document.getElementById('pergunta').value;
 
-            const response = await fetch('/perguntar', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ pergunta })
+var pergunta = `Me recomende um livro conforme o pedido a seguir: ${texto}, tenho costume de ler ${maisLido} e ${segMaisLido} mas já li todos esses livros a seguir então não me recomende eles: ${livrosLidos}, se for feita qualquer pergunta que não tenha relação com recomendações de livros responda apenas com: "A recomendAI serve apenas para recomendar livros" `
+
+console.log(pergunta)
+
+
+
+
+const response = await fetch('/perguntar', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ pergunta })
+});
+
+const data = await response.json();
+console.log(data)
+
+resposta.style.display = 'block';
+document.getElementById('resposta').innerText = data.resultado;
+}
+
+
+function perfilDoUsuario() {
+    fetch("/livro/listarLivros").then(function (resposta) {
+        if (resposta.ok) {
+            if (resposta.status == 204) {
+                var feed = document.getElementById("generosPref");
+                var mensagem = document.createElement("h1");
+                mensagem.innerHTML = "Nenhum resultado encontrado."
+                feed.appendChild(mensagem);
+                throw "Nenhum resultado encontrado!!";
+            }
+
+            resposta.json().then(function (resposta) {
+                console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                for (let i = 0; i < resposta.length; i++) {
+                    var livro = resposta[i];
+
+                    var nomeLivro = livro.nome;
+                    livrosLidos.push(nomeLivro)
+
+                    var genero = livro.genero;
+
+                    if (genero == 'desenvolvimento') {
+                        numDesenvolvimento++;
+                    } else if (genero == 'romance') {
+                        numRomance++;
+                    } else if (genero == 'drama') {
+                        numDrama++;
+                    } else if (genero == 'aventura') {
+                        numAventura++;
+                    } else if (genero == 'biografia') {
+                        numBiografia++;
+                    } else if (genero == 'terror') {
+                        numTerror++;
+                    } else if (genero == 'ficCientifica') {
+                        numFicCientifica++;
+                    }
+                }
+
+                const generos = {
+                    numAventura,
+                    numBiografia,
+                    numDesenvolvimento,
+                    numDrama,
+                    numFicCientifica,
+                    numRomance,
+                    numTerror
+                };
+
+                var resultado = generosMaisLidos(generos);
+
+                var generoMaisLido = resultado.maxKey;
+                var segGeneroMaisLido = resultado.secondMaxKey;
+
+                // Remove o prefixo "num" dos nomes dos gêneros
+                maisLido = generoMaisLido.slice(3);
+                segMaisLido = segGeneroMaisLido.slice(3);
+
+
+
+                console.log(`Gênero mais lido: ${maisLido}`);       // Exemplo: Aventura
+                console.log(`Segundo gênero mais lido: ${segMaisLido}`); // Exemplo: Romance
             });
-
-            const data = await response.json();
-            console.log(data)
-
-            resposta.style.display = 'block';
-            document.getElementById('resposta').innerText = data.resultado;
+        } else {
+            throw ('Houve um erro na API!');
         }
+    }).catch(function (resposta) {
+        console.error(resposta);
+    });
+}
+
+
+
+
+
+
+
+function generosMaisLidos(generos) {
+    const values = Object.values(generos);
+    const keys = Object.keys(generos);
+
+    const max = Math.max(...values);
+    const maxKey = keys[values.indexOf(max)];
+
+    // Filtra o array para remover todas as ocorrências do maior valor
+    const filteredValues = values.filter(value => value !== max);
+    const secondMax = Math.max(...filteredValues);
+    const secondMaxKey = keys[values.indexOf(secondMax)];
+
+    return { maxKey, secondMaxKey };
+}
+
 
     </script>
 

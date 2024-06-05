@@ -159,14 +159,106 @@
 <script>
 
   function filtrarTempo(){
-    
+    var filtroTempo = sel_tempo.value;
+
+if(filtroTempo == '0'){
+  erroSelect.innerHTML = '<h3>Escolha um periodo válido</h3>';
+}else{
+  erroSelect.innerHTML = '';
+  
+  fecharFiltro();
+
+
+  fetch("/livro/listarLivros").then(function (resposta) {
+      if (resposta.ok) {
+        if (resposta.status == 204) {
+          var feed = document.getElementById("mensagemErro");
+          var mensagem = document.createElement("h1");
+          mensagem.innerHTML = "Nenhum resultado encontrado."
+          feed.appendChild(mensagem);
+          throw "Nenhum resultado encontrado!!";
+        }
+
+        resposta.json().then(function (resposta) {
+          console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+
+
+          var feed1 = document.getElementById("feedLivro1");
+          var feed2 = document.getElementById("feedLivro2");
+          var feed3 = document.getElementById("feedLivro3");
+          var feed4 = document.getElementById("feedLivro4");
+
+
+          feed1.innerHTML = "";
+          feed2.innerHTML = "";
+          feed3.innerHTML = "";
+          feed4.innerHTML = "";
+
+          feed2.style.display = "none";
+          feed3.style.display = "none";
+          feed4.style.display = "none";
+          
+          var contAuxiliar = 0
+
+          for (let i = 0; i < resposta.length; i++) {
+            var livro = resposta[i];
+
+            var dataLeitura = livro.dtLeitura;
+
+
+            
+
+            if(isLastMonth(dateLeitura)){
+// criando e manipulando elementos do HTML via JavaScript
+            var divCard = document.createElement("div");
+            var nomeLivro = document.createElement("h1");
+            var imgLivro = document.createElement("img");
+
+
+            nomeLivro.innerHTML = livro.nome;
+
+            divCard.className = "cardForum";
+
+
+            divCard.setAttribute("onclick", `acessar(${livro.idLivro})`);
+            imgLivro.setAttribute("src", livro.fotoLivro)
+
+            divCard.appendChild(nomeLivro);
+            divCard.appendChild(imgLivro);
+            if (contAuxiliar < 5) {
+              feed1.appendChild(divCard);
+            } else if (contAuxiliar < 10) {
+              feed2.style.display = "flex";
+              feed2.appendChild(divCard);
+            } else if (contAuxiliar < 15) {
+              feed3.style.display = "flex"
+              feed3.appendChild(divCard);
+            } else {
+              feed4.style.display = "flex"
+              feed4.appendChild(divCard);
+            }
+            contAuxiliar ++;
+          }
+        }
+
+        });
+      } else {
+        throw ('Houve um erro na API!');
+      }
+    }).catch(function (resposta) {
+      console.error(resposta);
+    });
+
+
+    }
   }
 
   function filtrarGenero(){
 
     var filtroGenero = sel_genero.value;
 
-    if(filtrarGenero == '0'){
+    if(filtroGenero == '0'){
       erroSelect.innerHTML = '<h3>Escolha um genero válido</h3>';
     }else{
       erroSelect.innerHTML = '';
@@ -302,7 +394,6 @@
 
             divCard.appendChild(nomeLivro);
             divCard.appendChild(imgLivro);
-            console.log(i)
             if (i < 5) {
               feed1.appendChild(divCard);
             } else if (i < 10) {
@@ -390,11 +481,12 @@
 
       return false;
     }
-    function fecharCadastroLivro() {
-      divCadastrarLivros.style.display = 'none';
-    }
 
   }
+
+  function fecharCadastroLivro() {
+      divCadastrarLivros.style.display = 'none';
+    }
 
   function abrirCadastrarLivros() {
     divCadastrarLivros.style.display = 'flex';
@@ -414,6 +506,18 @@
     <button class="botaoLivro botaoFiltro" onclick="abrirFiltros()"> <img src="../assets/imgs/filter.svg" alt="">Filtros</button>
     `
   }
+
+  function isLastMonth(dateString) {
+    const date = new Date(dateString);
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = now.getMonth();
+
+    const lastMonthStart = new Date(year, month - 1, 1);
+    const lastMonthEnd = new Date(year, month, 0, 23, 59, 59);
+
+    return date >= lastMonthStart && date <= lastMonthEnd;
+}
 
   function abrirFiltrarPorPeriodo(){
     botoesLivro.innerHTML = `

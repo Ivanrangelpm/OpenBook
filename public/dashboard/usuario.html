@@ -147,17 +147,17 @@
 <script>
 
 
-  var livrosJulho = 4;
-  var livrosAgosto = 2;
-  var livrosSetembro = 5;
-  var livrosOutubro = 1;
-  var livrosNovembro = 6;
-  var livrosDezembro = 5;
-  var livrosJaneiro = 4;
-  var livrosFevereiro = 2;
-  var livrosMarço = 1;
-  var livrosAbril = 3;
-  var livrosMaio = 2;
+  var livrosJulho = 0;
+  var livrosAgosto = 0;
+  var livrosSetembro = 0;
+  var livrosOutubro = 0;
+  var livrosNovembro = 0;
+  var livrosDezembro = 0;
+  var livrosJaneiro = 0;
+  var livrosFevereiro = 0;
+  var livrosMarço = 0;
+  var livrosAbril = 0;
+  var livrosMaio = 0;
   var livrosJunho = 0;
 
 
@@ -206,6 +206,39 @@
               numFicCientifica ++;
             }
 
+
+            var date = new Date(livro.dtLeitura)
+
+
+            var mes = date.getMonth();
+
+            if(mes == 0){
+              livrosJaneiro ++;
+            }else if(mes == 1){
+              livrosFevereiro ++;
+            }else if(mes == 2){
+              livrosMarço ++;
+            }else if(mes == 3){
+              livrosAbril ++;
+            }else if(mes == 4){
+              livrosMaio ++;
+            }else if(mes == 5){
+              livrosJunho ++;
+            }else if(mes == 6){
+              livrosJulho ++;
+            }else if(mes == 7){
+              livrosAgosto ++;
+            }else if(mes == 8){
+              livrosSetembro ++;
+            }else if(mes == 9){
+              livrosOutubro ++;
+            }else if(mes == 10){
+              livrosNovembro ++;
+            }else if(mes == 11){
+              livrosDezembro ++;
+            }
+
+          
           }
           atualizarGraficos()
 
@@ -272,8 +305,8 @@
             '#000000',
             '#e6aa77',
             '#aa7744',
-            '#ffffff',
             '#cc8c37',
+            '#ffffff',
             '#381611',
             '#f0cf95'
 
