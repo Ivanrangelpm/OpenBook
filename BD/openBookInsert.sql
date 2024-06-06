@@ -37,6 +37,8 @@ INSERT INTO livro (nome, autor, genero, nota, dtLeitura, fotoLivro, fkUsuario) V
 ('Game of Thrones 4', 'George Martin', 'aventura', 3.5, '2024-06-05', 'https://m.media-amazon.com/images/I/41j4e8si8cL._SY445_SX342_.jpg', 1),
 ('Game of Thrones 5', 'George Martin', 'aventura', 2, '2024-06-07', 'https://m.media-amazon.com/images/I/51SRGgaei2L._SY445_SX342_.jpg', 1);
     
+insert into discussao (titulo, fkForum, fkCriador ) VALUES ('O grande irmão existia?', 1, 1);
+insert into comentario (texto, fkTopico, fkUsuario) VALUES ('Eu acho que ele era só uma metafora', 1,1 );
 
 
 

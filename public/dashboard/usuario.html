@@ -170,6 +170,9 @@
   var numDesenvolvimento = 0;
 
   function pegarDados(){
+
+    var fkUser = sessionStorage.ID_USUARIO 
+    
     fetch("/livro/listarLivros").then(function (resposta) {
       if (resposta.ok) {
         if (resposta.status == 204) {
@@ -188,56 +191,62 @@
           for (let i = 0; i < resposta.length; i++) {
             var livro = resposta[i];
 
-            var genero = livro.genero;
+            if(livro.fkUsuario == fkUser){
 
-            if(genero == 'desenvolvimento'){
-              numDesenvolvimento ++;
-            }else if(genero == 'romance'){
-              numRomance ++;
-            }else if(genero == 'drama'){
-              numDrama ++;
-            }else if(genero == 'aventura'){
-              numAventura ++;
-            }else if(genero == 'biografia'){
-              numBiografia ++;
-            }else if(genero == 'terror'){
-              numTerror ++;
-            }else if(genero == 'ficCientifica'){
-              numFicCientifica ++;
+              var genero = livro.genero;
+
+                    if(genero == 'desenvolvimento'){
+                      numDesenvolvimento ++;
+                    }else if(genero == 'romance'){
+                      numRomance ++;
+                    }else if(genero == 'drama'){
+                      numDrama ++;
+                    }else if(genero == 'aventura'){
+                      numAventura ++;
+                    }else if(genero == 'biografia'){
+                      numBiografia ++;
+                    }else if(genero == 'terror'){
+                      numTerror ++;
+                    }else if(genero == 'ficCientifica'){
+                      numFicCientifica ++;
+                    }
+
+
+                    var date = new Date(livro.dtLeitura)
+
+
+                    var mes = date.getMonth();
+
+                    if(mes == 0){
+                      livrosJaneiro ++;
+                    }else if(mes == 1){
+                      livrosFevereiro ++;
+                    }else if(mes == 2){
+                      livrosMarço ++;
+                    }else if(mes == 3){
+                      livrosAbril ++;
+                    }else if(mes == 4){
+                      livrosMaio ++;
+                    }else if(mes == 5){
+                      livrosJunho ++;
+                    }else if(mes == 6){
+                      livrosJulho ++;
+                    }else if(mes == 7){
+                      livrosAgosto ++;
+                    }else if(mes == 8){
+                      livrosSetembro ++;
+                    }else if(mes == 9){
+                      livrosOutubro ++;
+                    }else if(mes == 10){
+                      livrosNovembro ++;
+                    }else if(mes == 11){
+                      livrosDezembro ++;
+                    }
+
+
             }
 
-
-            var date = new Date(livro.dtLeitura)
-
-
-            var mes = date.getMonth();
-
-            if(mes == 0){
-              livrosJaneiro ++;
-            }else if(mes == 1){
-              livrosFevereiro ++;
-            }else if(mes == 2){
-              livrosMarço ++;
-            }else if(mes == 3){
-              livrosAbril ++;
-            }else if(mes == 4){
-              livrosMaio ++;
-            }else if(mes == 5){
-              livrosJunho ++;
-            }else if(mes == 6){
-              livrosJulho ++;
-            }else if(mes == 7){
-              livrosAgosto ++;
-            }else if(mes == 8){
-              livrosSetembro ++;
-            }else if(mes == 9){
-              livrosOutubro ++;
-            }else if(mes == 10){
-              livrosNovembro ++;
-            }else if(mes == 11){
-              livrosDezembro ++;
-            }
-
+            
           
           }
           atualizarGraficos()

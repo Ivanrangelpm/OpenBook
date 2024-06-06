@@ -23,6 +23,11 @@ INSERT INTO discussao (titulo, fkForum, fkCriador) VALUES
 	('Qual dos gemeos era pior?', 1, 4),
 	('Nunca ficaria do lado da Daenerys', 5, 2);
 
+
+insert into discussao (titulo, fkForum, fkCriador ) VALUES ('O grande irmão existia?', 1, 1);
+insert into comentario (texto, fkTopico, fkUsuario) VALUES ('Eu acho que ele era só uma metafora', 1,1 );
+
+
 --  ficCientifica terror biografia aventura drama romance desenvolvimento
 INSERT INTO livro (nome, autor, genero, nota, dtLeitura, fotoLivro, fkUsuario) VALUES 
 ('O Homem Mais Rico da Babilonia', 'George Clason', 'desenvolvimento', 3, '2023-07-14', 'https://m.media-amazon.com/images/I/81ehX6Quw2L._SY425_.jpg', 1),

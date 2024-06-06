@@ -217,6 +217,46 @@ function topico(idTopico) {
                     mensagem.innerHTML = "Nenhum resultado encontrado."
                     divMensagemErro.appendChild(mensagem);
                     throw "Nenhum resultado encontrado!!";
+                    var divComentarios = document.getElementById("divContainerComentarios");
+                    var divChatComentario = document.createElement("div");
+                            var fecharComentario = document.createElement("button");
+
+                            fecharComentario.innerHTML = 'Voltar para os topicos';
+
+                            divChatComentario.id = 'chatComentario';
+                            fecharComentario.className = 'botaoVoltarComentario'
+                            fecharComentario.setAttribute("onclick", 'fecharTopico()');
+
+                            divComentarios.appendChild(fecharComentario);
+
+                            var divInpBox = document.createElement("div");
+                            var divInput = document.createElement("div");
+                            var inp = document.createElement("input");
+                            var botaoInp = document.createElement("button");
+                            var imgBotao = document.createElement("img");
+
+                            divMsgErro.id = 'mensagemErroComentario';
+                            divInpBox.className = 'inputBox';
+                            divInpBox.id = 'impBox';
+                            divInput.className = 'inputDiv';
+                            inp.id = 'inp_comentario';
+                            inp.className = 'inp_comentario';
+                            inp.setAttribute('type', 'text');
+                            inp.placeholder = 'Digite seu comentario';
+                            botaoInp.className = 'btnIcon';
+                            botaoInp.id = 'btnIcon';
+                            botaoInp.setAttribute('onclick', 'cadastrarMensagem()');
+                            imgBotao.className = 'imgEnviar';
+                            imgBotao.setAttribute('src', '../assets/imgs/enviar.png')
+
+                            divChatComentario.appendChild(divMsgErro);
+                            botaoInp.appendChild(imgBotao);
+                            divInput.appendChild(inp);
+                            divInput.appendChild(botaoInp);
+                            divInpBox.appendChild(divInput);
+                            divComentarios.appendChild(divChatComentario);
+                            divComentarios.appendChild(divInpBox);
+
                 }
 
                 resposta.json().then(function (resposta) {
@@ -435,6 +475,39 @@ function acessar(idForum){
                     mensagem.innerHTML = "Nenhum resultado encontrado."
                     divMensagemErro.appendChild(mensagem);
                     throw "Nenhum resultado encontrado!!";
+
+                    var divContDisc = document.getElementById("divContainerDiscussoes");
+
+                            var divContainerHeader = document.createElement("div");
+                            var divContainerTopico = document.createElement("div");
+                            var divHeader = document.createElement("div");                 
+                            var nomeTitulo = document.createElement("h1");
+                            var btnCadastrar = document.createElement("button");
+                            var btnSair = document.createElement("button");
+
+                            nomeTitulo.innerHTML = `Bem-Vindo ao fórum ${topico.nomeForum}! `
+                            btnCadastrar.innerHTML = 'Adicionar tópico';
+                            btnSair.innerHTML = 'Fechar Fórum';
+
+                            divContainerHeader.className = 'divHeaderTopico'
+                            divContainerTopico.className = 'discussoes';
+                            divHeader.className = 'headerTopico';
+                            btnCadastrar.className = 'btnTopico'; 
+                            btnSair.className = 'btnTopico';
+
+
+                            btnCadastrar.setAttribute("onclick", 'abrirCadastroTopico()');
+                            btnSair.setAttribute('onclick', 'fecharForum()');
+
+                            
+                            divHeader.appendChild(nomeTitulo);
+                            divContainerHeader.appendChild(btnCadastrar);
+                            divContainerHeader.appendChild(btnSair);
+                            divHeader.appendChild(divContainerHeader);
+
+                            divContainerTopico.appendChild(divHeader);
+                           
+                            divContDisc.appendChild(divContainerTopico);
                 }
 
                 resposta.json().then(function (resposta) {
