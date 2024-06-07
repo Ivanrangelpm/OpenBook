@@ -48,7 +48,7 @@
         <h1>Conheça mais sobre meu projeto!</h1>
         <div class="introduction">
           <p>Quando se fala sobre leitura no Brasil, existe um tabu enorme sobre livros, pois na nossa cultura a leitura está estritamente relacionada com estudos e pesquisas, não com momentos de lazer e descanso. <br><br>
-             De acordo com o Instituto Pró-Livro, nos últimos 4 anos perdemos 4.5 milhões de leitorese os principais motivos foram: . Com isso apenas X% da população tem o hábito de ler, com uma média de X.X livros lidos no ultimo mês. </p>
+             De acordo com o Instituto Pró-Livro, nos últimos 4 anos perdemos 4.5 milhões de leitorese os principais motivos foram: Falta de tempo e dinheiro. Com isso apenas 48% da população tem o hábito de ler, com uma média de 5 livros lidos no ultimo ano. </p>
           <div class="graficoInicio">
             <canvas id="grafUsuarios"></canvas>
           </div>
@@ -58,26 +58,27 @@
         <h1>Minha Proposta</h1>
         <div class="introduction">
           <img src="assets/imgs/bookGif.webp" alt="imagemIncubadora" style="border: none;"/>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo eaque molestiae pariatur blanditiis dignissimos? At sint quas optio iusto dolores minus? Nesciunt velit eveniet minus quas accusamus a vel voluptatem eum, ex animi. Optio quia sint reprehenderit nemo, mollitia quae. Placeat quasi officia deserunt quos voluptas reiciendis temporibus magnam sit?</p>
+          <p>A OpenBook tem como missão estimular a leitura entre os brasileiros através da comunicação entre os leitores e recomendação inteligente de livros, pretendemos criar uma comunidade forte, capaz de se alimentar organicamente com debates complexos sobre diversos tema dentro de nossos forums, não importa se você prefira ficção ou romance, seu lugae é aqui. </p>
         </div>
       </div>
+      <br>
       <div class="section">
         <h1>Funcionalidades</h1>
         <div class="advantages">
           <div class="card">
             <h2>Fórum</h2>
             <img src="assets/imgs/forum.svg" alt="Fórum" /> 
-            <span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptates quis iste distinctio corporis sint animi autem, fuga delectus quae impedit quod consectetur cupiditate et vitae, hic perspiciatis eos sed? Et, odit inventore!</span>
+            <span>Nosso site conta com diversos fórums criados pelos próprios usuários onde você pode debater e criar tópicos com base nas experiências que já teve com os assuntos debatidos!</span>
           </div>
           <div class="card">
             <h2>RecomendAI</h2>
             <img src="assets/imgs/ia.svg" alt="RecomendAI" />
-            <span>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum fugit hic ratione animi nihil aspernatur debitis nesciunt! Nulla eius a, deleniti dicta cupiditate at quo delectus facilis modi veritatis.</span>
+            <span>Contamos com uma inteligencia artificial treinada e configurada para recomendar livros com base nos seus gostos e livros lidos anteriormente, fique a vontade para falar com ela.</span>
           </div>
           <div class="card">
-            <h2>Lista de desejos</h2>
+            <h2>Lista de livros</h2>
             <img src="assets/imgs/livro.svg" alt="lista de Livros" />
-            <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore qui, at ad dolorem quo voluptas ratione earum repellat impedit perspiciatis suscipit dignissimos excepturi quae laboriosam error unde cupiditate ducimus quia ea quos. Perspiciatis?</span>
+            <span>Crie e compartilhe a sua lista de livros com seus amigos, ela será usada para formar os gráficos presentes da sua àrea de usuário. </span>
           </div>
         </div>
       </div>
@@ -138,15 +139,15 @@
     {
       type: 'doughnut',
       data: {
-        labels: ['Terror', 'Romance', 'Ficção'],
+        labels: ['05-10', '11-13', '14-17', '18-24', '25-29', '30-39', '40-49', '50-69', '70+'],
         datasets: [{
-          data: [3, 4, 1],
+          data: [11.7,    6.5,      9.8,    13.8,   8.7,   18.2,  12.2,   16.6   ,  2.7],
           backgroundColor: [
             '#000000',
             '#e6aa77',
             '#aa7744'
           ],
-          label: 'Livros lidos'
+          label: 'Leitores por idade'
         }]
       },
       options: {
@@ -154,7 +155,7 @@
           title: {
             color: '#f0cf95',
             display: true,
-            text: 'Livros lidos',
+            text: 'Leitores por idade',
             font: {
               size: 31
             },

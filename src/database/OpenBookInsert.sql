@@ -38,10 +38,14 @@ INSERT INTO livro (nome, autor, genero, nota, dtLeitura, fotoLivro, fkUsuario) V
 ('Harry Potter e o Cálice de Fogo', 'JK Rowling', 'aventura', 4.7, '2023-11-14', 'https://m.media-amazon.com/images/I/81nTLN-kz7L._SY425_.jpg', 1),
 ('Game of Thrones 1', 'George Martin', 'aventura', 4.8, '2024-01-02', 'https://m.media-amazon.com/images/I/41UKpOWrZVL._SY445_SX342_.jpg', 1),
 ('Game of Thrones 2', 'George Martin', 'aventura', 4.7, '2024-02-02', 'https://m.media-amazon.com/images/I/51OxMUhiXwL._SY445_SX342_.jpg', 1),
-('Game of Thrones 3', 'George Martin', 'aventura', 4.5, '2024-06-02', 'https://m.media-amazon.com/images/I/51lbSoFZYwL._SY445_SX342_.jpg', 1),
-('Game of Thrones 4', 'George Martin', 'aventura', 3.5, '2024-06-05', 'https://m.media-amazon.com/images/I/41j4e8si8cL._SY445_SX342_.jpg', 1),
-('Game of Thrones 5', 'George Martin', 'aventura', 2, '2024-06-07', 'https://m.media-amazon.com/images/I/51SRGgaei2L._SY445_SX342_.jpg', 1);
-    
+('Game of Thrones 3', 'George Martin', 'aventura', 4.5, '2024-05-02', 'https://m.media-amazon.com/images/I/51lbSoFZYwL._SY445_SX342_.jpg', 1),
+('Game of Thrones 4', 'George Martin', 'aventura', 3.5, '2024-04-05', 'https://m.media-amazon.com/images/I/41j4e8si8cL._SY445_SX342_.jpg', 1),
+('IT, A Coisa', 'Stephen King', 'terror', 4, '2023-07-07', 'https://m.media-amazon.com/images/I/91g9Dvtf+jL._SY425_.jpg', 1),
+('O iluminado', 'Stephen King', 'terror', 3, '2023-12-17', 'https://m.media-amazon.com/images/I/8147kKLLvOL._SY425_.jpg', 1),
+('O Hobbit', 'J.R.R TOLKIEN', 'aventura', 2, '2024-04-07', 'https://m.media-amazon.com/images/I/511+-lOOtsL._SY445_SX342_.jpg', 1),
+('A culpa é das Estrelas', 'John Green', 'romance', 3, '2024-03-07', 'https://m.media-amazon.com/images/I/41yToN1cOML._SY445_SX342_.jpg', 1),
+('Cidades de Papel', 'John Green', 'romance', 2, '2024-03-07', 'https://m.media-amazon.com/images/I/61otKosI+OL._SY425_.jpg', 1);
+   
 
 
 

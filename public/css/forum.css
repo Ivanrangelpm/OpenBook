@@ -324,12 +324,12 @@ cores:
 .time-right {
 
   color: black;
-  margin-top: 60px;
+  margin-top: 20px;
   float: right;
 }
 
 .time-left {
-  margin-top: 60px;
+  margin-top: 20px;
   float: left;
   color: black;
 }

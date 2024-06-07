@@ -1,6 +1,3 @@
--- Arquivo de apoio, caso você queira criar tabelas como as aqui criadas para a API funcionar.
--- Você precisa executar os comandos no banco de dados para criar as tabelas,
--- ter este arquivo aqui não significa que a tabela em seu BD estará como abaixo!
 
 /*
 comandos para mysql server
@@ -9,12 +6,6 @@ comandos para mysql server
 CREATE DATABASE OpenBook;
 
 USE OpenBook;
-
-CREATE TABLE empresa (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	razao_social VARCHAR(50),
-	cnpj CHAR(14)
-);
 
 CREATE TABLE usuario (
 	id INT PRIMARY KEY AUTO_INCREMENT,
@@ -64,8 +55,6 @@ CREATE TABLE livro (
     fkUsuario int,
     constraint fkUsuarioLivro foreign key (fkUsuario) references usuario(id)
 );
-
-
 
 
 
