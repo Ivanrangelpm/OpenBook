@@ -2,225 +2,241 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OpenBook | RecomendAI</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenBook | RecomendAI</title>
 
 
-    <script src="../js/sessao.js"></script>
-    <script src="../js/alerta.js"></script>
+  <script src="../js/sessao.js"></script>
+  <script src="../js/alerta.js"></script>
 
-    <link rel="shortcut icon" href="./assets/imgs/logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="css/dashboards.css">
-    <link rel="stylesheet" href="css/estilo.css">
-    <link rel="stylesheet" href="css/bobia.css">
+  <link rel="shortcut icon" href="./assets/imgs/logo.png" type="image/x-icon">
+  <link rel="stylesheet" href="css/dashboards.css">
+  <link rel="stylesheet" href="css/estilo.css">
+  <link rel="stylesheet" href="css/bobia.css">
 </head>
 <!--onload="validarSessao(), perfilDoUsuario()"-->
+
 <body onload="validarSessao(), perfilDoUsuario()">
 
-    <div class="header">
-        <a href="index.html">
-          <img src="./assets/imgs/logoExtendedCopy.png" alt="logo" class="logo">
+  <div class="header">
+    <a href="index.html">
+      <img src="./assets/imgs/logoExtendedCopy.png" alt="logo" class="logo">
+    </a>
+    <ul class="navbar">
+      <li>
+        <a href="dashboard/livros.html">Livros</a>
+      </li>
+      <li class="paginaAtual">
+        <a class="paginaAtual" href="bobia.html">recomendAI</a>
+      </li>
+      <li>
+        <a href="dashboard/forum.html">Forum</a>
+      </li>
+      <li>|</li>
+      <li>
+        <a href="dashboard/usuario.html">
+          <div class="hello">
+            <img id="fotoPerfil" alt="" style="display: none;">
+            <img class="imgPerf" id="imgPerfil"
+              src="https://static.vecteezy.com/ti/vetor-gratis/p1/9734564-default-avatar-profile-icon-of-social-media-user-vetor.jpg"
+              alt="">
+            <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+          </div>
         </a>
-          <ul class="navbar">
-            <li>
-              <a href="dashboard/livros.html">Livros</a>
-            </li>
-            <li class="paginaAtual">
-              <a class="paginaAtual href="bobia.html">recomendAI</a>
-            </li>
-            <li>
-              <a href="dashboard/forum.html">Forum</a>
-            </li>
-            <li>|</li>
-            <li >
-              <a href="dashboard/usuario.html">
-                <div class="hello">
-                  <img id="fotoPerfil" alt="" style="display: none;">
-                  <img class="imgPerf" 
-                      id="imgPerfil"
-                      src="https://static.vecteezy.com/ti/vetor-gratis/p1/9734564-default-avatar-profile-icon-of-social-media-user-vetor.jpg"
-                      alt="">
-                  <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
-                </div>
-              </a>
-            </li>
-            <li>
-              <a>
-                <div class="botaoSair" onclick="limparSessao()">
-                  <h3 style="color: #aa7744;" class="h3BotaoSair">Sair</h3>
-              </div>
-              </a>
-            </li>
-          </ul>
+      </li>
+      <li>
+        <a>
+          <div class="botaoSair" onclick="limparSessao()">
+            <h3 style="color: #aa7744;" class="h3BotaoSair">Sair</h3>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="main">
+    <div class="leftDiv">
+      <div id="divTopicos" class="topics">
+        <button class="btnSalvar" onclick="novaConversa()">
+          Nova Conversa <img class="imgSalvar" src="./images/edit_icon.png" alt="">
+        </button>
+        <button class="btnSalvar" onclick="salvarConversa()" id="btnSalvarConversa">
+          Salvar Conversa <img class="imgSalvar" src="./images/salvarConversa.svg">
+        </button>
+        <p class="erroSalvar" id="pErroSalvar"></p>
+        <div id="divConversas">
+          <button>Livros sobre ninjas</button>
+          <button>Recomendações de Terror</button>
+          <button>Biografias de Famosos</button>
+          <button>Livros como Senhor dos aneis</button>
+        </div>
       </div>
+      <img src="./images/Logo_SafeSleep.png" alt="logomarca" class="leftLogo">
+    </div>
 
 
+    <div id="containerRecomendAI">
 
-        <div id="containerRecomendAI">
-            
-                <h1 class="tituloRecomendai">RecomendAI! Seu novo jeito de descobrir livros</h1>
-                <div id="resposta"></div>
-
-                <div id="impBox" class="inputBox">
-                    <div class="inputDiv">
-                        <input id="pergunta" type="text" class="inp_comentario" placeholder="Digite sua pergunta">
-                        <button onclick="gerarResposta()" class="btnIcon" id="btnIcon">
-                            <img src="assets/imgs/enviar.png" class="imgEnviar">
-                        </button>
-                    </div>
-                </div>
-
-                
-          </div> 
-
-
-
-    <footer>
-        <div class="developers">
-          <h3>OpenBook foi desenvolvida por </h3>
-          <ul>
-            <li>Ivan Rangel Pestana Marcolin <br> ivan.marcolin@sptech.school</li>
-          </ul>
+      <h1 class="tituloRecomendai">RecomendAI! Seu novo jeito de descobrir livros</h1>
+      <div id="resposta"></div>
+      <div id="impBox" class="inputBox">
+        <div class="inputDiv">
+          <input id="pergunta" type="text" class="inp_comentario" placeholder="Digite sua pergunta">
+          <button onclick="gerarResposta()" class="btnIcon" id="btnIcon">
+            <img src="assets/imgs/enviar.png" class="imgEnviar">
+          </button>
         </div>
-        <div class="meioFooter">
-          <img src="./assets/imgs/bookGif.webp" class="logo" />
-          <p>OpenBook © 2024. Todos os direitos reservados.</p>    
-        </div>
-        <div class="contact">
-          <h3>Contato:</h3>
-          <ul>
-            <li>openBook@gmail.com</li>
-            <li>+55 11 99123-9899</li>
-          </ul>
-          <br>
-          <h3>Endereço</h3>
-          <ul>
-            <li>Rua Haddook Lobo 565</li>
-          </ul>
-        </div>
-        
-      </footer>
-    <script>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="developers">
+      <h3>OpenBook foi desenvolvida por </h3>
+      <ul>
+        <li>Ivan Rangel Pestana Marcolin <br> ivan.marcolin@sptech.school</li>
+      </ul>
+    </div>
+    <div class="meioFooter">
+      <img src="./assets/imgs/bookGif.webp" class="logo" />
+      <p>OpenBook © 2024. Todos os direitos reservados.</p>
+    </div>
+    <div class="contact">
+      <h3>Contato:</h3>
+      <ul>
+        <li>openBook@gmail.com</li>
+        <li>+55 11 99123-9899</li>
+      </ul>
+      <br>
+      <h3>Endereço</h3>
+      <ul>
+        <li>Rua Haddook Lobo 565</li>
+      </ul>
+    </div>
+
+  </footer>
+  <script>
 
 
 
 
-var numFicCientifica = 0;
-var numTerror = 0;
-var numBiografia = 0;
-var numAventura = 0;
-var numDrama = 0;
-var numRomance = 0;
-var numDesenvolvimento = 0;
-var maisLido = '';
-var segMaisLido = '';
-var livrosLidos = []
+    var numFicCientifica = 0;
+    var numTerror = 0;
+    var numBiografia = 0;
+    var numAventura = 0;
+    var numDrama = 0;
+    var numRomance = 0;
+    var numDesenvolvimento = 0;
+    var maisLido = '';
+    var segMaisLido = '';
+    var livrosLidos = []
 
 
 
-        /*
-        Alterar essa função para concatenar uma unica variavel texto que tenha: genero do usuario e os livros que ele já leu 
-        EXEMPLO: Me recomende um livro sabendo que eu costumo ler suspense, romance e terror com base nas proximas palavras: (input do usuario),
-        mas não me recomende livro (lista dos nomes dos livros que o usuario já leu) XXX, YYY e ZZZ pois eu já li esses livros
-        */
-async function gerarResposta() {
+    /*
+    Alterar essa função para concatenar uma unica variavel texto que tenha: genero do usuario e os livros que ele já leu 
+    EXEMPLO: Me recomende um livro sabendo que eu costumo ler suspense, romance e terror com base nas proximas palavras: (input do usuario),
+    mas não me recomende livro (lista dos nomes dos livros que o usuario já leu) XXX, YYY e ZZZ pois eu já li esses livros
+    */
+    async function gerarResposta() {
 
-var texto = document.getElementById('pergunta').value;
+      var texto = document.getElementById('pergunta').value;
 
-var pergunta = `Me recomende um livro conforme o pedido a seguir: ${texto}, tenho costume de ler ${maisLido} e ${segMaisLido} mas já li todos esses livros a seguir então não me recomende eles: ${livrosLidos} `
+      var pergunta = `Me recomende um livro conforme o pedido a seguir: ${texto}, tenho costume de ler ${maisLido} e ${segMaisLido} mas já li todos esses livros a seguir então não me recomende eles: ${livrosLidos} `
 
-console.log(pergunta)
-
-
+      console.log(pergunta)
 
 
-const response = await fetch('/perguntar', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ pergunta })
-});
-
-const data = await response.json();
-console.log(data)
-
-resposta.style.display = 'block';
-document.getElementById('resposta').innerText = data.resultado;
-}
 
 
-function perfilDoUsuario() {
-    fetch("/livro/listarLivros").then(function (resposta) {
+      const response = await fetch('/perguntar', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ pergunta })
+      });
+
+      const data = await response.json();
+      console.log(data)
+
+      resposta.style.display = 'block';
+      document.getElementById('resposta').innerText = data.resultado;
+    }
+
+
+    function perfilDoUsuario() {
+      fetch("/livro/listarLivros").then(function (resposta) {
         if (resposta.ok) {
-            if (resposta.status == 204) {
-                var feed = document.getElementById("generosPref");
-                var mensagem = document.createElement("h1");
-                mensagem.innerHTML = "Nenhum resultado encontrado."
-                feed.appendChild(mensagem);
-                throw "Nenhum resultado encontrado!!";
+          if (resposta.status == 204) {
+            var feed = document.getElementById("generosPref");
+            var mensagem = document.createElement("h1");
+            mensagem.innerHTML = "Nenhum resultado encontrado."
+            feed.appendChild(mensagem);
+            throw "Nenhum resultado encontrado!!";
+          }
+
+          resposta.json().then(function (resposta) {
+            console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+            for (let i = 0; i < resposta.length; i++) {
+              var livro = resposta[i];
+
+              var nomeLivro = livro.nome;
+              livrosLidos.push(nomeLivro)
+
+              var genero = livro.genero;
+
+              if (genero == 'desenvolvimento') {
+                numDesenvolvimento++;
+              } else if (genero == 'romance') {
+                numRomance++;
+              } else if (genero == 'drama') {
+                numDrama++;
+              } else if (genero == 'aventura') {
+                numAventura++;
+              } else if (genero == 'biografia') {
+                numBiografia++;
+              } else if (genero == 'terror') {
+                numTerror++;
+              } else if (genero == 'ficCientifica') {
+                numFicCientifica++;
+              }
             }
 
-            resposta.json().then(function (resposta) {
-                console.log("Dados recebidos: ", JSON.stringify(resposta));
+            const generos = {
+              numAventura,
+              numBiografia,
+              numDesenvolvimento,
+              numDrama,
+              numFicCientifica,
+              numRomance,
+              numTerror
+            };
 
-                for (let i = 0; i < resposta.length; i++) {
-                    var livro = resposta[i];
+            var resultado = generosMaisLidos(generos);
 
-                    var nomeLivro = livro.nome;
-                    livrosLidos.push(nomeLivro)
+            var generoMaisLido = resultado.maxKey;
+            var segGeneroMaisLido = resultado.secondMaxKey;
 
-                    var genero = livro.genero;
-
-                    if (genero == 'desenvolvimento') {
-                        numDesenvolvimento++;
-                    } else if (genero == 'romance') {
-                        numRomance++;
-                    } else if (genero == 'drama') {
-                        numDrama++;
-                    } else if (genero == 'aventura') {
-                        numAventura++;
-                    } else if (genero == 'biografia') {
-                        numBiografia++;
-                    } else if (genero == 'terror') {
-                        numTerror++;
-                    } else if (genero == 'ficCientifica') {
-                        numFicCientifica++;
-                    }
-                }
-
-                const generos = {
-                    numAventura,
-                    numBiografia,
-                    numDesenvolvimento,
-                    numDrama,
-                    numFicCientifica,
-                    numRomance,
-                    numTerror
-                };
-
-                var resultado = generosMaisLidos(generos);
-
-                var generoMaisLido = resultado.maxKey;
-                var segGeneroMaisLido = resultado.secondMaxKey;
-
-                // Remove o prefixo "num" dos nomes dos gêneros
-                maisLido = generoMaisLido.slice(3);
-                segMaisLido = segGeneroMaisLido.slice(3);
+            // Remove o prefixo "num" dos nomes dos gêneros
+            maisLido = generoMaisLido.slice(3);
+            segMaisLido = segGeneroMaisLido.slice(3);
 
 
 
-                console.log(`Gênero mais lido: ${maisLido}`);       // Exemplo: Aventura
-                console.log(`Segundo gênero mais lido: ${segMaisLido}`); // Exemplo: Romance
-            });
+            console.log(`Gênero mais lido: ${maisLido}`);       // Exemplo: Aventura
+            console.log(`Segundo gênero mais lido: ${segMaisLido}`); // Exemplo: Romance
+          });
         } else {
-            throw ('Houve um erro na API!');
+          throw ('Houve um erro na API!');
         }
-    }).catch(function (resposta) {
+      }).catch(function (resposta) {
         console.error(resposta);
-    });
-}
+      });
+    }
 
 
 
@@ -228,23 +244,23 @@ function perfilDoUsuario() {
 
 
 
-function generosMaisLidos(generos) {
-    const values = Object.values(generos);
-    const keys = Object.keys(generos);
+    function generosMaisLidos(generos) {
+      const values = Object.values(generos);
+      const keys = Object.keys(generos);
 
-    const max = Math.max(...values);
-    const maxKey = keys[values.indexOf(max)];
+      const max = Math.max(...values);
+      const maxKey = keys[values.indexOf(max)];
 
-    // Filtra o array para remover todas as ocorrências do maior valor
-    const filteredValues = values.filter(value => value !== max);
-    const secondMax = Math.max(...filteredValues);
-    const secondMaxKey = keys[values.indexOf(secondMax)];
+      // Filtra o array para remover todas as ocorrências do maior valor
+      const filteredValues = values.filter(value => value !== max);
+      const secondMax = Math.max(...filteredValues);
+      const secondMaxKey = keys[values.indexOf(secondMax)];
 
-    return { maxKey, secondMaxKey };
-}
+      return { maxKey, secondMaxKey };
+    }
 
 
-    </script>
+  </script>
 
 </body>
 

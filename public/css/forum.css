@@ -258,7 +258,7 @@ cores:
   background-color: #381611;
   margin-bottom: 30px;
   border-radius: 13px;
-  min-height: 400px;
+  height: 75vh;
 }
 
 .botaoVoltarComentario{
@@ -282,11 +282,28 @@ cores:
 
 
 
+
 #chatComentario{
   display: flex;
   flex-direction: column;
   width: 100%;
+  max-height: 50vh;
+  overflow: auto;
 }
+
+
+/*
+                        
+                        if(comentario.idUsuario == usuarioAtual){
+                            comentHora.className = 'time-left'
+                            imgUsuario.className = 'right'
+                            divContainerComent.className = 'containerComentarios escuro'
+
+                        }else{
+                            comentHora.className = 'time-right'
+                            divContainerComent.className = 'containerComentarios'
+                        }
+*/
 
 .containerComentarios {
   display: flex;

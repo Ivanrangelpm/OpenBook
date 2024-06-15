@@ -10,7 +10,46 @@ cores:
   #f0cf95
   */
 
+.main{
+  display: flex;
+  flex-direction: row;
+  width: 98vw;
+}
+
+.leftDiv{
+  margin-left: -0.4%;
+  width: 25%;
+  height: 1100px;
+  background-color: #3e1a14;
+  justify-content: space-evenly;
+  color: white;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+.topics {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  gap: 2rem;
+  font-size: 25px;
+}
+
+.topics button {
+  width: 85%;
+  background-color: #cc8c37;
+  font-size: 25px;
+  cursor: pointer;
+  
+}
+
+
   #containerRecomendAI{
+    width: 30%;
     display: flex;
     color: white;
     margin-top: 50px;
