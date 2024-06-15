@@ -17,7 +17,7 @@
 </head>
 <!--onload="validarSessao(), perfilDoUsuario()"-->
 
-<body>
+<body onload="validarSessao(), perfilDoUsuario()">
 
   <div class="header">
     <a href="index.html">
@@ -80,12 +80,12 @@
 
 
     <div id="containerRecomendAI">
-
-      <h1 class="tituloRecomendai">RecomendAI! Seu novo jeito de descobrir livros</h1>
-      <div id="resposta"></div>
+      <h1 class="tituloRecomendai">RecomendAI!  <br> Seu novo jeito de descobrir livros</h1>
+      <div id="resposta">
+      </div>
       <div id="impBox" class="inputBox">
         <div class="inputDiv">
-          <input id="pergunta" type="text" class="inp_comentario" placeholder="Digite sua pergunta">
+          <input id="pergunta" type="text" class="inp_comentario" placeholder="Peça uma recomendação">
           <button onclick="gerarResposta()" class="btnIcon" id="btnIcon">
             <img src="assets/imgs/enviar.png" class="imgEnviar">
           </button>
@@ -147,7 +147,7 @@
 
       var texto = document.getElementById('pergunta').value;
 
-      var pergunta = `Me recomende um livro conforme o pedido a seguir: ${texto}, tenho costume de ler ${maisLido} e ${segMaisLido} mas já li todos esses livros a seguir então não me recomende eles: ${livrosLidos} `
+      var pergunta = ` ${texto}, tenho costume de ler ${maisLido} e ${segMaisLido} mas já li todos esses livros a seguir então não me recomende eles: ${livrosLidos} `
 
       console.log(pergunta)
 
@@ -166,7 +166,7 @@
       console.log(data)
 
       resposta.style.display = 'block';
-      document.getElementById('resposta').innerText = data.resultado;
+      document.getElementById('resposta').innerHTML = data.resultado;
     }
 
 
@@ -262,6 +262,23 @@
       return { maxKey, secondMaxKey };
     }
 
+
+    /*
+        <div class="containerResposta">
+          <div class="cardRecomendacao">
+            <h2>Nome do Livro: </h2> <p>Harry Potter e o Calice de Fogo</p>
+            <h2>Autor:</h2> <p>J.K Rowling</p>
+          </div>
+          <div class="cardRecomendacao">
+            <h2>Gênero:</h2> <p>Aventura</p>
+            <h2>Ano de Publicação</h2> <p>Dezembro de 1981</p>  
+          </div>
+        </div>
+        <div class="containerDescricao">
+          <h2>Descrição:</h2>
+          <p>Experimente "O Código Da Vinci" de Dan Brown. Este romance de ação e suspense segue o estudioso de simbologia Robert Langdon enquanto ele decifra um enigma antigo que pode levar à descoberta de um segredo há muito perdido que pode abalar os alicerces do Cristianismo. Com uma trama envolvente, personagens cativantes e reviravoltas inesperadas, "O Código Da Vinci" oferece uma leitura emocionante e envolvente.</p>
+        </div>
+    */
 
   </script>
 

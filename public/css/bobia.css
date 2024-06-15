@@ -108,15 +108,50 @@ cores:
 
 
   #containerRecomendAI{
-    width: 30%;
+    width: 77vw;
+    height: 83vh;
     display: flex;
-    color: white;
-    margin-top: 50px;
+    color: #eecd9d;
     flex-direction: column;
-    min-height: 360px;
     justify-content: space-between;
+    align-items: center;
 }
 
+.tituloRecomendai{
+  text-align: center;
+}
+
+.containerResposta{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+  justify-content: space-around;
+  height: 40%;
+}
+
+.cardRecomendacao{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.cardRecomendacao h2{
+  color: #e5b45e;
+}
+
+.cardRecomendacao h2:nth-of-type(2){
+  margin-top: 35px;
+}
+
+.containerDescricao{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  height: 59%;
+}
 
 .inputBox {
     width: 100%;
@@ -129,5 +164,6 @@ cores:
   }
 
   #resposta{
-    width: 980px;
+    height: 70%;
+    width: 80%;
   }

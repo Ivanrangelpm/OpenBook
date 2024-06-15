@@ -51,12 +51,32 @@ app.listen(PORTA_APP, function () {
     \t\tPara alterar o ambiente, comente ou descomente as linhas 1 ou 2 no arquivo 'app.js'\n\n`);
 });
 
+const conversa = 'Faça uma recomendação conforme o pedido a seguir :'
+const finalConversa = `A recomendação precisa estar como esse exemplo, responda APENAS com as auterações nos <p> : 
+        <div class="containerResposta">
+          <div class="cardRecomendacao">
+            <h2>Nome do Livro: </h2> <p>O Código Da Vinci</p>
+            <h2>Autor:</h2> <p>Robert Langdon</p>
+          </div>
+          <div class="cardRecomendacao">
+            <h2>Gênero:</h2> <p>Suspense</p>
+            <h2>Ano de Publicação</h2> <p>Março de 2003</p>  
+          </div>
+        </div>
+        <div class="containerDescricao">
+          <h2>Descrição:</h2>
+          <p>Experimente "O Código Da Vinci" de Dan Brown. Este romance de ação e suspense segue o estudioso de simbologia Robert Langdon enquanto ele decifra um enigma antigo que pode levar à descoberta de um segredo há muito perdido que pode abalar os alicerces do Cristianismo. Com uma trama envolvente, personagens cativantes e reviravoltas inesperadas, "O Código Da Vinci" oferece uma leitura emocionante e envolvente.</p>
+        </div>
+
+`
 
 app.post("/perguntar", async (req, res) => {
     const pergunta = req.body.pergunta;
 
+    var pergCompleta = `${conversa} ${pergunta} ${finalConversa}`
+
     try {
-        const resultado = await gerarResposta(pergunta);
+        const resultado = await gerarResposta(pergCompleta);
         res.json( { resultado } );
     } catch (error) {
         res.status(500).json({ error: 'Erro interno do servidor' });
