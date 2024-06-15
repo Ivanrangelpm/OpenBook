@@ -17,7 +17,7 @@
 </head>
 <!--onload="validarSessao(), perfilDoUsuario()"-->
 
-<body onload="validarSessao(), perfilDoUsuario()">
+<body>
 
   <div class="header">
     <a href="index.html">
@@ -58,21 +58,24 @@
   <div class="main">
     <div class="leftDiv">
       <div id="divTopicos" class="topics">
-        <button class="btnSalvar" onclick="novaConversa()">
-          Nova Conversa <img class="imgSalvar" src="./images/edit_icon.png" alt="">
-        </button>
-        <button class="btnSalvar" onclick="salvarConversa()" id="btnSalvarConversa">
-          Salvar Conversa <img class="imgSalvar" src="./images/salvarConversa.svg">
-        </button>
-        <p class="erroSalvar" id="pErroSalvar"></p>
+        <div class="headerTopicos">
+          <button class="btnSalvar" onclick="novaConversa()">
+            Nova Conversa <img class="imgSalvar" src="./assets/imgs/edit_icon.png" alt="">
+          </button>
+          <button class="btnSalvar" onclick="salvarConversa()" id="btnSalvarConversa">
+            Salvar Conversa <img class="imgSalvar" src="./assets/imgs/salvarConversa.svg">
+          </button>
+          <p class="erroSalvar" id="pErroSalvar"></p>
+        </div>
         <div id="divConversas">
           <button>Livros sobre ninjas</button>
           <button>Recomendações de Terror</button>
           <button>Biografias de Famosos</button>
           <button>Livros como Senhor dos aneis</button>
+          <button>Livros como Senhor dos aneis</button>
+
         </div>
       </div>
-      <img src="./images/Logo_SafeSleep.png" alt="logomarca" class="leftLogo">
     </div>
 
 
