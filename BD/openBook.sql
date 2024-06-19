@@ -10,12 +10,6 @@ CREATE DATABASE OpenBook;
 
 USE OpenBook;
 
-CREATE TABLE empresa (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	razao_social VARCHAR(50),
-	cnpj CHAR(14)
-);
-
 CREATE TABLE usuario (
 	id INT PRIMARY KEY AUTO_INCREMENT,
 	nome VARCHAR(50),
@@ -52,6 +46,15 @@ CREATE TABLE comentario (
     constraint fkUsuarioComentario foreign key (fkUsuario) references usuario(id)
 );
 
+
+CREATE TABLE recomendacao(
+	idRecomendacao int auto_increment,
+    titulo varchar(100),
+    texto text,
+    fkUsuario int,
+    constraint pkRecomendacao primary key (idRecomendacao, fkUsuario),
+    constraint fkUsuarioRecomendacao foreign key (fkUsuario) references usuario(id)
+);
         
 CREATE TABLE livro (
 	idLivro int primary key auto_increment,

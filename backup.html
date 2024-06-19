@@ -6,6 +6,7 @@
     <title>OpenBook | RecomendAI</title>
 
     <script src="../js/sessao.js"></script>
+    <script src="../js/alerta.js"></script>
 
     <link
       rel="shortcut icon"
@@ -16,9 +17,9 @@
     <link rel="stylesheet" href="css/estilo.css" />
     <link rel="stylesheet" href="css/bobia.css" />
   </head>
-  <!--onload="validarSessao(), perfilDoUsuario(), carregarConversa()"-->
+  <!--onload="validarSessao(), perfilDoUsuario()"-->
 
-  <body onload="validarSessao(), perfilDoUsuario(), carregarConversa()">
+  <body onload="validarSessao(), perfilDoUsuario()">
     <div class="header">
       <a href="index.html">
         <img src="./assets/imgs/logoExtendedCopy.png" alt="logo" class="logo" />
@@ -76,8 +77,12 @@
             </button>
             <p class="erroSalvar" id="pErroSalvar"></p>
           </div>
-          <div id="divConversas" >
-            <p class="erroSalvar" id="erroPegar"></p>
+          <div id="divConversas">
+            <button>Livros sobre ninjas</button>
+            <button>Recomendações de Terror</button>
+            <button>Biografias de Famosos</button>
+            <button>Livros como Senhor dos aneis</button>
+            <button>Livros como Senhor dos aneis</button>
           </div>
         </div>
       </div>
@@ -145,89 +150,15 @@
       var maisLido = "";
       var segMaisLido = "";
       var livrosLidos = [];
-      function acessarRecomendacao(idRecomendacao) {
-
-        fetch("/bobia/carregarConversa")
-          .then(function (resposta) {
-            if (resposta.ok) {
-              if (resposta.status == 204) {
-                erroPegar.innerHTML = 'Nenhum resultado encontrado'
-                throw "Nenhum resultado encontrado!!";
-              }else{
-
-                resposta.json().then(function (resposta) {
-                console.log("Dados recebidos: ", JSON.stringify(resposta));
-
-                for (let i = 0; i < resposta.length; i++) {
-                  var recomendacao = resposta[i];
-
-                  if (idRecomendacao == recomendacao.idRecomendacao) {
-                    document.getElementById("resposta").innerHTML = `${recomendacao.texto}`;
-                    }
-                  
-                }
-              });
-
-              }
-            } else {
-              throw "Houve um erro na API!";
-            }
-          })
-          .catch(function (resposta) {
-            console.error(resposta);
-          });
-      }
-
-      function carregarConversa() {
-        var fkUser = sessionStorage.ID_USUARIO;
-
-        fetch("/bobia/carregarConversa")
-          .then(function (resposta) {
-            if (resposta.ok) {
-              if (resposta.status == 204) {
-                erroPegar.innerHTML = 'Nenhum resultado encontrado'
-                throw "Nenhum resultado encontrado!!";
-              }else{
-
-                resposta.json().then(function (resposta) {
-                console.log("Dados recebidos: ", JSON.stringify(resposta));
-                
-                divConversas.innerHTML = '<p class="erroSalvar" id="erroPegar"></p>'
-
-                for (let i = 0; i < resposta.length; i++) {
-                  var recomendacao = resposta[i];
-
-                  if (recomendacao.fkUsuario == fkUser) {
-                    divConversas.innerHTML += `<button onclick="acessarRecomendacao(${recomendacao.idRecomendacao})">${recomendacao.titulo}</button>`
-                        
-                    }
-                  
-                }
-              });
-
-              }
-            } else {
-              throw "Houve um erro na API!";
-            }
-          })
-          .catch(function (resposta) {
-            console.error(resposta);
-          });
-      }
-    
 
       function salvarConversa() {
         var divErro = document.getElementById("pErroSalvar");
         if (temTexto == false) {
           divErro.innerHTML = "Peça uma recomendação antes de salvar";
-
-          setTimeout(() => {
-            divErro.innerHTML = "";
-          }, 2000);
         } else {
-          var titulo = tituloLivro.textContent;
+          var titulo = tituloLivro.value;
           var fkUsuario = sessionStorage.ID_USUARIO;
-          console.log(textoRecomendacao);
+          alert(fkUsuario)
           fetch("/bobia/salvarRecomendacao", {
             method: "POST",
             headers: {
@@ -241,13 +172,21 @@
           })
             .then(function (resposta) {
               console.log("Resposta salvar Conversa: ", resposta);
-              if (resposta.ok) {
+              if (resposta.ok) {/*
+                btnSalvarConversa.style.display = "none";
+                pErroSalvar.style.display = "block";
+                pErroSalvar.innerHTML = `
+            <span>Conversa Salva com sucesso!</span>
+            `;
+*/
                 divErro.innerHTML = "<span>recomendação salva</span>";
-
+/*
                 setTimeout(() => {
-                  divErro.innerHTML = "";
+                  pErroSalvar.style.display = "none";
                 }, 2000);
-                carregarConversa()
+
+                salvarComentarios(aleatorioInt);
+                carregarConversas();*/
               } else {
                 throw "Houve um erro ao tentar realizar o cadastro!";
               }
@@ -264,7 +203,6 @@
       function novaConversa() {
         btnSalvarConversa.style.display = "flex";
         temTexto = false;
-        resposta.innerHTML = "";
       }
 
       async function gerarResposta() {

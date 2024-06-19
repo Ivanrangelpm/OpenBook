@@ -21,6 +21,8 @@ var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
 var forumRouter = require("./src/routes/forum");
 var livroRouter = require("./src/routes/livro");
+var bobiaRouter = require("./src/routes/bobia");
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -32,7 +34,7 @@ app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/forum", forumRouter);
 app.use("/livro", livroRouter);
-
+app.use("/bobia", bobiaRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`
@@ -55,7 +57,7 @@ const conversa = 'Faça uma recomendação conforme o pedido a seguir :'
 const finalConversa = `A recomendação precisa estar como esse exemplo, responda APENAS com as auterações nos <p> : 
         <div class="containerResposta">
           <div class="cardRecomendacao">
-            <h2>Nome do Livro: </h2> <p>O Código Da Vinci</p>
+            <h2>Nome do Livro: </h2> <p id="tituloLivro">O Código Da Vinci</p>
             <h2>Autor:</h2> <p>Robert Langdon</p>
           </div>
           <div class="cardRecomendacao">
@@ -72,9 +74,10 @@ const finalConversa = `A recomendação precisa estar como esse exemplo, respond
 
 app.post("/perguntar", async (req, res) => {
     const pergunta = req.body.pergunta;
+  
 
     var pergCompleta = `${conversa} ${pergunta} ${finalConversa}`
-
+    console.log(pergCompleta)
     try {
         const resultado = await gerarResposta(pergCompleta);
         res.json( { resultado } );

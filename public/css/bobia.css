@@ -37,7 +37,6 @@ cores:
   justify-content: space-around;
   width: 100%;
   align-items: center;
-  gap: 2rem;
   font-size: 25px;
 }
 
@@ -58,7 +57,8 @@ cores:
   align-items: center;
   justify-content: space-between;
   width: 90%;
-  height: 60%;
+  min-height: 30%;
+  max-height: 73%;
   gap: 20px;
 }
 
@@ -104,6 +104,15 @@ cores:
 
 .btnSalvar:nth-of-type(1) {
   gap: 26px;
+}
+
+.erroSalvar{
+  color: red;
+  align-self: center;
+}
+
+.erroSalvar span{
+  color: green;
 }
 
 

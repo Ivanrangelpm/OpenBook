@@ -1,452 +1,454 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+  <head>
+    <link
+      rel="shortcut icon"
+      href="../assets/imgs/logo.png"
+      type="image/x-icon"
+    />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OpenBook | Livros</title>
 
-<head>
-  <link rel="shortcut icon" href="../assets/imgs/logo.png" type="image/x-icon">
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OpenBook | Livros</title>
+    <link rel="stylesheet" href="./../css/dashboards.css" />
+    <link rel="stylesheet" href="./../css/estilo.css" />
+    <link rel="stylesheet" href="./../css/livros.css" />
 
+    <script src="../js/sessao.js"></script>
+    <script src="../js/alerta.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <!---->
 
-  <link rel="stylesheet" href="./../css/dashboards.css">
-  <link rel="stylesheet" href="./../css/estilo.css" />
-  <link rel="stylesheet" href="./../css/livros.css">
-
-  <script src="../js/sessao.js"></script>
-  <script src="../js/alerta.js"></script>
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-    rel="stylesheet">
-</head>
-<!---->
-
-<body onload="validarSessao(), atualizarLivros()">
-
-  <div class="header">
-    <a href="index.html">
-      <img src="../assets/imgs/logoExtendedCopy.png" alt="logo" class="logo">
-    </a>
-    <ul class="navbar">
-      <li class="paginaAtual">
-        <a class="paginaAtual" href="livros.html">Livros</a>
-      </li>
-      <li>
-        <a href="../bobia.html">recomendAI</a>
-      </li>
-      <li>
-        <a href="forum.html">Forum</a>
-      </li>
-      <li>|</li>
-      <li>
-        <a href="usuario.html">
-          <div class="hello">
-            <img id="fotoPerfil" alt="" style="display: none;">
-            <img class="imgPerf" id="imgPerfil"
-              src="https://static.vecteezy.com/ti/vetor-gratis/p1/9734564-default-avatar-profile-icon-of-social-media-user-vetor.jpg"
-              alt="">
-            <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
-          </div>
-        </a>
-      </li>
-      <li>
-        <a>
-          <div class="botaoSair" onclick="limparSessao()">
-            <h3 style="color: #aa7744;" class="h3BotaoSair">Sair</h3>
-          </div>
-        </a>
-      </li>
-    </ul>
-  </div>
-
-
-  
-<div class="janela">
-  <div id="botoesLivro" class="divBotaoLivro">
-      <button class="botaoLivro" onclick="abrirCadastrarLivros()"> Cadastrar livro</button>
-      <button class="botaoLivro botaoFiltro" onclick="abrirFiltros()"> <img src="../assets/imgs/filter.svg" alt="">Filtros</button>
-  </div> 
-
-</div>
-
-  <div id="divCadastrarLivros" class="cadastrarLivros">
-    <h2>Cadastre seu novo livro lido</h2>
-    <div class="containerCadastro">
-      <div class="ladoDireitoCadastro">
-        <p>Nome do Livro:</p> <br> <input type="text" name="" id="inp_livroLido"> <br>
-        <p>Autor:</p> <br><input type="text" name="" id="inp_autor"> <br>
-        <select name="" id="sel_generoCad">
-          <option selected disabled value="0">Gênero:</option>
-          <option value="ficCientifica">Ficção Científica</option>
-          <option value="terror">terror</option>
-          <option value="biografia">Biografia</option>
-          <option value="aventura">Aventura</option>
-          <option value="drama">drama</option>
-          <option value="romance">Romance</option>
-          <option value="desenvolvimento">Desenvolvimento Pessoal</option>
-        </select> <br>
-      </div>
-      <div class="ladoEsquerdoCadastro">
-        <p>Nota:</p> <br> <input type="text" name="" id="inp_nota"> <br>
-        <p>Data de leitura:</p> <br> <input type="date" name="" id="inp_dtLeitura"> <br>
-        <p>Imagem:</p> <br> <input type="text" name="" id="inp_imagem">
-      </div>
-    </div>
-    <button onclick="cadastrarLivros()">Cadastrar Livro</button>
-    <div id="erroLivroCadastrar"></div>
-
-
-  </div>
-
-  <div style="color: white;" id="mensagemErro">
-
-
-    <div class="containerLivros">
-
-
-      <div class="divContainerLivros" id="divContainerLivros">
-        <div id="feedLivro1" class="containerCardLivros">
-
-        </div>
-
-        <div id="feedLivro2" class="containerCardLivros" style="display: none;">
-        </div>
-        <div id="feedLivro3" class="containerCardLivros" style="display: none;">
-        </div>
-        <div id="feedLivro4" class="containerCardLivros" style="display: none;">
-        </div>
-        <div id="feedLivro5" class="containerCardLivros" style="display: none;">
-        </div>
-        <div id="feedLivro6" class="containerCardLivros" style="display: none;">
-        </div>
-        <div id="feedLivro7" class="containerCardLivros" style="display: none;">
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-
-  <footer>
-    <div class="developers">
-      <h3>OpenBook foi desenvolvida por </h3>
-      <ul>
-        <li>Ivan Rangel Pestana Marcolin <br> ivan.marcolin@sptech.school</li>
-      </ul>
-    </div>
-    <div class="meioFooter">
-      <img src="../assets/imgs/bookGif.webp" class="logo" />
-      <p>OpenBook © 2024. Todos os direitos reservados.</p>
-    </div>
-    <div class="contact">
-      <h3>Contato:</h3>
-      <ul>
-        <li>openBook@gmail.com</li>
-        <li>+55 11 99123-9899</li>
-      </ul>
-      <br>
-      <h3>Endereço</h3>
-      <ul>
-        <li>Rua Haddook Lobo 565</li>
+  <body onload="validarSessao(), atualizarLivros()">
+    <div class="header">
+      <a href="index.html">
+        <img
+          src="../assets/imgs/logoExtendedCopy.png"
+          alt="logo"
+          class="logo"
+        />
+      </a>
+      <ul class="navbar">
+        <li class="paginaAtual">
+          <a class="paginaAtual" href="livros.html">Livros</a>
+        </li>
+        <li>
+          <a href="../bobia.html">recomendAI</a>
+        </li>
+        <li>
+          <a href="forum.html">Forum</a>
+        </li>
+        <li>|</li>
+        <li>
+          <a href="usuario.html">
+            <div class="hello">
+              <img id="fotoPerfil" alt="" style="display: none" />
+              <img
+                class="imgPerf"
+                id="imgPerfil"
+                src="https://static.vecteezy.com/ti/vetor-gratis/p1/9734564-default-avatar-profile-icon-of-social-media-user-vetor.jpg"
+                alt=""
+              />
+              <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a>
+            <div class="botaoSair" onclick="limparSessao()">
+              <h3 style="color: #aa7744" class="h3BotaoSair">Sair</h3>
+            </div>
+          </a>
+        </li>
       </ul>
     </div>
 
-  </footer>
+    <div class="janela">
+      <div id="botoesLivro" class="divBotaoLivro">
+        <button class="botaoLivro" onclick="abrirCadastrarLivros()">
+          Cadastrar livro
+        </button>
+        <button class="botaoLivro botaoFiltro" onclick="abrirFiltros()">
+          <img src="../assets/imgs/filter.svg" alt="" />Filtros
+        </button>
+      </div>
+    </div>
 
-</body>
+    <div id="divCadastrarLivros" class="cadastrarLivros">
+      <h2>Cadastre seu novo livro lido</h2>
+      <div class="containerCadastro">
+        <div class="ladoDireitoCadastro">
+          <p>Nome do Livro:</p>
+          <br />
+          <input type="text" name="" id="inp_livroLido" /> <br />
+          <p>Autor:</p>
+          <br /><input type="text" name="" id="inp_autor" /> <br />
+          <select name="" id="sel_generoCad">
+            <option selected disabled value="0">Gênero:</option>
+            <option value="ficCientifica">Ficção Científica</option>
+            <option value="terror">terror</option>
+            <option value="biografia">Biografia</option>
+            <option value="aventura">Aventura</option>
+            <option value="drama">drama</option>
+            <option value="romance">Romance</option>
+            <option value="desenvolvimento">Desenvolvimento Pessoal</option>
+          </select>
+          <br />
+        </div>
+        <div class="ladoEsquerdoCadastro">
+          <p>Nota:</p>
+          <br />
+          <input type="text" name="" id="inp_nota" /> <br />
+          <p>Data de leitura:</p>
+          <br />
+          <input type="date" name="" id="inp_dtLeitura" /> <br />
+          <p>Imagem:</p>
+          <br />
+          <input type="text" name="" id="inp_imagem" />
+        </div>
+      </div>
+      <button onclick="cadastrarLivros()">Cadastrar Livro</button>
+      <div id="erroLivroCadastrar"></div>
+    </div>
 
-<script>
+    <div style="color: white" id="mensagemErro">
+      <div class="containerLivros">
+        <div class="divContainerLivros" id="divContainerLivros">
+          <div id="feedLivro1" class="containerCardLivros"></div>
 
-  function filtrarGenero(){
+          <div
+            id="feedLivro2"
+            class="containerCardLivros"
+            style="display: none"
+          ></div>
+          <div
+            id="feedLivro3"
+            class="containerCardLivros"
+            style="display: none"
+          ></div>
+          <div
+            id="feedLivro4"
+            class="containerCardLivros"
+            style="display: none"
+          ></div>
+          <div
+            id="feedLivro5"
+            class="containerCardLivros"
+            style="display: none"
+          ></div>
+          <div
+            id="feedLivro6"
+            class="containerCardLivros"
+            style="display: none"
+          ></div>
+          <div
+            id="feedLivro7"
+            class="containerCardLivros"
+            style="display: none"
+          ></div>
+        </div>
+      </div>
+    </div>
 
-    var filtroGenero = sel_genero.value;
+    <footer>
+      <div class="developers">
+        <h3>OpenBook foi desenvolvida por</h3>
+        <ul>
+          <li>
+            Ivan Rangel Pestana Marcolin <br />
+            ivan.marcolin@sptech.school
+          </li>
+        </ul>
+      </div>
+      <div class="meioFooter">
+        <img src="../assets/imgs/bookGif.webp" class="logo" />
+        <p>OpenBook © 2024. Todos os direitos reservados.</p>
+      </div>
+      <div class="contact">
+        <h3>Contato:</h3>
+        <ul>
+          <li>openBook@gmail.com</li>
+          <li>+55 11 99123-9899</li>
+        </ul>
+        <br />
+        <h3>Endereço</h3>
+        <ul>
+          <li>Rua Haddook Lobo 565</li>
+        </ul>
+      </div>
+    </footer>
+  </body>
 
-    if(filtroGenero == '0'){
-      erroSelect.innerHTML = '<h3>Escolha um genero válido</h3>';
-    }else{
-      erroSelect.innerHTML = '';
-      
-      fecharFiltro();
-      var fkUser = sessionStorage.ID_USUARIO 
+  <script>
+    function filtrarGenero() {
+      var filtroGenero = sel_genero.value;
 
-      fetch("/livro/listarLivros").then(function (resposta) {
-      if (resposta.ok) {
-        if (resposta.status == 204) {
-          var feed = document.getElementById("mensagemErro");
-          var mensagem = document.createElement("h1");
-          mensagem.innerHTML = "Nenhum resultado encontrado."
-          feed.appendChild(mensagem);
-          throw "Nenhum resultado encontrado!!";
-        }
-
-        resposta.json().then(function (resposta) {
-          console.log("Dados recebidos: ", JSON.stringify(resposta));
-
-
-
-          var feed1 = document.getElementById("feedLivro1");
-          var feed2 = document.getElementById("feedLivro2");
-          var feed3 = document.getElementById("feedLivro3");
-          var feed4 = document.getElementById("feedLivro4");
-
-
-          feed1.innerHTML = "";
-          feed2.innerHTML = "";
-          feed3.innerHTML = "";
-          feed4.innerHTML = "";
-
-          feed2.style.display = "none";
-          feed3.style.display = "none";
-          feed4.style.display = "none";
-          
-          var contAuxiliar = 0
-
-          for (let i = 0; i < resposta.length; i++) {
-            var livro = resposta[i];
-
-            if(filtroGenero == livro.genero){
-
-
-// criando e manipulando elementos do HTML via JavaScript
-            if(livro.fkUsuario == fkUser){
-
-            
-
-            var divCard = document.createElement("div");
-            var nomeLivro = document.createElement("h1");
-            var imgLivro = document.createElement("img");
-
-
-            nomeLivro.innerHTML = livro.nome;
-
-            divCard.className = "cardForum";
-
-
-            divCard.setAttribute("onclick", `acessar(${livro.idLivro})`);
-            imgLivro.setAttribute("src", livro.fotoLivro)
-
-            divCard.appendChild(nomeLivro);
-            divCard.appendChild(imgLivro);
-            if (contAuxiliar < 5) {
-              feed1.appendChild(divCard);
-            } else if (contAuxiliar < 10) {
-              feed2.style.display = "flex";
-              feed2.appendChild(divCard);
-            } else if (contAuxiliar < 15) {
-              feed3.style.display = "flex"
-              feed3.appendChild(divCard);
-            } else {
-              feed4.style.display = "flex"
-              feed4.appendChild(divCard);
-            }
-            contAuxiliar ++;
-            }
-          }
-        }
-
-        });
+      if (filtroGenero == "0") {
+        erroSelect.innerHTML = "<h3>Escolha um genero válido</h3>";
       } else {
-        throw ('Houve um erro na API!');
+        erroSelect.innerHTML = "";
+
+        fecharFiltro();
+        var fkUser = sessionStorage.ID_USUARIO;
+
+        fetch("/livro/listarLivros")
+          .then(function (resposta) {
+            if (resposta.ok) {
+              if (resposta.status == 204) {
+                var feed = document.getElementById("mensagemErro");
+                var mensagem = document.createElement("h1");
+                mensagem.innerHTML = "Nenhum resultado encontrado.";
+                feed.appendChild(mensagem);
+                throw "Nenhum resultado encontrado!!";
+              }
+
+              resposta.json().then(function (resposta) {
+                console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                var feed1 = document.getElementById("feedLivro1");
+                var feed2 = document.getElementById("feedLivro2");
+                var feed3 = document.getElementById("feedLivro3");
+                var feed4 = document.getElementById("feedLivro4");
+
+                feed1.innerHTML = "";
+                feed2.innerHTML = "";
+                feed3.innerHTML = "";
+                feed4.innerHTML = "";
+
+                feed2.style.display = "none";
+                feed3.style.display = "none";
+                feed4.style.display = "none";
+
+                var contAuxiliar = 0;
+
+                for (let i = 0; i < resposta.length; i++) {
+                  var livro = resposta[i];
+
+                  if (filtroGenero == livro.genero) {
+                    // criando e manipulando elementos do HTML via JavaScript
+                    if (livro.fkUsuario == fkUser) {
+                      var divCard = document.createElement("div");
+                      var nomeLivro = document.createElement("h1");
+                      var imgLivro = document.createElement("img");
+
+                      nomeLivro.innerHTML = livro.nome;
+
+                      divCard.className = "cardForum";
+
+                      divCard.setAttribute(
+                        "onclick",
+                        `acessar(${livro.idLivro})`
+                      );
+                      imgLivro.setAttribute("src", livro.fotoLivro);
+
+                      divCard.appendChild(nomeLivro);
+                      divCard.appendChild(imgLivro);
+                      if (contAuxiliar < 5) {
+                        feed1.appendChild(divCard);
+                      } else if (contAuxiliar < 10) {
+                        feed2.style.display = "flex";
+                        feed2.appendChild(divCard);
+                      } else if (contAuxiliar < 15) {
+                        feed3.style.display = "flex";
+                        feed3.appendChild(divCard);
+                      } else {
+                        feed4.style.display = "flex";
+                        feed4.appendChild(divCard);
+                      }
+                      contAuxiliar++;
+                    }
+                  }
+                }
+              });
+            } else {
+              throw "Houve um erro na API!";
+            }
+          })
+          .catch(function (resposta) {
+            console.error(resposta);
+          });
       }
-    }).catch(function (resposta) {
-      console.error(resposta);
-    });
     }
 
-    
+    function atualizarLivros() {
+      var fkUser = sessionStorage.ID_USUARIO;
 
-
-  }
-
-
-  function atualizarLivros() {
-
-    var fkUser = sessionStorage.ID_USUARIO 
-
-    fetch("/livro/listarLivros").then(function (resposta) {
-      if (resposta.ok) {
-        if (resposta.status == 204) {
-          var feed = document.getElementById("mensagemErro");
-          var mensagem = document.createElement("h1");
-          mensagem.innerHTML = "Nenhum resultado encontrado."
-          feed.appendChild(mensagem);
-          throw "Nenhum resultado encontrado!!";
-        }
-
-        resposta.json().then(function (resposta) {
-          console.log("Dados recebidos: ", JSON.stringify(resposta));
-
-
-
-          var feed1 = document.getElementById("feedLivro1");
-          var feed2 = document.getElementById("feedLivro2");
-          var feed3 = document.getElementById("feedLivro3");
-          var feed4 = document.getElementById("feedLivro4");
-
-
-          feed1.innerHTML = "";
-          feed2.innerHTML = "";
-          feed3.innerHTML = "";
-          feed4.innerHTML = "";
-
-          var ContadorAuxiliar = 0;
-
-          for (let i = 0; i < resposta.length; i++) {
-            var livro = resposta[i];
-
-            // criando e manipulando elementos do HTML via JavaScript
-
-            if(livro.fkUsuario == fkUser){
-
-            var divCard = document.createElement("div");
-            var nomeLivro = document.createElement("h1");
-            var imgLivro = document.createElement("img");
-
-
-            nomeLivro.innerHTML = livro.nome;
-
-            divCard.className = "cardForum";
-
-
-            divCard.setAttribute("onclick", `acessar(${livro.idLivro})`);
-            imgLivro.setAttribute("src", livro.fotoLivro)
-
-            divCard.appendChild(nomeLivro);
-            divCard.appendChild(imgLivro);
-            if (ContadorAuxiliar < 5) {
-              feed1.appendChild(divCard);
-            } else if (ContadorAuxiliar < 10) {
-              feed2.style.display = "flex"
-              feed2.appendChild(divCard);
-            } else if (ContadorAuxiliar < 15) {
-              feed3.style.display = "flex"
-              feed3.appendChild(divCard);
-            } else {
-              feed4.style.display = "flex"
-              feed4.appendChild(divCard);
-            }
-
-            ContadorAuxiliar ++;
-
-
-            }
-
-
-          }
-
-        });
-      } else {
-        throw ('Houve um erro na API!');
-      }
-    }).catch(function (resposta) {
-      console.error(resposta);
-    });
-  }
-
-
-
-  function cadastrarLivros() {
-    var livroLido = inp_livroLido.value;
-    var autor = inp_autor.value;
-    var genero = sel_generoCad.value;
-    var nota = Number(inp_nota.value)
-    var dtLeitura = inp_dtLeitura.value;
-    var fotoLivro = inp_imagem.value;
-    var fkUsuario = sessionStorage.ID_USUARIO;
-
-
-    if (fotoLivro == "") {
-      fotoLivro = "https://img.freepik.com/vetores-premium/livro-fechado-marrom_135176-141.jpg"
-    }
-
-    if (livroLido == "" || autor == "" || genero == "" || nota == "" || dtLeitura == "") {
-      erroLivroCadastrar.innerHTML = `Preencha todas as informações!`
-    } else {
-      erroLivroCadastrar.innerHTML = "";
-      setTimeout(fecharCadastroLivro, 500);
-
-
-
-
-      // Enviando o valor da nova input
-      fetch("/livro/cadastrarLivro", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          // crie um atributo que recebe o valor recuperado aqui
-          // Agora vá para o arquivo routes/usuario.js
-
-          nomeLivroServer: livroLido,
-          autorServer: autor,
-          generoServer: genero,
-          notaServer: nota,
-          dtLeituraServer: dtLeitura,
-          fotoLivroServer: fotoLivro,
-          fkUsuarioServer: fkUsuario
-
-        }),
-      })
+      fetch("/livro/listarLivros")
         .then(function (resposta) {
-          console.log("resposta: ", resposta);
-
           if (resposta.ok) {
+            if (resposta.status == 204) {
+              var feed = document.getElementById("mensagemErro");
+              var mensagem = document.createElement("h1");
+              mensagem.innerHTML = "Nenhum resultado encontrado.";
+              feed.appendChild(mensagem);
+              throw "Nenhum resultado encontrado!!";
+            }
 
-            erroLivroCadastrar.innerHTML =
-              "";
-            atualizarLivros();
+            resposta.json().then(function (resposta) {
+              console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+              var feed1 = document.getElementById("feedLivro1");
+              var feed2 = document.getElementById("feedLivro2");
+              var feed3 = document.getElementById("feedLivro3");
+              var feed4 = document.getElementById("feedLivro4");
+
+              feed1.innerHTML = "";
+              feed2.innerHTML = "";
+              feed3.innerHTML = "";
+              feed4.innerHTML = "";
+
+              var ContadorAuxiliar = 0;
+
+              for (let i = 0; i < resposta.length; i++) {
+                var livro = resposta[i];
+
+                // criando e manipulando elementos do HTML via JavaScript
+
+                if (livro.fkUsuario == fkUser) {
+                  var divCard = document.createElement("div");
+                  var nomeLivro = document.createElement("h1");
+                  var imgLivro = document.createElement("img");
+
+                  nomeLivro.innerHTML = livro.nome;
+
+                  divCard.className = "cardForum";
+
+                  divCard.setAttribute("onclick", `acessar(${livro.idLivro})`);
+                  imgLivro.setAttribute("src", livro.fotoLivro);
+
+                  divCard.appendChild(nomeLivro);
+                  divCard.appendChild(imgLivro);
+                  if (ContadorAuxiliar < 5) {
+                    feed1.appendChild(divCard);
+                  } else if (ContadorAuxiliar < 10) {
+                    feed2.style.display = "flex";
+                    feed2.appendChild(divCard);
+                  } else if (ContadorAuxiliar < 15) {
+                    feed3.style.display = "flex";
+                    feed3.appendChild(divCard);
+                  } else {
+                    feed4.style.display = "flex";
+                    feed4.appendChild(divCard);
+                  }
+
+                  ContadorAuxiliar++;
+                }
+              }
+            });
           } else {
-            throw "Houve um erro ao tentar realizar o cadastro do Forum!";
+            throw "Houve um erro na API!";
           }
         })
         .catch(function (resposta) {
-          console.log(`#ERRO: ${resposta}`);
+          console.error(resposta);
         });
-
-      return false;
     }
 
-  }
+    function cadastrarLivros() {
+      var livroLido = inp_livroLido.value;
+      var autor = inp_autor.value;
+      var genero = sel_generoCad.value;
+      var nota = Number(inp_nota.value);
+      var dtLeitura = inp_dtLeitura.value;
+      var fotoLivro = inp_imagem.value;
+      var fkUsuario = sessionStorage.ID_USUARIO;
 
-  function fecharCadastroLivro() {
-      divCadastrarLivros.style.display = 'none';
+      if (fotoLivro == "") {
+        fotoLivro =
+          "https://img.freepik.com/vetores-premium/livro-fechado-marrom_135176-141.jpg";
+      }
+
+      if (
+        livroLido == "" ||
+        autor == "" ||
+        genero == "" ||
+        nota == "" ||
+        dtLeitura == ""
+      ) {
+        erroLivroCadastrar.innerHTML = `Preencha todas as informações!`;
+      } else {
+        erroLivroCadastrar.innerHTML = "";
+        setTimeout(fecharCadastroLivro, 500);
+
+        // Enviando o valor da nova input
+        fetch("/livro/cadastrarLivro", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            // crie um atributo que recebe o valor recuperado aqui
+            // Agora vá para o arquivo routes/usuario.js
+
+            nomeLivroServer: livroLido,
+            autorServer: autor,
+            generoServer: genero,
+            notaServer: nota,
+            dtLeituraServer: dtLeitura,
+            fotoLivroServer: fotoLivro,
+            fkUsuarioServer: fkUsuario,
+          }),
+        })
+          .then(function (resposta) {
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+              erroLivroCadastrar.innerHTML = "";
+              atualizarLivros();
+            } else {
+              throw "Houve um erro ao tentar realizar o cadastro do Forum!";
+            }
+          })
+          .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+          });
+
+        return false;
+      }
     }
 
-  function abrirCadastrarLivros() {
-    divCadastrarLivros.style.display = 'flex';
+    function fecharCadastroLivro() {
+      divCadastrarLivros.style.display = "none";
+    }
 
-  }
+    function abrirCadastrarLivros() {
+      divCadastrarLivros.style.display = "flex";
+    }
 
-  function abrirFiltros() {
-    botoesLivro.innerHTML = `
+    function abrirFiltros() {
+      botoesLivro.innerHTML = `
     <button class="botaoLivro" onclick="abrirFiltrarPorPeriodo()">Filtrar por Periodo</button>
     <button class="botaoLivro" onclick="abrirFiltrarPorGenero()">Filtrar por Gênero</button>
-    `
-  }
+    `;
+    }
 
-  function fecharFiltro() {
-    botoesLivro.innerHTML = `
+    function fecharFiltro() {
+      botoesLivro.innerHTML = `
     <button class="botaoLivro" onclick="abrirCadastrarLivros()"> Cadastrar livro</button>
     <button class="botaoLivro botaoFiltro" onclick="abrirFiltros()"> <img src="../assets/imgs/filter.svg" alt="">Filtros</button>
-    `
-  }
+    `;
+    }
 
-  function isLastMonth(dateString) {
-    const date = new Date(dateString);
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = now.getMonth();
+    function isLastMonth(dateString) {
+      const date = new Date(dateString);
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = now.getMonth();
 
-    const lastMonthStart = new Date(year, month - 1, 1);
-    const lastMonthEnd = new Date(year, month, 0, 23, 59, 59);
+      const lastMonthStart = new Date(year, month - 1, 1);
+      const lastMonthEnd = new Date(year, month, 0, 23, 59, 59);
 
-    return date >= lastMonthStart && date <= lastMonthEnd;
-}
+      return date >= lastMonthStart && date <= lastMonthEnd;
+    }
 
-  function abrirFiltrarPorPeriodo(){
-    botoesLivro.innerHTML = `
+    function abrirFiltrarPorPeriodo() {
+      botoesLivro.innerHTML = `
     <div class="selectLivro">
       <select name="" id="sel_tempo">
         <option selected disabled value="0">Filtre por periodo</option>
@@ -457,11 +459,11 @@
       <button class="botaoLivro" onclick="filtrarTempo()">Filtrar</button>
       <div id="erroSelect"></div>
     </div>
-    `
-  }
+    `;
+    }
 
-  function abrirFiltrarPorGenero() {
-    botoesLivro.innerHTML = `
+    function abrirFiltrarPorGenero() {
+      botoesLivro.innerHTML = `
     <div class="selectLivro">
       <select name="" id="sel_genero">
             <option selected disabled value="0">Filtre por gênero</option>
@@ -476,110 +478,100 @@
       <button class="botaoLivro" onclick="filtrarGenero()">Filtrar</button>
       <div id="erroSelect"></div>
     </div>
-    `
-  }
-
-
-
-  function filtrarTempo(){
-    var filtroTempo = sel_tempo.value;
-
-if(filtroTempo == '0'){
-  erroSelect.innerHTML = '<h3>Escolha um periodo válido</h3>';
-}else{
-  erroSelect.innerHTML = '';
-  
-  fecharFiltro();
-  var fkUser = sessionStorage.ID_USUARIO 
-
-  fetch("/livro/listarLivros").then(function (resposta) {
-      if (resposta.ok) {
-        if (resposta.status == 204) {
-          var feed = document.getElementById("mensagemErro");
-          var mensagem = document.createElement("h1");
-          mensagem.innerHTML = "Nenhum resultado encontrado."
-          feed.appendChild(mensagem);
-          throw "Nenhum resultado encontrado!!";
-        }
-
-        resposta.json().then(function (resposta) {
-          console.log("Dados recebidos: ", JSON.stringify(resposta));
-
-
-
-          var feed1 = document.getElementById("feedLivro1");
-          var feed2 = document.getElementById("feedLivro2");
-          var feed3 = document.getElementById("feedLivro3");
-          var feed4 = document.getElementById("feedLivro4");
-
-
-          feed1.innerHTML = "";
-          feed2.innerHTML = "";
-          feed3.innerHTML = "";
-          feed4.innerHTML = "";
-
-          feed2.style.display = "none";
-          feed3.style.display = "none";
-          feed4.style.display = "none";
-          
-          var contAuxiliar = 0
-
-          for (let i = 0; i < resposta.length; i++) {
-            var livro = resposta[i];
-
-            var dataLeitura = livro.dtLeitura;
-
-
-            
-
-            if(isLastMonth(dateLeitura)){
-// criando e manipulando elementos do HTML via JavaScript
-            var divCard = document.createElement("div");
-            var nomeLivro = document.createElement("h1");
-            var imgLivro = document.createElement("img");
-
-
-            nomeLivro.innerHTML = livro.nome;
-
-            divCard.className = "cardForum";
-
-
-            divCard.setAttribute("onclick", `acessar(${livro.idLivro})`);
-            imgLivro.setAttribute("src", livro.fotoLivro)
-
-            divCard.appendChild(nomeLivro);
-            divCard.appendChild(imgLivro);
-            if (contAuxiliar < 5) {
-              feed1.appendChild(divCard);
-            } else if (contAuxiliar < 10) {
-              feed2.style.display = "flex";
-              feed2.appendChild(divCard);
-            } else if (contAuxiliar < 15) {
-              feed3.style.display = "flex"
-              feed3.appendChild(divCard);
-            } else {
-              feed4.style.display = "flex"
-              feed4.appendChild(divCard);
-            }
-            contAuxiliar ++;
-          }
-        }
-
-        });
-      } else {
-        throw ('Houve um erro na API!');
-      }
-    }).catch(function (resposta) {
-      console.error(resposta);
-    });
-
-
+    `;
     }
-  }
 
+    function filtrarTempo() {
+      var filtroTempo = sel_tempo.value;
 
+      if (filtroTempo == "0") {
+        erroSelect.innerHTML = "<h3>Escolha um periodo válido</h3>";
+      } else {
+        erroSelect.innerHTML = "";
 
-  /*
+        fecharFiltro();
+        var fkUser = sessionStorage.ID_USUARIO;
+
+        fetch("/livro/listarLivros")
+          .then(function (resposta) {
+            if (resposta.ok) {
+              if (resposta.status == 204) {
+                var feed = document.getElementById("mensagemErro");
+                var mensagem = document.createElement("h1");
+                mensagem.innerHTML = "Nenhum resultado encontrado.";
+                feed.appendChild(mensagem);
+                throw "Nenhum resultado encontrado!!";
+              }
+
+              resposta.json().then(function (resposta) {
+                console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                var feed1 = document.getElementById("feedLivro1");
+                var feed2 = document.getElementById("feedLivro2");
+                var feed3 = document.getElementById("feedLivro3");
+                var feed4 = document.getElementById("feedLivro4");
+
+                feed1.innerHTML = "";
+                feed2.innerHTML = "";
+                feed3.innerHTML = "";
+                feed4.innerHTML = "";
+
+                feed2.style.display = "none";
+                feed3.style.display = "none";
+                feed4.style.display = "none";
+
+                var contAuxiliar = 0;
+
+                for (let i = 0; i < resposta.length; i++) {
+                  var livro = resposta[i];
+
+                  var dataLeitura = livro.dtLeitura;
+
+                  if (isLastMonth(dateLeitura)) {
+                    // criando e manipulando elementos do HTML via JavaScript
+                    var divCard = document.createElement("div");
+                    var nomeLivro = document.createElement("h1");
+                    var imgLivro = document.createElement("img");
+
+                    nomeLivro.innerHTML = livro.nome;
+
+                    divCard.className = "cardForum";
+
+                    divCard.setAttribute(
+                      "onclick",
+                      `acessar(${livro.idLivro})`
+                    );
+                    imgLivro.setAttribute("src", livro.fotoLivro);
+
+                    divCard.appendChild(nomeLivro);
+                    divCard.appendChild(imgLivro);
+                    if (contAuxiliar < 5) {
+                      feed1.appendChild(divCard);
+                    } else if (contAuxiliar < 10) {
+                      feed2.style.display = "flex";
+                      feed2.appendChild(divCard);
+                    } else if (contAuxiliar < 15) {
+                      feed3.style.display = "flex";
+                      feed3.appendChild(divCard);
+                    } else {
+                      feed4.style.display = "flex";
+                      feed4.appendChild(divCard);
+                    }
+                    contAuxiliar++;
+                  }
+                }
+              });
+            } else {
+              throw "Houve um erro na API!";
+            }
+          })
+          .catch(function (resposta) {
+            console.error(resposta);
+          });
+      }
+    }
+
+    /*
  Fazer uma lista de desejos para o usuario ler no futuro
  
  
@@ -617,9 +609,5 @@ if(filtroTempo == '0'){
           ],
   
   */
-
-
-
-</script>
-
+  </script>
 </html>

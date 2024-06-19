@@ -1,3 +1,6 @@
+-- Arquivo de apoio, caso você queira criar tabelas como as aqui criadas para a API funcionar.
+-- Você precisa executar os comandos no banco de dados para criar as tabelas,
+-- ter este arquivo aqui não significa que a tabela em seu BD estará como abaixo!
 
 /*
 comandos para mysql server
@@ -43,6 +46,15 @@ CREATE TABLE comentario (
     constraint fkUsuarioComentario foreign key (fkUsuario) references usuario(id)
 );
 
+
+CREATE TABLE recomendacao(
+	idRecomendacao int auto_increment,
+    titulo varchar(100),
+    texto text,
+    fkUsuario int,
+    constraint pkRecomendacao primary key (idRecomendacao, fkUsuario),
+    constraint fkUsuarioRecomendacao foreign key (fkUsuario) references usuario(id)
+);
         
 CREATE TABLE livro (
 	idLivro int primary key auto_increment,
@@ -55,6 +67,8 @@ CREATE TABLE livro (
     fkUsuario int,
     constraint fkUsuarioLivro foreign key (fkUsuario) references usuario(id)
 );
+
+
 
 
 
