@@ -257,3 +257,38 @@ cores:
 .cardForum:hover h1 {
   display: block;
 }
+
+
+
+#livroSelecionado {
+  display: flex;
+  flex-direction: column;
+  min-width: 75vw;
+  min-height: 70vh;
+  align-items: center;
+  text-align: center;
+  justify-content: space-between;
+}
+
+.containerLivroEscolhido{
+  width: 95%;
+  width: 100%;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding-bottom: 15px;
+
+}
+
+.infoLivro{
+  height: 55vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+}
+
+.notaLivro img{
+  width: 40px;
+}

@@ -69,7 +69,7 @@
       </ul>
     </div>
 
-    <div class="janela">
+    <div class="janela" >
       <div id="botoesLivro" class="divBotaoLivro">
         <button class="botaoLivro" onclick="abrirCadastrarLivros()">
           Cadastrar livro
@@ -153,6 +153,28 @@
             style="display: none"
           ></div>
         </div>
+        <div id="livroSelecionado" style="display: none;">
+          <h1>Revolução dos Bichos</h1 >
+          <div class="containerLivroEscolhido">
+            <div class="imgLivroEscolhido">
+              <img src="https://m.media-amazon.com/images/I/91BsZhxCRjL._SY425_.jpg" alt="">
+            </div>
+            <div class="infoLivro">
+              <p>Autor: 1984</p>
+              <p>Gênero: Ficção Científica</p>
+              <p>Nota: <div class="notaLivro">
+                <img src="../assets/imgs/star-fill.svg" alt="">
+                <img src="../assets/imgs/star-fill.svg" alt="">
+                <img src="../assets/imgs/star-fill.svg" alt="">
+                <img src="../assets/imgs/star-half.svg" alt="">
+                <img src="../assets/imgs/star.svg" alt="">
+
+              </div></p>
+              <p>Data de leitura: 2021-05-20</p>
+            </div>
+          </div>
+          
+        </div>
       </div>
     </div>
 
@@ -186,6 +208,11 @@
   </body>
 
   <script>
+
+    function acessar() {
+      // tirar display none de JANELA e divContainerLivro
+    }
+
     function filtrarGenero() {
       var filtroGenero = sel_genero.value;
 
