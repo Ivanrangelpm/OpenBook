@@ -12,4 +12,9 @@ router.get("/listarLivros", function (req, res) {
     livroController.listarLivros(req, res);
 });
 
+
+router.get("/exibirLivro/:idLivro", function(req, res){
+    livroController.exibirLivro(req, res);
+})
+
 module.exports = router;

@@ -1,5 +1,26 @@
 var database = require("../database/config")
 
+function exibirLivro(idLivro){
+    console.log(`Acessei o MODEL Livro function exibirLivro: ${idLivro} `);
+    var instrucaoSql = `
+        SELECT 
+        l.idLivro,
+        l.nome,
+        l.autor,
+        l.genero,
+        l.nota,
+        l.dtLeitura,
+        l.fotoLivro,
+        l.fkUsuario
+            FROM livro l
+            WHERE idLivro = ${idLivro}
+            ORDER BY l.dtLeitura DESC;
+    `
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+
 function listarLivros() {
     console.log("ACESSEI O FORUM  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
     var instrucaoSql = `
@@ -37,5 +58,6 @@ function cadastrarLivro(nomeLivro, autor, genero, nota, dtLeitura, fotoLivro, fk
 
 module.exports = {
     cadastrarLivro,
-    listarLivros
+    listarLivros,
+    exibirLivro
 };

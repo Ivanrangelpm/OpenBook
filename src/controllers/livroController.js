@@ -1,5 +1,19 @@
 var livroModel = require("../models/livroModel");
 
+
+function exibirLivro(req, res){
+    var idLivro = req.params.idLivro;
+
+    console.log('Controller ok,Indo para o a Função exibirLivros do Model')
+
+    livroModel.exibirLivro(idLivro).then(function(resultado){
+        res.status(200).json(resultado);
+    }).catch(function(erro){
+        console.log(erro);
+        console.log('There was an error to show de books.', erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
 function listarLivros(req, res) {
     livroModel.listarLivros().then(function (resultado) {
         if (resultado.length > 0) {
@@ -63,5 +77,6 @@ function cadastrarLivro(req, res) {
 
 module.exports = {
     cadastrarLivro,
-    listarLivros
+    listarLivros, 
+    exibirLivro
 }
