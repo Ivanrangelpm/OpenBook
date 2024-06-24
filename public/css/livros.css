@@ -70,7 +70,7 @@ cores:
   
   
   .botaoLivro:hover {
-    transform: scale(110%, 110%);
+    transform: scale(125%, 125%);
     background-color: #e6aa77;
   }
 
