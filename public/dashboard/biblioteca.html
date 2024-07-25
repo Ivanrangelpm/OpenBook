@@ -175,6 +175,7 @@
       </ul>
     </div>
   </footer>
+
 </body>
 
 <script>
@@ -209,7 +210,16 @@
           </div>
           <div class="containerLivroEscolhido">
             <div class="imgLivroEscolhido">
-              <img src="${dadosLivro.fotoLivro}" alt="">
+              <div class="botoesSalvarLivro" style="background-image:url('${dadosLivro.fotoLivro}');background-size: cover;background-position: center; background-repeat: no-repeat; width:20vw; height:57vh;margin-bottom:13px;">
+                      <button class="botaoDesejo">
+                        Lista de desejos
+                        <img src="../assets/imgs/listaDesejo.svg" alt="">
+                      </button> 
+                      <button class="botaoDesejo livroLido">
+                        Livro Lido
+                        <img src="../assets/imgs/livroLido.svg" alt="">
+                      </button>
+              </div>
             </div>
             <div class="infoLivro">
               <p>Autor: ${dadosLivro.autor}</p>
@@ -217,7 +227,6 @@
               <p>Nota: <div class="notaLivro">
               ${estrelas}
               </div></p>
-              <p>Data de leitura: ${dataFormatada}</p>
             </div>
           </div>
             `
@@ -279,7 +288,6 @@
 
                 if (filtroGenero == livro.genero) {
                   // criando e manipulando elementos do HTML via JavaScript
-                  if (livro.fkUsuario == fkUser) {
                     var divCard = document.createElement("div");
                     var nomeLivro = document.createElement("h1");
                     var imgLivro = document.createElement("img");
@@ -309,7 +317,7 @@
                       feed4.appendChild(divCard);
                     }
                     contAuxiliar++;
-                  }
+                  
                 }
               }
             });
@@ -358,7 +366,7 @@
 
               // criando e manipulando elementos do HTML via JavaScript
 
-              if (livro.fkUsuario == fkUser) {
+
                 var divCard = document.createElement("div");
                 var nomeLivro = document.createElement("h1");
                 var imgLivro = document.createElement("img");
@@ -386,7 +394,7 @@
                 }
 
                 ContadorAuxiliar++;
-              }
+              
             }
           });
         } else {

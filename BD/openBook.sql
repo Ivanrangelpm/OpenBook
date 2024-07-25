@@ -68,6 +68,14 @@ CREATE TABLE livro (
     constraint fkUsuarioLivro foreign key (fkUsuario) references usuario(id)
 );
 
+CREATE TABLE usuarioLeu(
+	idUsuarioLeu int auto_increment,
+    fkLivro int,
+    fkUsuario int,
+    constraint pkUsuarioLeu primary key(idUsuarioLeu, fkLivro, fkUsuario),
+    constraint fkUsuarioUsuarioLeu foreign key (fkUsuario) references usuario(id),
+    constraint fkLivroUsuarioLeu foreign key (fkLivro) references livro(idLivro)
+);
 
 
 

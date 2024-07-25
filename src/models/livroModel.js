@@ -9,12 +9,9 @@ function exibirLivro(idLivro){
         l.autor,
         l.genero,
         l.nota,
-        l.dtLeitura,
-        l.fotoLivro,
-        l.fkUsuario
+        l.fotoLivro
             FROM livro l
-            WHERE idLivro = ${idLivro}
-            ORDER BY l.dtLeitura DESC;
+            WHERE idLivro = ${idLivro};
     `
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -30,11 +27,8 @@ function listarLivros() {
         l.autor,
         l.genero,
         l.nota,
-        l.dtLeitura,
-        l.fotoLivro,
-        l.fkUsuario
-            FROM livro l
-            ORDER BY l.dtLeitura DESC;
+        l.fotoLivro
+            FROM livro l;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

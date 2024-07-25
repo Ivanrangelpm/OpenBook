@@ -285,7 +285,49 @@ cores:
   font-weight: bold;
 }
 
+.containerHeaderLivro h1{
+  margin-bottom: 15px;
+}
 
+.botaoDesejo{
+  width: 300px;
+  transition: transform 0.2s, background-color 0.2s;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 2px solid #381611;
+  padding: 0.5rem;
+  font-family: monospace;
+  font-weight: bold;
+  font-size: 25px;
+  background-color: #f0cf95;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+  height: 70px;
+}
+
+.botaoDesejo:hover{
+  transform: scale(125%, 125%);
+  background-color: #e6aa77;
+}
+
+.botaoDesejo img{
+  margin-right: 10px;
+  width: 55px;
+  height: 50px;
+  margin-top: 7px;
+}
+
+.livroLido{
+  justify-content: space-around;
+}
+
+.botoesSalvarLivro{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
 
 .containerLivroEscolhido{
   width: 95%;
