@@ -24,7 +24,7 @@ INSERT INTO discussao (titulo, fkForum, fkCriador) VALUES
 	('Nunca ficaria do lado da Daenerys', 5, 2);
 
 --  ficCientifica terror biografia aventura drama romance desenvolvimento
-INSERT INTO livro (nome, autor, genero, nota, dtLeitura, fotoLivro, fkUsuario) VALUES 
+INSERT INTO livro (nome, autor, genero, nota, fotoLivro) VALUES 
 ('O Homem Mais Rico da Babilonia', 'George Clason', 'desenvolvimento', 3, 'https://m.media-amazon.com/images/I/81ehX6Quw2L._SY425_.jpg'),
 ('Steve Jobs', 'Walter Isaacson', 'biografia', 4.8, 'https://m.media-amazon.com/images/I/41OnkWAt1SL._SY445_SX342_.jpg'),
 ('Elon Musk', 'Walter Isaacson', 'biografia', 4.0, 'https://m.media-amazon.com/images/I/418hYhj8vZL._SY445_SX342_.jpg'),

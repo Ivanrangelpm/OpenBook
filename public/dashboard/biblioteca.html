@@ -72,7 +72,7 @@
   </div>
 
   <div id="divCadastrarLivros" class="cadastrarLivros">
-    <h2>Cadastre seu novo livro lido</h2>
+    <h2>Cadastre um novo livro</h2>
     <div class="containerCadastro">
       <div class="ladoDireitoCadastro">
         <p>Nome do Livro:</p>
@@ -96,9 +96,6 @@
         <p>Nota:</p>
         <br />
         <input type="text" name="" id="inp_nota" /> <br />
-        <p>Data de leitura:</p>
-        <br />
-        <input type="date" name="" id="inp_dtLeitura" /> <br />
         <p>Imagem:</p>
         <br />
         <input type="text" name="" id="inp_imagem" />
@@ -411,9 +408,7 @@
     var autor = inp_autor.value;
     var genero = sel_generoCad.value;
     var nota = Number(inp_nota.value);
-    var dtLeitura = inp_dtLeitura.value;
     var fotoLivro = inp_imagem.value;
-    var fkUsuario = sessionStorage.ID_USUARIO;
 
     if (fotoLivro == "") {
       fotoLivro =
@@ -424,8 +419,7 @@
       livroLido == "" ||
       autor == "" ||
       genero == "" ||
-      nota == "" ||
-      dtLeitura == ""
+      nota == "" 
     ) {
       erroLivroCadastrar.innerHTML = `Preencha todas as informações!`;
     } else {
@@ -446,9 +440,7 @@
           autorServer: autor,
           generoServer: genero,
           notaServer: nota,
-          dtLeituraServer: dtLeitura,
           fotoLivroServer: fotoLivro,
-          fkUsuarioServer: fkUsuario,
         }),
       })
         .then(function (resposta) {

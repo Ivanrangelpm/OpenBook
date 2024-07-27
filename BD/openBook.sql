@@ -5,7 +5,6 @@
 /*
 comandos para mysql server
 */
-
 CREATE DATABASE OpenBook;
 
 USE OpenBook;
@@ -62,16 +61,16 @@ CREATE TABLE livro (
 	autor VARCHAR(45),
 	genero VARCHAR(45),
     nota decimal(5,2),
-    dtLeitura date,
-    fotoLivro VARCHAR(200),
-    fkUsuario int,
-    constraint fkUsuarioLivro foreign key (fkUsuario) references usuario(id)
+    fotoLivro VARCHAR(200)
 );
+
 
 CREATE TABLE usuarioLeu(
 	idUsuarioLeu int auto_increment,
     fkLivro int,
+    nota decimal(5,2),
     fkUsuario int,
+    dtLeitura date,
     constraint pkUsuarioLeu primary key(idUsuarioLeu, fkLivro, fkUsuario),
     constraint fkUsuarioUsuarioLeu foreign key (fkUsuario) references usuario(id),
     constraint fkLivroUsuarioLeu foreign key (fkLivro) references livro(idLivro)

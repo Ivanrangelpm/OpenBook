@@ -35,9 +35,7 @@ function cadastrarLivro(req, res) {
     var autor = req.body.autorServer;
     var genero = req.body.generoServer;
     var nota = req.body.notaServer;
-    var dtLeitura = req.body.dtLeituraServer;
     var fotoLivro = req.body.fotoLivroServer;
-    var fkUsuario = req.body.fkUsuarioServer;
 
     // Faça as validações dos valores
     if (nomeLivro == undefined) {
@@ -48,16 +46,12 @@ function cadastrarLivro(req, res) {
         res.status(400).send("genero está undefined!");
     } else if (nota == undefined) {
         res.status(400).send("nota está undefined!");
-    } else if (dtLeitura == undefined) {
-        res.status(400).send("dtLeitura está undefined!");
     } else if (fotoLivro == undefined) {
         res.status(400).send("fotoLivro está undefined!");
-    } else if (fkUsuario == undefined) {
-        res.status(400).send("fkUsuario está undefined!");
-    } else {
+    }else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        livroModel.cadastrarLivro(nomeLivro, autor, genero, nota, dtLeitura, fotoLivro, fkUsuario)
+        livroModel.cadastrarLivro(nomeLivro, autor, genero, nota, fotoLivro)
             .then(
                 function (resultado) {
                     res.json(resultado);
