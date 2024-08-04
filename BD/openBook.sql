@@ -9,6 +9,7 @@ CREATE DATABASE OpenBook;
 
 USE OpenBook;
 
+select * from livro;
 CREATE TABLE usuario (
 	id INT PRIMARY KEY AUTO_INCREMENT,
 	nome VARCHAR(50),
@@ -65,17 +66,17 @@ CREATE TABLE livro (
 );
 
 
+
 CREATE TABLE usuarioLeu(
 	idUsuarioLeu int auto_increment,
     fkLivro int,
     nota decimal(5,2),
     fkUsuario int,
-    dtLeitura date,
+    dtLeitura timestamp default current_timestamp,
     constraint pkUsuarioLeu primary key(idUsuarioLeu, fkLivro, fkUsuario),
     constraint fkUsuarioUsuarioLeu foreign key (fkUsuario) references usuario(id),
     constraint fkLivroUsuarioLeu foreign key (fkLivro) references livro(idLivro)
 );
-
 
 
 

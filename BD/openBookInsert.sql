@@ -51,5 +51,5 @@ SELECT * FROM forum;
 SELECT * FROM discussao;
 SELECT * FROM comentario;
 SELECT * FROM livro;
-
+select * from usuarioLeu;
 show tables from OpenBook;

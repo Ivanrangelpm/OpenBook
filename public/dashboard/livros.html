@@ -327,7 +327,7 @@
   function atualizarLivros() {
     var fkUser = sessionStorage.ID_USUARIO;
 
-    fetch("/livro/listarLivros")
+    fetch("/livro/listarLivrosUsuario")
       .then(function (resposta) {
         if (resposta.ok) {
           if (resposta.status == 204) {

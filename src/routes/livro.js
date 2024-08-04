@@ -8,8 +8,15 @@ router.post("/cadastrarLivro", function (req, res) {
     livroController.cadastrarLivro(req, res);
 })
 
+router.post("/cadastrarLivroLido", function (req, res) {
+    livroController.cadastrarLivroLido(req, res);
+})
+
 router.get("/listarLivros", function (req, res) {
     livroController.listarLivros(req, res);
+});
+router.get("/listarLivrosUsuario", function (req, res) {
+    livroController.listarLivrosUsuario(req, res);
 });
 
 
